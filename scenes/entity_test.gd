@@ -164,6 +164,9 @@ func move(movement_input: Vector2):
 	
 	if check_shapecast(wall_collider):
 		position.y = last_position_y
+	
+	# Update z-index based on position to avoid z-fighting
+	z_index = int(position.y)
 
 # Moves to an absolute position; will be obstructed by walls
 func move_absolute(new_pos_x: float, new_pos_y: float):

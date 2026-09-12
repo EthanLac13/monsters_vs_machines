@@ -1452,6 +1452,7 @@ libraries/ = SubResource("AnimationLibrary_guclr")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1353795055]
 modulate = Color(1, 1, 1, 0.5019608)
+z_as_relative = false
 texture = ExtResource("1_fj32h")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=297406565]
