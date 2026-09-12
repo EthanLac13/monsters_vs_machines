@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="monster_vs_machines"
+config/name="monsters_vs_machines"
 run/main_scene="uid://dlnkjjr6h8t1x"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"

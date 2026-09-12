@@ -4,6 +4,7 @@ var anim_player: AnimationPlayer
 
 var current_animation_string = "idle"
 var current_direction_string = "down"
+var last_anim_dir: int = -1
 
 static var direction_map = [
 	"down",
@@ -41,14 +42,20 @@ var next_animation_map = {
 
 func _ready() -> void:
 	anim_player = $AnimObject.get_node("AnimationPlayer")
+	anim_player.animation_finished.connect(_on_animation_finished)
 
 func change_animation(new_anim: String, anim_dir: int = -1):
+	anim_player.play("RESET")
+	anim_player.seek(0)
 	if anim_dir == -1:
 		current_direction_string = "none"
 		anim_player.play(animation_map[new_anim])
 	else:
 		current_direction_string = direction_to_string_dict[get_snapped_anim_dir(anim_dir)]
 		anim_player.play(animation_map[new_anim] + "_" + current_direction_string)
+	
+	current_animation_string = animation_map[new_anim]
+	last_anim_dir = anim_dir
 
 # Snaps an animation to the nearest multiple of 45
 func get_snapped_anim_dir(anim_dir: float):
@@ -56,3 +63,12 @@ func get_snapped_anim_dir(anim_dir: float):
 	if snapped_dir < 0:
 		snapped_dir += 360
 	return snapped_dir
+
+# Called when an animation finishes
+func _on_animation_finished(anim_name):
+	print("Anim finished")
+	if next_animation_map.has(current_animation_string):
+		anim_player.play("RESET")
+		anim_player.seek(0)
+		anim_player.play(next_animation_map[current_animation_string] + "_" + current_direction_string)
+		current_animation_string = next_animation_map[current_animation_string]

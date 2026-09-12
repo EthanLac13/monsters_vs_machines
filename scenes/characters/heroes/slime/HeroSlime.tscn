@@ -200,7 +200,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_86yi6"]
 resource_name = "jump_end_down"
-length = 0.333335017384775
+length = 0.16666834202576428
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -209,7 +209,7 @@ tracks/0/path = NodePath("Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
 "transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.1, 0.9), Vector2(1, 1)]
@@ -221,7 +221,7 @@ tracks/1/path = NodePath("Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
 "transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
 "values": [Vector2(0, -7), Vector2(0, -6), Vector2(0, -7)]
@@ -233,7 +233,7 @@ tracks/2/path = NodePath("DownEyesParent:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
 "transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, 0)]
@@ -241,6 +241,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_guclr"]
 resource_name = "jump_middle_down"
+length = 0.5000016927437857
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -273,7 +274,7 @@ tracks/2/path = NodePath("AirBody:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5),
 "transitions": PackedFloat32Array(0.333, 3, 0.333),
 "update": 0,
 "values": [Vector2(0, -7), Vector2(0, -27), Vector2(0, -7)]
@@ -333,7 +334,7 @@ tracks/7/path = NodePath("DownEyesParent:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5),
 "transitions": PackedFloat32Array(0.333, 3, 1),
 "update": 0,
 "values": [Vector2(0, -3), Vector2(0, -28), Vector2(0, -3)]
@@ -345,7 +346,7 @@ tracks/8/path = NodePath("AirBody:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5),
 "transitions": PackedFloat32Array(0.333, 3, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.8, 1.25), Vector2(1, 1)]
@@ -357,7 +358,7 @@ tracks/9/path = NodePath("Shadow:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5),
 "transitions": PackedFloat32Array(0.333, 3, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
@@ -365,7 +366,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id="Animation_56wvv"]
 resource_name = "jump_down"
-length = 0.333335017384775
+length = 0.16666667
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -374,7 +375,7 @@ tracks/0/path = NodePath("Body:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
 "transitions": PackedFloat32Array(-2, 2, 1),
 "update": 0,
 "values": [Vector2(0, -7), Vector2(0, -4), Vector2(0, -8)]
@@ -386,7 +387,7 @@ tracks/1/path = NodePath("Body:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
 "transitions": PackedFloat32Array(-2, 2, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.9, 1.1)]
@@ -398,10 +399,10 @@ tracks/2/path = NodePath("DownEyesParent:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334),
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667),
 "transitions": PackedFloat32Array(-2, 2, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, -2)]
+"values": [Vector2(0, 0), Vector2(0, 3), Vector2(0, -2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_guclr"]
