@@ -41,7 +41,5 @@ func set_backswing():
 		charge_timer = 0
 
 func end_attack():
-	get_parent().animation_object.change_animation("idle", get_parent().move_dir)
-	get_parent().using_move = false
-	get_parent().can_move = true
+	get_parent().end_using_skill()
 	queue_free()

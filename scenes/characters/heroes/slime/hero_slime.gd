@@ -5,7 +5,8 @@ extends Node2D
 var animation_map = {
 	"idle": "idle",
 	"walk": "jump_start",
-	"hurt": "hurt"
+	"hurt": "hurt",
+	"death": "hurt"
 }
 
 # Map that tells us the next animation to play after one is done.

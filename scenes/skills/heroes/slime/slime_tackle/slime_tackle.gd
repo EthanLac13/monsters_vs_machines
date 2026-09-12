@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 func move_code():
 	charge_timer += 1
 	if charge_timer == 1:
-		get_parent().animation_object.change_animation("idle")
+		get_parent().animation_object.change_animation("idle", get_parent().move_dir)
 	
 	if charge_timer >= rush_times[0] && charge_timer < rush_times[1]:
 		get_parent().move(rush_vector * rush_speed_start)

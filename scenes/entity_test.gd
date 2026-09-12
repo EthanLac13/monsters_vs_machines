@@ -26,7 +26,7 @@ var input_down = false
 var input_left = false
 var input_up = false
 
-var using_move: bool = false
+var using_skill: bool = false
 
 var skill_list = [
 	"res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn"
@@ -186,15 +186,22 @@ func move_absolute(new_pos_x: float, new_pos_y: float):
 		position.y = last_position_y
 
 
-# Attempts to use a move from the array of moves
-func attempt_use_move(move_index: int):
-	if !using_move:
-		current_skill_scene = skill_scenes[move_index].instantiate()
-		add_child(current_skill_scene)
-		current_skill_scene.position.x = 0
-		current_skill_scene.position.y = 0
-		using_move = true
-		can_move = false
+# Attempts to use a skill from the array of skills
+func attempt_use_move(skill_index: int):
+	if !using_skill:
+		if skill_scenes.size() > skill_index:
+			current_skill_scene = skill_scenes[skill_index].instantiate()
+			add_child(current_skill_scene)
+			current_skill_scene.position.x = 0
+			current_skill_scene.position.y = 0
+			using_skill = true
+			can_move = false
+
+# Ends the process of using a skill
+func end_using_skill():
+	animation_object.change_animation("idle", move_dir)
+	using_skill = false
+	can_move = true
 
 # Register getting hit by a hitbox
 func take_hitbox_hit(hitbox: Area2D):
@@ -227,5 +234,5 @@ func update_health_bar():
 func set_death_state():
 	dying = true
 	can_move = false
-	animation_object.change_animation("hurt")
+	animation_object.change_animation("death")
 	#animation_object.hop(30.0, 20.0)
