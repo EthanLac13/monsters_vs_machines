@@ -32,7 +32,8 @@ static var direction_to_string_dict = {
 
 var animation_map = {
 	"idle": "idle",
-	"walk": "jump_start"
+	"walk": "jump_start",
+	"hurt": "hurt"
 }
 var next_animation_map = {
 	"jump_start": "jump_middle",

@@ -29,11 +29,10 @@ var input_up = false
 var using_move: bool = false
 
 var move_list = [
-	"scratch"
+	
 ]
 var move_scenes = [
-	load("res://scenes/moves/scratch/Scratch.tscn"),
-	load("res://scenes/moves/growl/Growl.tscn")
+	
 ]
 var current_move_scene: Node = null
 
@@ -202,7 +201,7 @@ func take_hitbox_hit(hitbox: Area2D):
 				knockback_movement = hitbox.knockback_power
 				knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
 				move_dir = knockback_dir - 180.0
-				animation_object.change_animation("Hurt", move_dir)
+				animation_object.change_animation("hurt")
 				animation_object.hop(flinch_timer * 0.5)
 		else:
 			set_death_state()
@@ -219,5 +218,5 @@ func update_health_bar():
 func set_death_state():
 	dying = true
 	can_move = false
-	animation_object.change_animation("Hurt", move_dir)
+	animation_object.change_animation("hurt")
 	animation_object.hop(30.0, 20.0)
