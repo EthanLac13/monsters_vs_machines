@@ -1,4 +1,4 @@
-extends "res://scenes/skills/generic_move.gd"
+extends "res://scenes/skills/generic_skill.gd"
 
 var attack_time: int = 30
 

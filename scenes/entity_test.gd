@@ -202,6 +202,7 @@ func end_using_skill():
 	animation_object.change_animation("idle", move_dir)
 	using_skill = false
 	can_move = true
+	is_moving = false
 
 # Register getting hit by a hitbox
 func take_hitbox_hit(hitbox: Area2D):

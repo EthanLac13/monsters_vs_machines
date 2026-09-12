@@ -52,7 +52,6 @@ func change_animation(new_anim: String, anim_dir: int = -1):
 
 # Changes direction while maintaining the same animation and progress
 func change_direction(anim_dir: int):
-	print(anim_dir)
 	var new_direction_string = direction_to_string_dict[get_snapped_anim_dir(anim_dir)]
 	if new_direction_string != current_direction_string:
 		var anim_progress = anim_player.current_animation_position
