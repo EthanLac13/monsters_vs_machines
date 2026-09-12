@@ -21,7 +21,7 @@ func _ready() -> void:
 	position_owner = self
 
 func activate():
-	process_mode = 0
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 func deactivate():
-	process_mode = 4
+	process_mode = Node.PROCESS_MODE_DISABLED
