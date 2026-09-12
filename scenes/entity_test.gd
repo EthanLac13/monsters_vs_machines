@@ -53,6 +53,7 @@ func _process(delta: float) -> void:
 	if can_move:
 		check_for_movement()
 	
+	# Move automatically in the direction of knockback
 	if is_flinching:
 		var knockback_power = knockback_movement * (flinch_timer / float(flinch_timer_max))
 		var knockback_vector = Vector2(cos(deg_to_rad(knockback_dir)), sin(deg_to_rad(knockback_dir)))
@@ -70,7 +71,7 @@ func _process(delta: float) -> void:
 		collision_area.clear_exceptions()
 		collision_area.add_exception(collision_area.get_collider(0))
 	
-	# Flow for dying
+	# Flow for dying (enemies; players are TODO)
 	if dying:
 		death_timer += 1
 		
@@ -98,6 +99,7 @@ func check_for_movement():
 	was_previously_moving = is_moving
 	is_moving = false
 	
+	# Get total movement input based on x and y components
 	x_input = 0.0
 	y_input = 0.0
 	previous_move_dir = move_dir
@@ -121,25 +123,27 @@ func check_for_movement():
 		# Set direction based on current input
 		move_dir = rad_to_deg(total_input.angle())
 		
-		#if move_dir != previous_move_dir:
-			#animation_object.change_direction(move_dir)
+		if move_dir != previous_move_dir:
+			animation_object.change_direction(move_dir)
 	
 	# Move and change animations
-	if is_moving:
+	if is_moving: # Set walk animation when moving
 		move(total_input * move_speed)
 		if !was_previously_moving:
 			animation_object.change_animation("walk", move_dir)
-	else:
+	else: # Set idle animation when no longer moving
 		if was_previously_moving:
 			move_absolute(roundf(position.x), roundf(position.y))
 			animation_object.change_animation("idle", move_dir)
 
+# Instantly checks the collision of a shapecast for any Area2Ds
 func check_shapecast(shapecast_to_check: ShapeCast2D):
 	shapecast_to_check.force_shapecast_update()
 	if shapecast_to_check.is_colliding():
 		return true
 	return false
 
+# Moves in a specific direction; will be obstructed by walls
 func move(movement_input: Vector2):
 	# X movement component
 	var last_position_x = position.x
@@ -157,6 +161,7 @@ func move(movement_input: Vector2):
 	if check_shapecast(wall_collider):
 		position.y = last_position_y
 
+# Moves to an absolute position; will be obstructed by walls
 func move_absolute(new_pos_x: float, new_pos_y: float):
 	# X movement component
 	var last_position_x = position.x

@@ -29,6 +29,7 @@ collision_area = NodePath("CollisionParent/CollisionArea")
 wall_collider = NodePath("CollisionParent/WallCollider")
 
 [node name="NewAnimTestScene" parent="." unique_id=1767502227 instance=ExtResource("2_il27e")]
+position = Vector2(0, 3)
 
 [node name="CollisionParent" type="Node2D" parent="." unique_id=1229728815]
 
