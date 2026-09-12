@@ -28,13 +28,13 @@ var input_up = false
 
 var using_move: bool = false
 
-var move_list = [
+var skill_list = [
+	"res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn"
+]
+var skill_scenes = [
 	
 ]
-var move_scenes = [
-	
-]
-var current_move_scene: Node = null
+var current_skill_scene: Node = null
 
 var is_flinching: bool = false
 var flinch_timer: int = 0
@@ -48,6 +48,10 @@ var death_timer: int = 0
 func _ready() -> void:
 	stats_data = $StatsHolder
 	animation_object.change_animation("idle", move_dir)
+	
+	# Load skill scenes
+	for i in range(0, skill_list.size()):
+		skill_scenes.append(load(skill_list[i]))
 
 func _process(delta: float) -> void:
 	if can_move:
@@ -185,10 +189,10 @@ func move_absolute(new_pos_x: float, new_pos_y: float):
 # Attempts to use a move from the array of moves
 func attempt_use_move(move_index: int):
 	if !using_move:
-		current_move_scene = move_scenes[move_index].instantiate()
-		add_child(current_move_scene)
-		current_move_scene.position.x = 0
-		current_move_scene.position.y = 0
+		current_skill_scene = skill_scenes[move_index].instantiate()
+		add_child(current_skill_scene)
+		current_skill_scene.position.x = 0
+		current_skill_scene.position.y = 0
 		using_move = true
 		can_move = false
 

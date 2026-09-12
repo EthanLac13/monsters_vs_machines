@@ -11,7 +11,7 @@ var charge_frames: int = 30
 var backswing_frames: int = 30
 
 func _ready() -> void:
-	get_parent().animation_object.change_animation("Shoot", get_parent().move_dir)
+	get_parent().animation_object.change_animation("idle", get_parent().move_dir)
 
 func _process(delta: float) -> void:
 	match state:
@@ -41,7 +41,7 @@ func set_backswing():
 		charge_timer = 0
 
 func end_attack():
-	get_parent().animation_object.change_animation("Idle", get_parent().move_dir)
+	get_parent().animation_object.change_animation("idle", get_parent().move_dir)
 	get_parent().using_move = false
 	get_parent().can_move = true
 	queue_free()

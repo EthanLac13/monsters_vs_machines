@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bgu3of3g7eo88"]
+
+[ext_resource type="Script" uid="uid://w108vspvp6vk" path="res://scenes/skills/heroes/slime/slime_tackle/slime_tackle.gd" id="1_tphn7"]
+[ext_resource type="PackedScene" uid="uid://j27i3o81li2p" path="res://scenes/moves/AttackHitbox.tscn" id="2_5d7d8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jhqq"]
+size = Vector2(28, 32)
+
+[node name="SkillSlimeTackle" type="Node2D" unique_id=703341747]
+script = ExtResource("1_tphn7")
+
+[node name="Hitbox" parent="." unique_id=1658913960 instance=ExtResource("2_5d7d8")]
+process_mode = 4
+position = Vector2(12, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1652792310]
+shape = SubResource("RectangleShape2D_1jhqq")
