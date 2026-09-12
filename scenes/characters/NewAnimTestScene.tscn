@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cq3voio7lnhk6"]
+
+[ext_resource type="Script" uid="uid://d2go18lb46g3y" path="res://scenes/characters/new_anim_test_scene.gd" id="1_p1uu3"]
+[ext_resource type="PackedScene" uid="uid://si1um7xg1xv7" path="res://scenes/characters/heroes/slime/HeroSlime.tscn" id="2_mlncd"]
+
+[node name="NewAnimTestScene" type="Node2D" unique_id=1767502227]
+script = ExtResource("1_p1uu3")
+
+[node name="AnimObject" parent="." unique_id=1987921770 instance=ExtResource("2_mlncd")]

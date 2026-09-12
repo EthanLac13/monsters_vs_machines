@@ -2,14 +2,14 @@ extends Node2D
 
 @export var controlled_object: Node2D
 
-func _ready() -> void:
-	var new_enemy_scene = load("res://scenes/EntityTest.tscn")
-	var new_enemy = new_enemy_scene.instantiate()
-	get_parent().add_child.call_deferred(new_enemy)
-	new_enemy.position.x = 0
-	new_enemy.position.y = 0
-	new_enemy.faction = 1
-	print(new_enemy)
+#func _ready() -> void:
+	#var new_enemy_scene = load("res://scenes/EntityTest.tscn")
+	#var new_enemy = new_enemy_scene.instantiate()
+	#get_parent().add_child.call_deferred(new_enemy)
+	#new_enemy.position.x = 0
+	#new_enemy.position.y = 0
+	#new_enemy.faction = 1
+	#print(new_enemy)
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):

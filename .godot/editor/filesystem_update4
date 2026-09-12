@@ -1,0 +1,6 @@
+res://scenes/EntityTest.tscn
+res://scenes/entity_test.gd
+res://scenes/MainScene.tscn
+res://scenes/player_input_controller.gd
+res://scenes/characters/heroes/slime/HeroSlime.tscn
+res://scenes/characters/new_anim_test_scene.gd

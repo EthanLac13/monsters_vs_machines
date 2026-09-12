@@ -1,11 +1,10 @@
 extends Node2D
 
-var animation_object
-
 var stats_data: Node
 
 @export var faction: int = 0
 
+@export var animation_object: Node2D
 @export var collision_area: ShapeCast2D
 @export var wall_collider: ShapeCast2D
 
@@ -49,8 +48,7 @@ var death_timer: int = 0
 
 func _ready() -> void:
 	stats_data = $StatsHolder
-	animation_object = get_node("AtlasTestScene")
-	animation_object.change_animation("Idle", move_dir)
+	animation_object.change_animation("idle", move_dir)
 
 func _process(delta: float) -> void:
 	if can_move:
@@ -124,18 +122,18 @@ func check_for_movement():
 		# Set direction based on current input
 		move_dir = rad_to_deg(total_input.angle())
 		
-		if move_dir != previous_move_dir:
-			animation_object.change_direction(move_dir)
+		#if move_dir != previous_move_dir:
+			#animation_object.change_direction(move_dir)
 	
 	# Move and change animations
 	if is_moving:
 		move(total_input * move_speed)
 		if !was_previously_moving:
-			animation_object.change_animation("Walk", move_dir)
+			animation_object.change_animation("walk", move_dir)
 	else:
 		if was_previously_moving:
 			move_absolute(roundf(position.x), roundf(position.y))
-			animation_object.change_animation("Idle", move_dir)
+			animation_object.change_animation("idle", move_dir)
 
 func check_shapecast(shapecast_to_check: ShapeCast2D):
 	shapecast_to_check.force_shapecast_update()
