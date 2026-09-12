@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 		if flinch_timer <= 0:
 			is_flinching = false
 			can_move = true
-			animation_object.change_animation("Idle", move_dir)
+			animation_object.change_animation("idle", move_dir)
 	
 	# Check for taking hit
 	if check_shapecast(collision_area):
@@ -83,8 +83,8 @@ func _process(delta: float) -> void:
 		if move_dir >= 360:
 			move_dir -= 360.0
 		
-		if death_timer % 3 == 2:
-			animation_object.change_animation("Hurt", move_dir)
+		#if death_timer % 3 == 2:
+			#animation_object.change_animation("hurt", move_dir)
 		
 		if death_timer >= 25 && death_timer < 35:
 			modulate.a -= 0.1
@@ -211,7 +211,7 @@ func take_hitbox_hit(hitbox: Area2D):
 				knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
 				move_dir = knockback_dir - 180.0
 				animation_object.change_animation("hurt")
-				animation_object.hop(flinch_timer * 0.5)
+				#animation_object.hop(flinch_timer * 0.5)
 		else:
 			set_death_state()
 			is_flinching = true
@@ -228,4 +228,4 @@ func set_death_state():
 	dying = true
 	can_move = false
 	animation_object.change_animation("hurt")
-	animation_object.hop(30.0, 20.0)
+	#animation_object.hop(30.0, 20.0)

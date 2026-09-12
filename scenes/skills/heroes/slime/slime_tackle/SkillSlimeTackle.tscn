@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bgu3of3g7eo88"]
 
 [ext_resource type="Script" uid="uid://w108vspvp6vk" path="res://scenes/skills/heroes/slime/slime_tackle/slime_tackle.gd" id="1_tphn7"]
-[ext_resource type="PackedScene" uid="uid://j27i3o81li2p" path="res://scenes/moves/AttackHitbox.tscn" id="2_5d7d8"]
+[ext_resource type="PackedScene" uid="uid://j27i3o81li2p" path="res://scenes/skills/AttackHitbox.tscn" id="2_5d7d8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jhqq"]
 size = Vector2(28, 32)
