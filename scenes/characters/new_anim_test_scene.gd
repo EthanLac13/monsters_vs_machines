@@ -8,25 +8,25 @@ var last_anim_dir: int = -1
 
 static var direction_map = [
 	"down",
-	"down_left",
+	#"down_left",
 	"left",
-	"up_left",
+	#"up_left",
 	"up",
-	"up_right",
-	"right",
-	"down_right"
+	#"up_right",
+	"right"#,
+	#"down_right"
 ]
 static var direction_single = "single"
 
 static var direction_to_string_dict = {
 	0: "right",
-	45: "down_right",
+	#45: "down_right",
 	90: "down",
-	135: "down_left",
+	#135: "down_left",
 	180: "left",
-	225: "up_left",
+	#225: "up_left",
 	270: "up",
-	315: "up_right",
+	#315: "up_right",
 	360: "right"
 }
 
@@ -59,7 +59,7 @@ func change_animation(new_anim: String, anim_dir: int = -1):
 
 # Snaps an animation to the nearest multiple of 45
 func get_snapped_anim_dir(anim_dir: float):
-	var snapped_dir: int = snapped(anim_dir, 45)
+	var snapped_dir: int = snapped(anim_dir, 90)
 	if snapped_dir < 0:
 		snapped_dir += 360
 	return snapped_dir
