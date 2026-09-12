@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://d3e2p257664lr"]
+
+[ext_resource type="Script" uid="uid://bweondrh376y0" path="res://scenes/entity_test.gd" id="1_3uif4"]
+[ext_resource type="PackedScene" uid="uid://yfd0r8jnhpfk" path="res://scenes/AtlasTestScene.tscn" id="2_ckipu"]
+[ext_resource type="PackedScene" uid="uid://cqnekn6rvcjql" path="res://scenes/StatsHolder.tscn" id="3_il27e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ebwj"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocns7"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb32r"]
+bg_color = Color(0, 0, 0, 1)
+corner_detail = 1
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7oc2"]
+bg_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[node name="EntityTest" type="Node2D" unique_id=979850551 node_paths=PackedStringArray("collision_area", "wall_collider")]
+script = ExtResource("1_3uif4")
+collision_area = NodePath("CollisionParent/CollisionArea")
+wall_collider = NodePath("CollisionParent/WallCollider")
+
+[node name="AtlasTestScene" parent="." unique_id=1760370990 instance=ExtResource("2_ckipu")]
+
+[node name="CollisionParent" type="Node2D" parent="." unique_id=1229728815]
+
+[node name="CollisionArea" type="ShapeCast2D" parent="CollisionParent" unique_id=300422182]
+shape = SubResource("CircleShape2D_5ebwj")
+target_position = Vector2(0, 0)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="WallCollider" type="ShapeCast2D" parent="CollisionParent" unique_id=1293915911]
+shape = SubResource("RectangleShape2D_ocns7")
+target_position = Vector2(0, 0)
+collide_with_areas = true
+
+[node name="StatsHolder" parent="." unique_id=1180321044 instance=ExtResource("3_il27e")]
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1978716672]
+modulate = Color(0, 0.72156864, 0.972549, 1)
+offset_left = -9.0
+offset_top = 10.0
+offset_right = 9.0
+offset_bottom = 12.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/outline_size = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_pb32r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j7oc2")
+max_value = 1.0
+value = 1.0
+show_percentage = false

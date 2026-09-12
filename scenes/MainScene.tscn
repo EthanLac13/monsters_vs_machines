@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dlnkjjr6h8t1x"]
+
+[ext_resource type="PackedScene" uid="uid://d3e2p257664lr" path="res://scenes/EntityTest.tscn" id="1_echbf"]
+[ext_resource type="PackedScene" uid="uid://hva4k4i1sqks" path="res://scenes/PlayerInputController.tscn" id="1_ibiss"]
+[ext_resource type="Script" uid="uid://h5nekwvln27d" path="res://scenes/camera_2d.gd" id="3_c6dvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocns7"]
+size = Vector2(120, 20)
+
+[node name="MainScene" type="Node2D" unique_id=1545239290]
+
+[node name="PlayerInputController" parent="." unique_id=517211041 node_paths=PackedStringArray("controlled_object") instance=ExtResource("1_ibiss")]
+controlled_object = NodePath("../EntityTest")
+
+[node name="EntityTest" parent="." unique_id=1175444251 instance=ExtResource("1_echbf")]
+position = Vector2(96, 96)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1212635600]
+script = ExtResource("3_c6dvc")
+
+[node name="Wall" type="Area2D" parent="." unique_id=856556345]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=308174798]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_ocns7")

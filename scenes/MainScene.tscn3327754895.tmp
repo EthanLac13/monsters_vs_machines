@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlnkjjr6h8t1x"]
+
+[ext_resource type="PackedScene" uid="uid://d3e2p257664lr" path="res://scenes/EntityTest.tscn" id="1_echbf"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="EntityTest" parent="." instance=ExtResource("1_echbf")]
+position = Vector2(96, 96)
+scale = Vector2(2, 2)
