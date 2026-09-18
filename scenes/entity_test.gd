@@ -4,7 +4,7 @@ var stats_data: Node
 
 @export var faction: int = 0
 
-@export var animation_object: Node2D
+var animation_object
 @export var collision_area: ShapeCast2D
 @export var wall_collider: ShapeCast2D
 
@@ -47,6 +47,11 @@ var death_timer: int = 0
 
 func _ready() -> void:
 	stats_data = $StatsHolder
+	
+	# Create animation object
+	animation_object = $NewAnimTestScene#load("res://scenes/characters/NewAnimTestScene.tscn").instantiate()
+	#add_child(animation_object)
+	
 	animation_object.change_animation("idle", move_dir)
 	
 	# Load skill scenes
@@ -98,6 +103,15 @@ func _process(delta: float) -> void:
 	input_left = false
 	input_up = false
 
+func set_sprite(sprite_string: String):
+	# Remove the old animation object
+	animation_object.get_node("AnimObject").queue_free()
+	
+	# Create the new animation object
+	var my_sprite = load(sprite_string).instantiate()
+	animation_object.add_child(my_sprite)
+	animation_object.anim_object = my_sprite
+	animation_object.set_anim_player()
 
 func check_for_movement():
 	was_previously_moving = is_moving

@@ -769,6 +769,7 @@ texture = ExtResource("1_cjbjj")
 [node name="DownParent" type="Node2D" parent="." unique_id=767689334]
 
 [node name="Body" type="Sprite2D" parent="DownParent" unique_id=809420502]
+z_index = 1
 position = Vector2(0, -9)
 texture = ExtResource("2_s6d0t")
 
@@ -853,6 +854,7 @@ offset = Vector2(3, -3)
 visible = false
 
 [node name="Body" type="Sprite2D" parent="RightParent" unique_id=254515238]
+z_index = 1
 position = Vector2(0, -9)
 texture = ExtResource("2_s6d0t")
 
@@ -904,7 +906,7 @@ offset = Vector2(3, -3)
 visible = false
 
 [node name="Body" type="Sprite2D" parent="UpParent" unique_id=1125719956]
-z_index = 1
+z_index = 2
 position = Vector2(0, -9)
 texture = ExtResource("2_s6d0t")
 
@@ -983,6 +985,7 @@ offset = Vector2(3, -3)
 visible = false
 
 [node name="Body" type="Sprite2D" parent="LeftParent" unique_id=582682702]
+z_index = 1
 position = Vector2(0, -9)
 texture = ExtResource("2_s6d0t")
 

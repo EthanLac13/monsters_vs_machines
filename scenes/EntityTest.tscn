@@ -22,10 +22,9 @@ expand_margin_bottom = 1.0
 bg_color = Color(1, 1, 1, 1)
 corner_detail = 1
 
-[node name="EntityTest" type="Node2D" unique_id=979850551 node_paths=PackedStringArray("animation_object", "collision_area", "wall_collider")]
+[node name="EntityTest" type="Node2D" unique_id=979850551 node_paths=PackedStringArray("collision_area", "wall_collider")]
 y_sort_enabled = true
 script = ExtResource("1_3uif4")
-animation_object = NodePath("NewAnimTestScene")
 collision_area = NodePath("CollisionParent/CollisionArea")
 wall_collider = NodePath("CollisionParent/WallCollider")
 

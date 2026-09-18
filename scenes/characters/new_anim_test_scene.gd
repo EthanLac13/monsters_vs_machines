@@ -26,11 +26,23 @@ var next_animation_map = {} # Map that tells us the next animation in a sequence
 
 func _ready() -> void:
 	anim_object = $AnimObject
-	animation_map = $AnimObject.animation_map
-	next_animation_map = $AnimObject.next_animation_map
+	animation_map = anim_object.animation_map
+	next_animation_map = anim_object.next_animation_map
 	
-	anim_player = $AnimObject.get_node("AnimationPlayer")
+	set_anim_player()
+
+func set_anim_object(anim_object_string: String):
+	anim_object = load(anim_object_string).instantiate()
+	animation_map = anim_object.animation_map
+	next_animation_map = anim_object.next_animation_map
+	
+	set_anim_player()
+
+func set_anim_player():
+	anim_player = anim_object.get_node("AnimationPlayer")
 	anim_player.animation_finished.connect(_on_animation_finished)
+	animation_map = anim_object.animation_map
+	next_animation_map = anim_object.next_animation_map
 
 func change_animation(new_anim: String, anim_dir: int = -1):
 	# Reset the current animation

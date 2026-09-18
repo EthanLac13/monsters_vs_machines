@@ -2,10 +2,15 @@ extends Node2D
 
 @export var controlled_object: Node2D
 
+var spawned_enemy
+
 func _ready() -> void:
 	var new_enemy_scene = load("res://scenes/EntityTest.tscn")
 	var new_enemy = new_enemy_scene.instantiate()
+	spawned_enemy = new_enemy
+	
 	get_parent().add_child.call_deferred(new_enemy)
+	spawned_enemy.set_sprite.call_deferred("res://scenes/characters/enemies/sentry_droid/EnemySentryDroid.tscn")
 	new_enemy.position.x = 0
 	new_enemy.position.y = 0
 	new_enemy.faction = 1
