@@ -5,6 +5,10 @@ extends Node2D
 var spawned_enemy
 
 func _ready() -> void:
+	var ai_controller = Node2D.new()
+	ai_controller.script = load("res://scenes/characters/enemies/sentry_droid/ai_controller_sentry_droid.gd")
+	add_child(ai_controller)
+	
 	var new_enemy_scene = load("res://scenes/EntityTest.tscn")
 	var new_enemy = new_enemy_scene.instantiate()
 	spawned_enemy = new_enemy
@@ -14,7 +18,10 @@ func _ready() -> void:
 	new_enemy.position.x = 0
 	new_enemy.position.y = 0
 	new_enemy.faction = 1
+	new_enemy.move_speed = 0.5
 	print(new_enemy)
+	
+	ai_controller.controlled_entity = new_enemy
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):

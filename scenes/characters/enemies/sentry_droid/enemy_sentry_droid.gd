@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var ai_script: GDScript
+
 # Map that converts external animations to internal ones.
 # For example, we can get a "walk" input and play our "jump_start" anim.
 var animation_map = {
