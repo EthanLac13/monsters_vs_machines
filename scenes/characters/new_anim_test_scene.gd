@@ -64,12 +64,13 @@ func change_animation(new_anim: String, anim_dir: int = -1):
 
 # Changes direction while maintaining the same animation and progress
 func change_direction(anim_dir: int):
-	var new_direction_string = direction_to_string_dict[get_snapped_anim_dir(anim_dir)]
-	if new_direction_string != current_direction_string:
-		var anim_progress = anim_player.current_animation_position
-		change_animation(current_external_animation_string, anim_dir)
-		if anim_progress < anim_player.current_animation_length:
-			anim_player.seek(anim_progress, true)
+	if anim_player.current_animation != "":
+		var new_direction_string = direction_to_string_dict[get_snapped_anim_dir(anim_dir)]
+		if new_direction_string != current_direction_string:
+			var anim_progress = anim_player.current_animation_position
+			change_animation(current_external_animation_string, anim_dir)
+			if anim_progress < anim_player.current_animation_length:
+				anim_player.seek(anim_progress, true)
 
 # Snaps an animation to the nearest multiple of 90
 func get_snapped_anim_dir(anim_dir: float):

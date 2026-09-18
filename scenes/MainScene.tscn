@@ -11,22 +11,24 @@ size = Vector2(120, 20)
 [node name="MainScene" type="Node2D" unique_id=1545239290]
 
 [node name="PlayerInputController" parent="." unique_id=517211041 node_paths=PackedStringArray("controlled_object") instance=ExtResource("1_ibiss")]
-controlled_object = NodePath("../EntityTest")
+controlled_object = NodePath("../Player")
 
-[node name="EntityTest" parent="." unique_id=1175444251 instance=ExtResource("1_echbf")]
+[node name="Player" parent="." unique_id=1175444251 instance=ExtResource("1_echbf")]
 y_sort_enabled = false
-position = Vector2(0, -47)
+position = Vector2(240, 90)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1212635600]
+position = Vector2(240, 135)
 script = ExtResource("3_c6dvc")
 
 [node name="Wall" type="Area2D" parent="." unique_id=856556345]
+position = Vector2(240, 135)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=308174798]
 position = Vector2(0, 44)
 shape = SubResource("RectangleShape2D_ocns7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=860757425]
-position = Vector2(3.516674e-06, 44)
+position = Vector2(240, 178.99998)
 scale = Vector2(0.93750006, 0.15625)
 texture = ExtResource("4_611at")
