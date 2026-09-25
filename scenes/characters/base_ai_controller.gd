@@ -17,6 +17,11 @@ func initialize():
 	controlled_entity.stats_data.hp = stats.health
 	controlled_entity.stats_data.max_hp = stats.health
 	
+	controlled_entity.stats_data.base_stats.attack = stats.attack
+	controlled_entity.stats_data.base_stats.defense = stats.defense
+	controlled_entity.stats_data.base_stats.magic_attack = stats.magic_attack
+	controlled_entity.stats_data.base_stats.magic_defense = stats.magic_defense
+	
 	movement_speed = stats.movement_speed
 
 func _process(delta: float) -> void:
