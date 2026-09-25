@@ -1,0 +1,562 @@
+[gd_scene format=3 uid="uid://btaahg2yr8dte"]
+
+[ext_resource type="Texture2D" uid="uid://bahyeatifi2jd" path="res://sprites/character_sprites/heroes/slime/slime_shadow.png" id="1_vby81"]
+[ext_resource type="Texture2D" uid="uid://dv4klhs8h1fqx" path="res://sprites/character_sprites/enemies/six_blades/six_blades_1.png" id="1_wys40"]
+[ext_resource type="Texture2D" uid="uid://dcjdjaa3lyyng" path="res://sprites/character_sprites/enemies/six_blades/six_blades_2.png" id="2_vby81"]
+[ext_resource type="Texture2D" uid="uid://b123mcyx8fga7" path="res://sprites/character_sprites/enemies/six_blades/six_blades_3.png" id="3_tblr6"]
+[ext_resource type="Texture2D" uid="uid://cm7gh13v2fex3" path="res://sprites/character_sprites/enemies/six_blades/six_blades_4.png" id="4_8c1ix"]
+[ext_resource type="Texture2D" uid="uid://camcgidqsv0j1" path="res://sprites/character_sprites/enemies/six_blades/six_blades_knife.png" id="5_0r74j"]
+
+[sub_resource type="Animation" id="Animation_kstdm"]
+resource_name = "RESET"
+length = 0.01666833420265466
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/KnivesParent/Knife1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KnivesParent/Knife1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/KnivesParent/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 4.0000005)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/KnivesParent/Knife2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0471976]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/KnivesParent/Knife3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5, 4.0000005)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/KnivesParent/Knife3:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0943952]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/KnivesParent/Knife4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/KnivesParent/Knife4:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.1415925]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/KnivesParent/Knife4:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Body/KnivesParent/Knife5:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4.999999, -3.0000005)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Body/KnivesParent/Knife5:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.1887903]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Body/KnivesParent/Knife5:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Body/KnivesParent/Knife6:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, -3.0000005)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Body/KnivesParent/Knife6:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.2359877]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Body/KnivesParent/Knife6:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Body:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wys40"]
+resource_name = "hurt"
+length = 0.01666833420265466
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2617993877991494]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/KnivesParent/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KnivesParent/Knife4:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.6179938779914944]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/KnivesParent/Knife1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 3)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/KnivesParent/Knife1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5235987755982988]
+}
+
+[sub_resource type="Animation" id="Animation_14kg8"]
+resource_name = "idle"
+length = 0.20000167709756642
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/KnivesParent/Knife1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(11, 0), Vector2(9, 2), Vector2(11, 0), Vector2(9, 2), Vector2(11, 0), Vector2(9, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/KnivesParent/Knife1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.5235987755982988, 0.0, 0.5235987755982988, 0.0, 0.5235987755982988]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/KnivesParent/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(5, 4.0000005), Vector2(0, 6), Vector2(5, 4.0000005), Vector2(0, 6), Vector2(5, 4.0000005), Vector2(0, 6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/KnivesParent/Knife2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.0471976, 1.5707963267948966, 1.0471976, 1.5707963267948966, 1.0471976, 1.5707963267948966]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/KnivesParent/Knife3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-5, 4.0000005), Vector2(-9, 2), Vector2(-5, 4.0000005), Vector2(-9, 2), Vector2(-5, 4.0000005), Vector2(-9, 2)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/KnivesParent/Knife3:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2.0943952, 2.6179938779914944, 2.0943952, 2.6179938779914944, 2.0943952, 2.6179938779914944]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/KnivesParent/Knife4:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-11, 0), Vector2(-9, -2), Vector2(-11, 0), Vector2(-9, -2), Vector2(-11, 0), Vector2(-9, -2)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/KnivesParent/Knife4:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [-3.1415925, 3.6651914291880923, -3.1415925, 3.6651914291880923, -3.1415925, 3.6651914291880923]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/KnivesParent/Knife4:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(0.75, 1), Vector2(1, 1), Vector2(0.75, 1), Vector2(1, 1), Vector2(0.75, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Body/KnivesParent/Knife5:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-4.999999, -3.0000005), Vector2(0, -4), Vector2(-4.999999, -3.0000005), Vector2(0, -4), Vector2(-4.999999, -3.0000005), Vector2(0, -4)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Body/KnivesParent/Knife5:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4.1887903, 4.71238898038469, 4.1887903, 4.71238898038469, 4.1887903, 4.71238898038469]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Body/KnivesParent/Knife5:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0.625, 1), Vector2(0.575, 1), Vector2(0.625, 1), Vector2(0.575, 1), Vector2(0.625, 1), Vector2(0.575, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Body/KnivesParent/Knife6:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(5, -3.0000005), Vector2(9, -2), Vector2(5, -3.0000005), Vector2(9, -2), Vector2(5, -3.0000005), Vector2(9, -2)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Body/KnivesParent/Knife6:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5.2359877, 5.759586531581287, 5.2359877, 5.759586531581287, 5.2359877, 5.759586531581287]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Body/KnivesParent/Knife6:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0.625, 1), Vector2(0.75, 1), Vector2(0.625, 1), Vector2(0.75, 1), Vector2(0.625, 1), Vector2(0.75, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4u61"]
+_data = {
+&"RESET": SubResource("Animation_kstdm"),
+&"hurt": SubResource("Animation_wys40"),
+&"idle": SubResource("Animation_14kg8")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb32r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wys40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vby81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tblr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8c1ix")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="EnemySixBlades" type="Node2D" unique_id=1958676736]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1201876360]
+libraries/ = SubResource("AnimationLibrary_w4u61")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=975987755]
+modulate = Color(1, 1, 1, 0.5019608)
+z_as_relative = false
+texture = ExtResource("1_vby81")
+
+[node name="Body" type="AnimatedSprite2D" parent="." unique_id=352438576]
+z_index = 1
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_pb32r")
+
+[node name="KnivesParent" type="Node2D" parent="Body" unique_id=939556009]
+position = Vector2(0, -6)
+
+[node name="Knife1" type="Sprite2D" parent="Body/KnivesParent" unique_id=1000971573]
+position = Vector2(11, 0)
+texture = ExtResource("5_0r74j")
+offset = Vector2(4, 0)
+
+[node name="Knife2" type="Sprite2D" parent="Body/KnivesParent" unique_id=468826228]
+position = Vector2(5, 4.0000005)
+rotation = 1.0471976
+texture = ExtResource("5_0r74j")
+offset = Vector2(4, 0)
+
+[node name="Knife3" type="Sprite2D" parent="Body/KnivesParent" unique_id=2001751087]
+position = Vector2(-5, 4.0000005)
+rotation = 2.0943952
+texture = ExtResource("5_0r74j")
+offset = Vector2(4, 0)
+
+[node name="Knife4" type="Sprite2D" parent="Body/KnivesParent" unique_id=1400883538]
+position = Vector2(-11, 0)
+rotation = -3.1415925
+texture = ExtResource("5_0r74j")
+offset = Vector2(4, 0)
+
+[node name="Knife5" type="Sprite2D" parent="Body/KnivesParent" unique_id=1291081717]
+position = Vector2(-4.999999, -3.0000005)
+rotation = 4.1887903
+scale = Vector2(0.5, 1)
+texture = ExtResource("5_0r74j")
+offset = Vector2(4, 0)
+
+[node name="Knife6" type="Sprite2D" parent="Body/KnivesParent" unique_id=965039387]
+position = Vector2(5, -3.0000005)
+rotation = 5.2359877
+scale = Vector2(0.5, 1)
+texture = ExtResource("5_0r74j")
+offset = Vector2(4, 0)
