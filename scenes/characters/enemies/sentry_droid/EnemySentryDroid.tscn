@@ -758,7 +758,10 @@ _data = {
 
 [node name="EnemySentryDroid" type="Node2D" unique_id=159277287]
 script = ExtResource("1_ajbn8")
+max_chase_dir = 64.0
 ai_script = ExtResource("2_ao34y")
+health = 50
+movement_speed = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=352887532]
 libraries/ = SubResource("AnimationLibrary_ao34y")

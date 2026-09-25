@@ -22,7 +22,7 @@ func _ready() -> void:
 	print(new_enemy)
 	
 	ai_controller.controlled_entity = new_enemy
-	ai_controller.initialize()
+	ai_controller.initialize.call_deferred()
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):
