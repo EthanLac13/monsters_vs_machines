@@ -5,6 +5,8 @@ extends Node2D
 var spawned_enemy
 
 func _ready() -> void:
+	controlled_object.ai_controller = self
+	
 	var new_enemy_scene = load("res://scenes/EntityTest.tscn")
 	var new_enemy = new_enemy_scene.instantiate()
 	spawned_enemy = new_enemy

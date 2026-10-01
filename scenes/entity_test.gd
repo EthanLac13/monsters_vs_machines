@@ -8,6 +8,8 @@ var animation_object
 @export var collision_area: ShapeCast2D
 @export var wall_collider: ShapeCast2D
 
+var ai_controller: Node2D
+
 var can_move: bool = true
 
 var is_moving: bool = false
@@ -61,7 +63,7 @@ func _ready() -> void:
 		skill_scenes.append(load(skill_list[i]))
 
 func initialize_ai():
-	var ai_controller = Node2D.new()
+	ai_controller = Node2D.new()
 	ai_controller.script = animation_object.anim_object.ai_script
 	get_parent().add_child(ai_controller)
 	
@@ -113,6 +115,7 @@ func _process(delta: float) -> void:
 		
 		if death_timer == 35:
 			queue_free()
+			ai_controller.queue_free()
 	
 	# Reset inputs
 	input_right = false
