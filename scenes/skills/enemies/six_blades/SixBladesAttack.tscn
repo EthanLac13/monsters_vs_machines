@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cxlu2jbcofmwi"]
+
+[ext_resource type="PackedScene" uid="uid://j27i3o81li2p" path="res://scenes/skills/AttackHitbox.tscn" id="1_37wbe"]
+[ext_resource type="Script" uid="uid://dtri88nmqmdjs" path="res://scenes/skills/enemies/six_blades/six_blades_attack.gd" id="1_s1ydw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s1ydw"]
+radius = 16.0
+
+[node name="SixBladesAttack" type="Node2D" unique_id=934649701]
+script = ExtResource("1_s1ydw")
+
+[node name="Hitbox" parent="." unique_id=1658913960 instance=ExtResource("1_37wbe")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1269818391]
+shape = SubResource("CircleShape2D_s1ydw")

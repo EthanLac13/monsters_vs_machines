@@ -94,7 +94,8 @@ func _process(delta: float) -> void:
 	if check_shapecast(collision_area):
 		take_hitbox_hit(collision_area.get_collider(0))
 		collision_area.clear_exceptions()
-		collision_area.add_exception(collision_area.get_collider(0))
+		if !collision_area.get_collider(0).multihit:
+			collision_area.add_exception(collision_area.get_collider(0))
 	
 	# Flow for dying (enemies; players are TODO)
 	if dying:

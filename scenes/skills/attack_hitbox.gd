@@ -17,6 +17,8 @@ var flinch_weight: float = 0.0 # Weight of the hitbox; heavier targets are not a
 var multi_target: bool = false
 var multi_target_damage_reduction: float = 0.5
 
+var multihit: bool = false
+
 func _ready() -> void:
 	position_owner = self
 
