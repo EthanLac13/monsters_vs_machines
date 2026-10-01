@@ -23,6 +23,7 @@ static var direction_to_string_dict = {
 
 var animation_map = {} # Map that converts external animations to internal ones; loaded from the anim object
 var next_animation_map = {} # Map that tells us the next animation in a sequence; loaded from the anim object
+var directional_anims = {} # Map that tells us which animations have directionality or not
 
 func _ready() -> void:
 	anim_object = $AnimObject
@@ -33,9 +34,6 @@ func _ready() -> void:
 
 func set_anim_object(anim_object_string: String):
 	anim_object = load(anim_object_string).instantiate()
-	animation_map = anim_object.animation_map
-	next_animation_map = anim_object.next_animation_map
-	
 	set_anim_player()
 
 func set_anim_player():
@@ -43,18 +41,23 @@ func set_anim_player():
 	anim_player.animation_finished.connect(_on_animation_finished)
 	animation_map = anim_object.animation_map
 	next_animation_map = anim_object.next_animation_map
+	directional_anims = anim_object.directional_anims
 
 func change_animation(new_anim: String, anim_dir: int = -1):
 	# Reset the current animation
 	anim_player.play("RESET")
 	anim_player.seek(0)
 	
-	if anim_dir == -1: # If no direction is specified, play the animation with no direction at the end
-		current_direction_string = "none"
-		anim_player.play(animation_map[new_anim])
-	else: # Otherwise, play it in the proper direction
+	print(animation_map)
+	
+	if directional_anims[animation_map[new_anim]] == true:
 		current_direction_string = direction_to_string_dict[get_snapped_anim_dir(anim_dir)]
 		anim_player.play(animation_map[new_anim] + "_" + current_direction_string)
+	else:# If no direction is specified, play the animation with no direction at the end
+		current_direction_string = "none"
+		print(animation_map[new_anim])
+		anim_player.play(animation_map[new_anim])
+	
 	# Use seek(0) to ensure players don't see one frame of RESET by mistake
 	anim_player.seek(0)
 	

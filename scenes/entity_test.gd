@@ -36,6 +36,8 @@ var skill_scenes = [
 ]
 var current_skill_scene: Node = null
 
+var hitbox_scene = load("res://scenes/skills/AttackHitbox.tscn")
+
 var is_flinching: bool = false
 var flinch_timer: int = 0
 var flinch_timer_max: int = 0
@@ -52,11 +54,25 @@ func _ready() -> void:
 	animation_object = $NewAnimTestScene#load("res://scenes/characters/NewAnimTestScene.tscn").instantiate()
 	#add_child(animation_object)
 	
-	animation_object.change_animation("idle", move_dir)
+	animation_object.change_animation.call_deferred("idle", move_dir)
 	
 	# Load skill scenes
 	for i in range(0, skill_list.size()):
 		skill_scenes.append(load(skill_list[i]))
+
+func initialize_ai():
+	var ai_controller = Node2D.new()
+	ai_controller.script = animation_object.anim_object.ai_script
+	get_parent().add_child(ai_controller)
+	
+	ai_controller.controlled_entity = self
+	ai_controller.initialize()
+	
+	# Set animation map
+	print(animation_object.anim_object.movement_speed)
+	print(animation_object.anim_object.animation_map)
+	animation_object.set_anim_player()
+	print(animation_object.anim_object.animation_map)
 
 func _process(delta: float) -> void:
 	if can_move:
@@ -72,7 +88,7 @@ func _process(delta: float) -> void:
 		if flinch_timer <= 0:
 			is_flinching = false
 			can_move = true
-			animation_object.change_animation("idle", move_dir)
+			animation_object.change_animation("idle")
 	
 	# Check for taking hit
 	if check_shapecast(collision_area):

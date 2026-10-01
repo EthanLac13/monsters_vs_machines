@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://btaahg2yr8dte"]
 
+[ext_resource type="Script" uid="uid://cosdp82u7rf8x" path="res://scenes/characters/enemies/six_blades/enemy_six_blades.gd" id="1_tblr6"]
 [ext_resource type="Texture2D" uid="uid://bahyeatifi2jd" path="res://sprites/character_sprites/heroes/slime/slime_shadow.png" id="1_vby81"]
 [ext_resource type="Texture2D" uid="uid://dv4klhs8h1fqx" path="res://sprites/character_sprites/enemies/six_blades/six_blades_1.png" id="1_wys40"]
+[ext_resource type="Script" uid="uid://db526arhj8ai" path="res://scenes/characters/enemies/six_blades/ai_controller_six_blades.gd" id="2_8c1ix"]
 [ext_resource type="Texture2D" uid="uid://dcjdjaa3lyyng" path="res://sprites/character_sprites/enemies/six_blades/six_blades_2.png" id="2_vby81"]
 [ext_resource type="Texture2D" uid="uid://b123mcyx8fga7" path="res://sprites/character_sprites/enemies/six_blades/six_blades_3.png" id="3_tblr6"]
 [ext_resource type="Texture2D" uid="uid://cm7gh13v2fex3" path="res://sprites/character_sprites/enemies/six_blades/six_blades_4.png" id="4_8c1ix"]
@@ -283,7 +285,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_14kg8"]
 resource_name = "idle"
-length = 0.20000167709756642
+length = 0.2000016770975664
 loop_mode = 1
 step = 0.016666668
 tracks/0/type = "value"
@@ -392,7 +394,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [-3.1415925, 3.6651914291880923, -3.1415925, 3.6651914291880923, -3.1415925, 3.6651914291880923]
+"values": [-3.1415925, 3.665191429188092, -3.1415925, 3.665191429188092, -3.1415925, 3.665191429188092]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -507,6 +509,10 @@ animations = [{
 }]
 
 [node name="EnemySixBlades" type="Node2D" unique_id=1958676736]
+script = ExtResource("1_tblr6")
+ai_script = ExtResource("2_8c1ix")
+health = 200
+movement_speed = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1201876360]
 libraries/ = SubResource("AnimationLibrary_w4u61")

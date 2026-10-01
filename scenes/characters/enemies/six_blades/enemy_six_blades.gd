@@ -1,10 +1,12 @@
-extends Node2D
+extends "res://scenes/characters/enemies/enemy_stat_block.gd"
+
+@export var max_chase_dir: float = 16.0
 
 # Map that converts external animations to internal ones.
 # For example, we can get a "walk" input and play our "jump_start" anim.
 var animation_map = {
 	"idle": "idle",
-	"walk": "jump_start",
+	"walk": "idle",
 	"hurt": "hurt",
 	"death": "hurt"
 }
@@ -14,16 +16,12 @@ var animation_map = {
 # If you want a sequence to end after a specific anim, leave out the entry for that anim.
 # For example, deleting the last "jump_end" entry would make the slime only jump once.
 var next_animation_map = {
-	"jump_start": "jump_middle",
-	"jump_middle": "jump_end",
-	"jump_end": "jump_start"
+	
 }
 
 # Map that tells us which animations are unidirectional.
 var directional_anims = {
-	"idle": true,
-	"jump_start": true,
-	"jump_middle": true,
-	"jump_end": true,
+	"idle": false,
+	"walk": false,
 	"hurt": false
 }

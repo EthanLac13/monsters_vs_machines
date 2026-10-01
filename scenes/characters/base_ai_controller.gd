@@ -8,7 +8,7 @@ var stats
 var movement_speed: float = 0.0
 
 func initialize():
-	target_entity = get_parent().get_parent().get_node("Player")
+	target_entity = get_parent().get_node("Player")
 	
 	# Get stats from stats holder
 	stats = controlled_entity.animation_object.anim_object
