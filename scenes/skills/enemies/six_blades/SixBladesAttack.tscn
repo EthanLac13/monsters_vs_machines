@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dtri88nmqmdjs" path="res://scenes/skills/enemies/six_blades/six_blades_attack.gd" id="1_s1ydw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s1ydw"]
-radius = 8.0
+radius = 12.0
 
 [node name="SixBladesAttack" type="Node2D" unique_id=934649701]
 script = ExtResource("1_s1ydw")

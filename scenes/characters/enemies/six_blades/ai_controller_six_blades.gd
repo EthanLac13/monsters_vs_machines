@@ -15,7 +15,7 @@ func initialize():
 	attack_node = hitbox_scene.instantiate()
 	attack_hitbox = attack_node.get_node("Hitbox")
 	attack_hitbox.faction = 1
-	attack_hitbox.damage = 1
+	attack_hitbox.damage = controlled_entity.stats_data.base_stats.attack
 	attack_hitbox.flinch = true
 	attack_hitbox.multihit = true
 	controlled_entity.add_child(attack_node)
@@ -36,4 +36,5 @@ func _process(delta: float) -> void:
 			if controlled_entity.position.distance_to(target_pos) >= max_chase_dir:
 				var movement_vector = controlled_entity.position.direction_to(target_pos).normalized()
 				controlled_entity.move(movement_vector * movement_speed)
+		
 			
