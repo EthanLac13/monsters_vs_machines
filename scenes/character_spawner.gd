@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
+	#spawn_enemy("res://scenes/characters/enemies/sentry_droid/EnemySentryDroid.tscn", 64, 64)
 	spawn_enemy("res://scenes/characters/enemies/six_blades/EnemySixBlades.tscn", 64, 64)
 	spawn_entity("res://scenes/characters/misc/target_crystal/TargetCrystal.tscn", 360, 64)
 

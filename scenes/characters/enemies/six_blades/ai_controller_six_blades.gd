@@ -16,7 +16,7 @@ func initialize():
 	attack_hitbox = attack_node.get_node("Hitbox")
 	attack_hitbox.faction = 1
 	attack_hitbox.damage = 1
-	attack_hitbox.flinch = false
+	attack_hitbox.flinch = true
 	attack_hitbox.multihit = true
 	controlled_entity.add_child(attack_node)
 
@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 		if !started_animating:
 			print("Changing anim")
 			controlled_entity.animation_object.change_animation("idle", -1)
+			attack_hitbox.position_owner = controlled_entity
 			started_animating = true
 		if controlled_entity.can_move:
 			# Get player's position and move towards it
@@ -35,6 +36,4 @@ func _process(delta: float) -> void:
 			if controlled_entity.position.distance_to(target_pos) >= max_chase_dir:
 				var movement_vector = controlled_entity.position.direction_to(target_pos).normalized()
 				controlled_entity.move(movement_vector * movement_speed)
-			
-			# Create an attack hitbox
 			

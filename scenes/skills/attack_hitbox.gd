@@ -9,7 +9,7 @@ var damage: float = 0
 var distance_falloff: bool = false
 var min_damage_mult: float = 1.0
 
-var flinch: bool = false
+var flinch: bool = true
 var flinch_time: int = 30
 var knockback_power: float = 2.0
 var flinch_weight: float = 10.0 # Weight of the hitbox; heavier targets are not affected

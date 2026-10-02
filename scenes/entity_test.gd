@@ -243,27 +243,36 @@ func end_using_skill():
 
 # Register getting hit by a hitbox
 func take_hitbox_hit(hitbox: Area2D):
-	if hitbox.faction != faction:
-		stats_data.hp -= hitbox.damage
-		update_health_bar()
-		if stats_data.hp > 0:
-			if hitbox.flinch:
-				can_move = false
+	if !is_flinching:
+		if hitbox.faction != faction:
+			if hitbox.faction == 0:
+				print(hitbox)
+			stats_data.hp -= hitbox.damage
+			update_health_bar()
+			if stats_data.hp > 0:
+				if hitbox.flinch:
+					can_move = false
+					is_flinching = true
+					
+					if using_skill:
+						current_skill_scene.free()
+						end_using_skill()
+					
+					flinch_timer = hitbox.flinch_time
+					flinch_timer_max = flinch_timer
+					knockback_movement = hitbox.knockback_power * (hitbox.flinch_weight / weight)
+					knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
+					print(position)
+					print(hitbox.position_owner.position)
+					move_dir = knockback_dir - 180.0
+					animation_object.change_animation("hurt")
+			else:
+				set_death_state()
 				is_flinching = true
-				flinch_timer = hitbox.flinch_time
-				flinch_timer_max = flinch_timer
-				knockback_movement = hitbox.knockback_power * (hitbox.flinch_weight / weight)
+				flinch_timer = 80
+				flinch_timer_max = 80
+				knockback_movement = 2.0
 				knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
-				move_dir = knockback_dir - 180.0
-				animation_object.change_animation("hurt")
-				#animation_object.hop(flinch_timer * 0.5)
-		else:
-			set_death_state()
-			is_flinching = true
-			flinch_timer = 80
-			flinch_timer_max = 80
-			knockback_movement = 2.0
-			knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
 
 # Update HP bar percentage
 func update_health_bar():

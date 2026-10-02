@@ -1,5 +1,7 @@
 extends "res://scenes/characters/enemies/enemy_stat_block.gd"
 
+@export var max_chase_dir = 16.0
+
 # Map that converts external animations to internal ones.
 # For example, we can get a "walk" input and play our "jump_start" anim.
 var animation_map = {
