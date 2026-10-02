@@ -1,12 +1,27 @@
 extends Node2D
 
+var enemy_list = {
+	"0": {
+		scene = "res://scenes/characters/enemies/sentry_droid/EnemySentryDroid.tscn",
+		name = "Sentry Droid",
+		internal_name = "SentryDroid"
+	},
+	"1": {
+		scene = "res://scenes/characters/enemies/six_blades/EnemySixBlades.tscn",
+		name = "Ol' Six-Blades",
+		internal_name = "SixBlades"
+	}
+}
+
 func _ready() -> void:
 	#spawn_enemy("res://scenes/characters/enemies/sentry_droid/EnemySentryDroid.tscn", 64, 64)
 	spawn_entity("res://scenes/characters/misc/target_crystal/TargetCrystal.tscn", 240, 240, 0, "TargetCrystal")
-	spawn_enemy("res://scenes/characters/enemies/six_blades/EnemySixBlades.tscn", 64, 64)
+	spawn_enemy_from_list(1, 64, 64)
 
-func spawn_enemy(enemy_scene: String, x: float, y: float, name: String = ""):
-	var new_enemy = spawn_entity(enemy_scene, x, y, 1, name)
+func spawn_enemy_from_list(enemy_id: int, x: float, y: float):
+	var selected_enemy_data = enemy_list[str(enemy_id)]
+	
+	var new_enemy = spawn_entity(selected_enemy_data.scene, x, y, 1, selected_enemy_data.internal_name)
 	# Give its health bar a red color
 	new_enemy.get_node("HealthBar").modulate = Color(248, 0, 0)
 	return new_enemy
