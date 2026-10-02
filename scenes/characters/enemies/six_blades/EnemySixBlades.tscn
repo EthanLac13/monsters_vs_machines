@@ -514,6 +514,7 @@ ai_script = ExtResource("2_8c1ix")
 health = 200
 attack = 10
 movement_speed = 0.5
+weight = 5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1201876360]
 libraries/ = SubResource("AnimationLibrary_w4u61")

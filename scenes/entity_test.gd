@@ -124,6 +124,9 @@ func _process(delta: float) -> void:
 	input_down = false
 	input_left = false
 	input_up = false
+	
+	# Update z-index based on position to avoid z-fighting
+	z_index = int(position.y) * 10
 
 func set_sprite(sprite_string: String):
 	# Remove the old animation object
@@ -200,9 +203,6 @@ func move(movement_input: Vector2):
 	
 	if check_shapecast(wall_collider):
 		position.y = last_position_y
-	
-	# Update z-index based on position to avoid z-fighting
-	z_index = int(position.y)
 
 # Moves to an absolute position; will be obstructed by walls
 func move_absolute(new_pos_x: float, new_pos_y: float):
@@ -227,7 +227,7 @@ func move_absolute(new_pos_x: float, new_pos_y: float):
 
 # Attempts to use a skill from the array of skills
 func attempt_use_move(skill_index: int):
-	if !using_skill:
+	if !using_skill && !is_flinching:
 		if skill_scenes.size() > skill_index:
 			current_skill_scene = skill_scenes[skill_index].instantiate()
 			add_child(current_skill_scene)

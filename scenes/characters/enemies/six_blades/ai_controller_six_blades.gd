@@ -17,6 +17,7 @@ func initialize():
 	attack_hitbox.faction = 1
 	attack_hitbox.damage = controlled_entity.stats_data.base_stats.attack
 	attack_hitbox.flinch = true
+	attack_hitbox.flinch_weight = 15.0
 	attack_hitbox.multihit = true
 	controlled_entity.add_child(attack_node)
 
