@@ -71,10 +71,7 @@ func initialize_ai():
 	ai_controller.initialize()
 	
 	# Set animation map
-	print(animation_object.anim_object.movement_speed)
-	print(animation_object.anim_object.animation_map)
 	animation_object.set_anim_player()
-	print(animation_object.anim_object.animation_map)
 
 func _process(delta: float) -> void:
 	if can_move:
