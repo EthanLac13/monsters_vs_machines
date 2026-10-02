@@ -1,6 +1,10 @@
 extends "res://scenes/characters/base_ai_controller.gd"
 
 var max_chase_dir: float = 16.0
+var player_chase_dir: float = 128.0
+var crystal_chase_dir: float = 144.0
+
+var chasing_player: bool = true
 
 var started_animating = false
 
@@ -31,7 +35,17 @@ func _process(delta: float) -> void:
 			started_animating = true
 		if controlled_entity.can_move:
 			# Get player's position and move towards it
-			var target_pos = target_entity.position
+			var target_pos
+			if chasing_player:
+				target_pos = target_entity.position
+				if controlled_entity.position.distance_to(target_pos) > controlled_entity.position.distance_to(target_crystal_entity.position):
+					target_pos = target_crystal_entity.position
+					chasing_player = false
+			else:
+				target_pos = target_crystal_entity.position
+				if controlled_entity.position.distance_to(target_entity.position) < controlled_entity.position.distance_to(target_crystal_entity.position):
+					target_pos = target_entity.position
+					chasing_player = true
 			
 			# If we're farther than max_chase_dir range away from the target, get closer
 			if controlled_entity.position.distance_to(target_pos) >= max_chase_dir:

@@ -11,7 +11,7 @@ var movement_speed: float = 0.0
 
 func initialize():
 	player_entity = get_parent().get_node("Player")
-	#target_crystal_entity = get_parent().get_node("Player")
+	target_crystal_entity = get_parent().get_node("TargetCrystal")
 	target_entity = player_entity
 	
 	# Get stats from stats holder
