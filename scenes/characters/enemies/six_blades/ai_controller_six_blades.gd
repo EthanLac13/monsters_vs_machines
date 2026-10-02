@@ -23,7 +23,9 @@ func initialize():
 	attack_hitbox.flinch = true
 	attack_hitbox.flinch_weight = 15.0
 	attack_hitbox.multihit = true
+	
 	controlled_entity.add_child(attack_node)
+	controlled_entity.disabled_nodes_on_flinch.append(attack_hitbox)
 
 func _process(delta: float) -> void:
 	super(delta)

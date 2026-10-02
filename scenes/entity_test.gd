@@ -55,6 +55,8 @@ var knockback_dir: float = 0.0
 var dying: bool = false
 var death_timer: int = 0
 
+var disabled_nodes_on_flinch = []
+
 func _ready() -> void:
 	stats_data = $StatsHolder
 	
@@ -105,6 +107,11 @@ func _process(delta: float) -> void:
 			is_flinching = false
 			can_move = true
 			animation_object.change_animation("idle")
+			
+			# Re-enable disabled nodes
+			for disabled_node in disabled_nodes_on_flinch:
+				disabled_node.process_mode = PROCESS_MODE_INHERIT
+				disabled_node.position.y -= 10000
 	
 	# Check for taking hit
 	if mercy_timer == 0:
@@ -269,6 +276,12 @@ func take_hitbox_hit(hitbox: Area2D):
 				if hitbox.flinch:
 					can_move = false
 					is_flinching = true
+					
+					# Disable nodes we want deactivated on flinch
+					for disabled_node in disabled_nodes_on_flinch:
+						print(disabled_node.name)
+						disabled_node.process_mode = PROCESS_MODE_DISABLED
+						disabled_node.position.y += 10000
 					
 					if using_skill:
 						current_skill_scene.free()
