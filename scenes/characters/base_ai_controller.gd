@@ -30,6 +30,9 @@ func initialize():
 	
 	controlled_entity.can_flinch = stats.can_flinch
 	controlled_entity.weight = stats.weight
+	
+	# Enemy has no mercy by default
+	controlled_entity.mercy_timer_max = 0
 
 func _process(delta: float) -> void:
 	if controlled_entity == null:

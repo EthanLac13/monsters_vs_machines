@@ -31,6 +31,9 @@ var input_up = false
 var can_flinch = false # Whether this entity can flinch when hit
 var weight = 10.0 # How much knockback this entity takes when hit; higher values reduce it, while -1 means no knockback at all
 
+var mercy_timer: int = 0
+var mercy_timer_max: int = 90
+
 var using_skill: bool = false
 
 var skill_list = [
@@ -77,6 +80,16 @@ func initialize_ai():
 	animation_object.set_anim_player()
 
 func _process(delta: float) -> void:
+	# Check for mercy timer
+	if !is_flinching:
+		if mercy_timer > 0:
+			mercy_timer -= 1
+			
+			if mercy_timer % 2 == 0:
+				visible = true
+			else:
+				visible = false
+	
 	if can_move:
 		check_for_movement()
 	
@@ -94,12 +107,13 @@ func _process(delta: float) -> void:
 			animation_object.change_animation("idle")
 	
 	# Check for taking hit
-	if check_shapecast(collision_area):
-		collision_area.clear_exceptions()
-		for i in range(0, collision_area.get_collision_count()):
-			take_hitbox_hit(collision_area.get_collider(i))
-			if !collision_area.get_collider(i).multihit:
-				collision_area.add_exception(collision_area.get_collider(i))
+	if mercy_timer == 0:
+		if check_shapecast(collision_area):
+			collision_area.clear_exceptions()
+			for i in range(0, collision_area.get_collision_count()):
+				take_hitbox_hit(collision_area.get_collider(i))
+				if !collision_area.get_collider(i).multihit:
+					collision_area.add_exception(collision_area.get_collider(i))
 	
 	# Flow for dying (enemies; players are TODO)
 	if dying:
@@ -266,6 +280,8 @@ func take_hitbox_hit(hitbox: Area2D):
 					knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
 					move_dir = knockback_dir - 180.0
 					animation_object.change_animation("hurt")
+					
+					mercy_timer = mercy_timer_max
 			else:
 				set_death_state()
 				is_flinching = true
