@@ -6,20 +6,6 @@ var spawned_enemy
 
 func _ready() -> void:
 	controlled_object.ai_controller = self
-	
-	var new_enemy_scene = load("res://scenes/EntityTest.tscn")
-	var new_enemy = new_enemy_scene.instantiate()
-	spawned_enemy = new_enemy
-	
-	get_parent().add_child.call_deferred(new_enemy)
-	spawned_enemy.set_sprite.call_deferred("res://scenes/characters/enemies/six_blades/EnemySixBlades.tscn")
-	new_enemy.position.x = 0
-	new_enemy.position.y = 0
-	new_enemy.faction = 1
-	new_enemy.move_speed = 0.5
-	print(new_enemy)
-	
-	new_enemy.initialize_ai.call_deferred()
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):

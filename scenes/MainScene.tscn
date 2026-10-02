@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d3e2p257664lr" path="res://scenes/EntityTest.tscn" id="1_echbf"]
 [ext_resource type="PackedScene" uid="uid://hva4k4i1sqks" path="res://scenes/PlayerInputController.tscn" id="1_ibiss"]
 [ext_resource type="Script" uid="uid://h5nekwvln27d" path="res://scenes/camera_2d.gd" id="3_c6dvc"]
+[ext_resource type="Script" uid="uid://08vtd1phtruv" path="res://scenes/character_spawner.gd" id="3_k24pf"]
 [ext_resource type="Texture2D" uid="uid://c3r4ygigxidgx" path="res://icon.svg" id="4_611at"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocns7"]
@@ -16,6 +17,9 @@ controlled_object = NodePath("../Player")
 [node name="Player" parent="." unique_id=1175444251 instance=ExtResource("1_echbf")]
 y_sort_enabled = false
 position = Vector2(240, 90)
+
+[node name="CharacterSpawner" type="Node2D" parent="." unique_id=435613802]
+script = ExtResource("3_k24pf")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1212635600]
 position = Vector2(240, 135)

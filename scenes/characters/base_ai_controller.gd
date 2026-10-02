@@ -2,13 +2,17 @@ extends Node2D
 
 var controlled_entity: Node2D
 var target_entity: Node2D
+var player_entity: Node2D
+var target_crystal_entity: Node2D
 
 var stats
 
 var movement_speed: float = 0.0
 
 func initialize():
-	target_entity = get_parent().get_node("Player")
+	player_entity = get_parent().get_node("Player")
+	#target_crystal_entity = get_parent().get_node("Player")
+	target_entity = player_entity
 	
 	# Get stats from stats holder
 	stats = controlled_entity.animation_object.anim_object

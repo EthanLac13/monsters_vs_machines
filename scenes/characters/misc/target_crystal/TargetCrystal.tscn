@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://pcyy7yar267w"]
+
+[ext_resource type="Texture2D" uid="uid://bahyeatifi2jd" path="res://sprites/character_sprites/heroes/slime/slime_shadow.png" id="1_dn861"]
+[ext_resource type="Texture2D" uid="uid://c6luxsxn1m007" path="res://sprites/object_sprites/target_crystal/target_crystal.png" id="2_in4ol"]
+
+[node name="TargetCrystal" type="Node2D" unique_id=1512832949]
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1783619784]
+modulate = Color(1, 1, 1, 0.5019608)
+z_as_relative = false
+texture = ExtResource("1_dn861")
+
+[node name="Crystal" type="Sprite2D" parent="." unique_id=1087080126]
+z_index = 1
+position = Vector2(0, -40)
+texture = ExtResource("2_in4ol")
