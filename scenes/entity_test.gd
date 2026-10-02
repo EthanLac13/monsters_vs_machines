@@ -31,6 +31,9 @@ var input_up = false
 var can_flinch = false # Whether this entity can flinch when hit
 var weight = 10.0 # How much knockback this entity takes when hit; higher values reduce it, while -1 means no knockback at all
 
+var mercy_timer: int = 0
+var mercy_timer_max: int = 90
+
 var using_skill: bool = false
 
 var skill_list = [
@@ -77,14 +80,25 @@ func initialize_ai():
 	animation_object.set_anim_player()
 
 func _process(delta: float) -> void:
+	# Check for mercy timer
+	if !is_flinching:
+		if mercy_timer > 0:
+			mercy_timer -= 1
+			
+			if mercy_timer % 2 == 0:
+				visible = true
+			else:
+				visible = false
+	
 	if can_move:
 		check_for_movement()
 	
 	# Move automatically in the direction of knockback
 	if is_flinching:
-		var knockback_power = knockback_movement * (flinch_timer / float(flinch_timer_max))
-		var knockback_vector = Vector2(cos(deg_to_rad(knockback_dir)), sin(deg_to_rad(knockback_dir)))
-		move(knockback_vector * knockback_power)
+		if weight != -1.0:
+			var knockback_power = knockback_movement * (flinch_timer / float(flinch_timer_max))
+			var knockback_vector = Vector2(cos(deg_to_rad(knockback_dir)), sin(deg_to_rad(knockback_dir)))
+			move(knockback_vector * knockback_power)
 		
 		flinch_timer -= 1
 		if flinch_timer <= 0:
@@ -93,11 +107,13 @@ func _process(delta: float) -> void:
 			animation_object.change_animation("idle")
 	
 	# Check for taking hit
-	if check_shapecast(collision_area):
-		take_hitbox_hit(collision_area.get_collider(0))
-		collision_area.clear_exceptions()
-		if !collision_area.get_collider(0).multihit:
-			collision_area.add_exception(collision_area.get_collider(0))
+	if mercy_timer == 0:
+		if check_shapecast(collision_area):
+			collision_area.clear_exceptions()
+			for i in range(0, collision_area.get_collision_count()):
+				take_hitbox_hit(collision_area.get_collider(i))
+				if !collision_area.get_collider(i).multihit:
+					collision_area.add_exception(collision_area.get_collider(i))
 	
 	# Flow for dying (enemies; players are TODO)
 	if dying:
@@ -122,6 +138,9 @@ func _process(delta: float) -> void:
 	input_down = false
 	input_left = false
 	input_up = false
+	
+	# Update z-index based on position to avoid z-fighting
+	z_index = int(position.y) * 10
 
 func set_sprite(sprite_string: String):
 	# Remove the old animation object
@@ -198,9 +217,6 @@ func move(movement_input: Vector2):
 	
 	if check_shapecast(wall_collider):
 		position.y = last_position_y
-	
-	# Update z-index based on position to avoid z-fighting
-	z_index = int(position.y)
 
 # Moves to an absolute position; will be obstructed by walls
 func move_absolute(new_pos_x: float, new_pos_y: float):
@@ -225,7 +241,7 @@ func move_absolute(new_pos_x: float, new_pos_y: float):
 
 # Attempts to use a skill from the array of skills
 func attempt_use_move(skill_index: int):
-	if !using_skill:
+	if !using_skill && !is_flinching:
 		if skill_scenes.size() > skill_index:
 			current_skill_scene = skill_scenes[skill_index].instantiate()
 			add_child(current_skill_scene)
@@ -262,10 +278,10 @@ func take_hitbox_hit(hitbox: Area2D):
 					flinch_timer_max = flinch_timer
 					knockback_movement = hitbox.knockback_power * (hitbox.flinch_weight / weight)
 					knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
-					print(position)
-					print(hitbox.position_owner.position)
 					move_dir = knockback_dir - 180.0
 					animation_object.change_animation("hurt")
+					
+					mercy_timer = mercy_timer_max
 			else:
 				set_death_state()
 				is_flinching = true

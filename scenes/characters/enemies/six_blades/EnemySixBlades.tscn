@@ -511,8 +511,10 @@ animations = [{
 [node name="EnemySixBlades" type="Node2D" unique_id=1958676736]
 script = ExtResource("1_tblr6")
 ai_script = ExtResource("2_8c1ix")
-health = 200
+health = 150
+attack = 30
 movement_speed = 0.5
+weight = 5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1201876360]
 libraries/ = SubResource("AnimationLibrary_w4u61")

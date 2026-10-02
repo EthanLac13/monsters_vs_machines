@@ -11,7 +11,7 @@ var movement_speed: float = 0.0
 
 func initialize():
 	player_entity = get_parent().get_node("Player")
-	#target_crystal_entity = get_parent().get_node("Player")
+	target_crystal_entity = get_parent().get_node("TargetCrystal")
 	target_entity = player_entity
 	
 	# Get stats from stats holder
@@ -30,6 +30,9 @@ func initialize():
 	
 	controlled_entity.can_flinch = stats.can_flinch
 	controlled_entity.weight = stats.weight
+	
+	# Enemy has no mercy by default
+	controlled_entity.mercy_timer_max = 0
 
 func _process(delta: float) -> void:
 	if controlled_entity == null:
