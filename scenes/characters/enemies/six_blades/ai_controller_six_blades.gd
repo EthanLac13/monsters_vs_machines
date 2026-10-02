@@ -15,8 +15,8 @@ func initialize():
 	attack_node = hitbox_scene.instantiate()
 	attack_hitbox = attack_node.get_node("Hitbox")
 	attack_hitbox.faction = 1
-	attack_hitbox.damage = 30
-	attack_hitbox.flinch = true
+	attack_hitbox.damage = 1
+	attack_hitbox.flinch = false
 	attack_hitbox.multihit = true
 	controlled_entity.add_child(attack_node)
 

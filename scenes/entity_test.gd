@@ -28,6 +28,9 @@ var input_down = false
 var input_left = false
 var input_up = false
 
+var can_flinch = false # Whether this entity can flinch when hit
+var weight = 10.0 # How much knockback this entity takes when hit; higher values reduce it, while -1 means no knockback at all
+
 var using_skill: bool = false
 
 var skill_list = [
@@ -249,7 +252,7 @@ func take_hitbox_hit(hitbox: Area2D):
 				is_flinching = true
 				flinch_timer = hitbox.flinch_time
 				flinch_timer_max = flinch_timer
-				knockback_movement = hitbox.knockback_power
+				knockback_movement = hitbox.knockback_power * (hitbox.flinch_weight / weight)
 				knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
 				move_dir = knockback_dir - 180.0
 				animation_object.change_animation("hurt")

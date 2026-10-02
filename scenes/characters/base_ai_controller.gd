@@ -27,6 +27,9 @@ func initialize():
 	controlled_entity.stats_data.base_stats.magic_defense = stats.magic_defense
 	
 	movement_speed = stats.movement_speed
+	
+	controlled_entity.can_flinch = stats.can_flinch
+	controlled_entity.weight = stats.weight
 
 func _process(delta: float) -> void:
 	if controlled_entity == null:

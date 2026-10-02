@@ -9,3 +9,7 @@ extends Node2D
 @export var magic_attack: int = 0
 @export var magic_defense: int = 0
 @export var movement_speed: float = 0
+
+# Other qualities
+@export var weight: float = 10.0
+@export var can_flinch: bool = true
