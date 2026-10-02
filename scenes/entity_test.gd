@@ -82,9 +82,10 @@ func _process(delta: float) -> void:
 	
 	# Move automatically in the direction of knockback
 	if is_flinching:
-		var knockback_power = knockback_movement * (flinch_timer / float(flinch_timer_max))
-		var knockback_vector = Vector2(cos(deg_to_rad(knockback_dir)), sin(deg_to_rad(knockback_dir)))
-		move(knockback_vector * knockback_power)
+		if weight != -1.0:
+			var knockback_power = knockback_movement * (flinch_timer / float(flinch_timer_max))
+			var knockback_vector = Vector2(cos(deg_to_rad(knockback_dir)), sin(deg_to_rad(knockback_dir)))
+			move(knockback_vector * knockback_power)
 		
 		flinch_timer -= 1
 		if flinch_timer <= 0:
@@ -263,8 +264,6 @@ func take_hitbox_hit(hitbox: Area2D):
 					flinch_timer_max = flinch_timer
 					knockback_movement = hitbox.knockback_power * (hitbox.flinch_weight / weight)
 					knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
-					print(position)
-					print(hitbox.position_owner.position)
 					move_dir = knockback_dir - 180.0
 					animation_object.change_animation("hurt")
 			else:
