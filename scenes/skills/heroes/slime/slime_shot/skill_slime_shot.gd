@@ -27,6 +27,12 @@ func move_code():
 		var slime_hitbox = my_slime_ball_node.get_node("Hitbox")
 		slime_hitbox.damage = get_parent().stats_data.base_stats.magic_attack * 0.5
 		slime_hitbox.flinch_weight = 2.0
+		slime_hitbox.status_effects = {
+			"slime_slowdown": {
+				"slow_amount": 0.5,
+				"duration": 360
+			}
+		}
 		
 		get_parent().get_parent().add_child(my_slime_ball_node)
 		my_slime_ball_node.position = get_parent().position

@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 			# If we're farther than max_chase_dir range away from the target, get closer
 			if controlled_entity.position.distance_to(target_pos) >= max_chase_dir:
 				var movement_vector = controlled_entity.position.direction_to(target_pos).normalized()
+				var movement_speed = controlled_entity.get_effective_move_speed()
 				controlled_entity.move(movement_vector * movement_speed)
 				
 				# Change our direction based on movement

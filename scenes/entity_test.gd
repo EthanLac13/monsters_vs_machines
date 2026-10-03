@@ -50,7 +50,7 @@ var skill_cooldowns: Array[int] = [
 	0
 ]
 var skill_max_cooldowns: Array[int] = [
-	120,
+	30,
 	300
 ]
 var current_skill_scene: Node = null
@@ -67,6 +67,10 @@ var dying: bool = false
 var death_timer: int = 0
 
 var disabled_nodes_on_flinch = []
+
+var status_effects = {
+	
+}
 
 # Signals
 signal took_damage
@@ -99,6 +103,13 @@ func initialize_ai():
 	animation_object.set_anim_player()
 
 func _process(delta: float) -> void:
+	# Check for status effects ticking down
+	for status_effect in status_effects:
+		if status_effects[status_effect].has("duration"):
+			status_effects[status_effect].duration -= 1
+			if status_effects[status_effect].duration <= 0:
+				status_effects.erase(status_effect)
+	
 	# Check for mercy timer
 	if !is_flinching:
 		if mercy_timer > 0:
@@ -215,7 +226,8 @@ func check_for_movement():
 	
 	# Move and change animations
 	if is_moving: # Set walk animation when moving
-		move(total_input * move_speed)
+		var effective_move_speed = get_effective_move_speed()
+		move(total_input * effective_move_speed)
 		if !was_previously_moving:
 			animation_object.change_animation("walk", move_dir)
 	else: # Set idle animation when no longer moving
@@ -268,6 +280,12 @@ func move_absolute(new_pos_x: float, new_pos_y: float):
 	if wall_collider.is_colliding():
 		position.y = last_position_y
 
+func get_effective_move_speed():
+	var effective_move_speed = move_speed
+	if status_effects.has("slime_slowdown"):
+		var slowdown = status_effects.slime_slowdown.slow_amount
+		effective_move_speed *= slowdown
+	return effective_move_speed
 
 # Attempts to use a skill from the array of skills
 func attempt_use_move(skill_index: int):
@@ -304,6 +322,13 @@ func take_hitbox_hit(hitbox: Area2D):
 			update_health_bar()
 			took_damage.emit()
 			
+			# Apply status effects
+			for status_effect in hitbox.status_effects:
+				if !status_effects.has(status_effect):
+					status_effects[status_effect] = hitbox.status_effects[status_effect]
+			print(status_effects)
+			
+			# Flinch from the hit if we're supposed to
 			if stats_data.hp > 0:
 				if hitbox.flinch:
 					can_move = false

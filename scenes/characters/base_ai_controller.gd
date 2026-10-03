@@ -11,8 +11,6 @@ var lost_track: bool = false # Whether we got distracted from following the trac
 
 var stats
 
-var movement_speed: float = 0.0
-
 var crystal_chase_dir: float = 128.0
 var next_node_dir: float = 24.0
 
@@ -35,7 +33,7 @@ func initialize():
 	controlled_entity.stats_data.base_stats.magic_attack = stats.magic_attack
 	controlled_entity.stats_data.base_stats.magic_defense = stats.magic_defense
 	
-	movement_speed = stats.movement_speed
+	controlled_entity.move_speed = stats.movement_speed
 	
 	controlled_entity.can_flinch = stats.can_flinch
 	controlled_entity.weight = stats.weight
