@@ -57,6 +57,9 @@ var death_timer: int = 0
 
 var disabled_nodes_on_flinch = []
 
+# Signals
+signal took_damage
+
 func _ready() -> void:
 	stats_data = $StatsHolder
 	
@@ -272,6 +275,8 @@ func take_hitbox_hit(hitbox: Area2D):
 				print(hitbox)
 			stats_data.hp -= hitbox.damage
 			update_health_bar()
+			took_damage.emit()
+			
 			if stats_data.hp > 0:
 				if hitbox.flinch:
 					can_move = false

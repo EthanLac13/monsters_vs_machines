@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://qd2wi5l3sj0g"]
+
+[ext_resource type="Script" uid="uid://c7tdwh5dup1f8" path="res://scenes/hud/hud.gd" id="1_xvj7f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdg6f"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xvj7f"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
+[node name="HUD" type="CanvasLayer" unique_id=1038846884]
+script = ExtResource("1_xvj7f")
+
+[node name="CrystalHealthBar" type="ProgressBar" parent="." unique_id=1823507375]
+modulate = Color(0, 0.72156864, 0.972549, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -19.0
+offset_right = 79.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/outline_size = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_fdg6f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xvj7f")
+max_value = 1.0
+value = 1.0
+show_percentage = false
