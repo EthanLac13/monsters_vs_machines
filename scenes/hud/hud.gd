@@ -15,7 +15,7 @@ func get_main_objects():
 	# Get player and crystal objects
 	player_node = get_parent().get_node("Player")
 	crystal_node = get_parent().get_node("TargetCrystal")
-	print(crystal_node)
+	#print(crystal_node)
 	
 	crystal_node.took_damage.connect(update_crystal_hp)
 

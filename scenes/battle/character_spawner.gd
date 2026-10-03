@@ -6,7 +6,7 @@ func _ready() -> void:
 	enemy_list = GeneralFunctions.load_json_file("res://data/enemy_scene_data.json")
 	#spawn_enemy("res://scenes/characters/enemies/sentry_droid/EnemySentryDroid.tscn", 64, 64)
 	spawn_entity("res://scenes/characters/misc/target_crystal/TargetCrystal.tscn", 240, 240, 0, "TargetCrystal")
-	spawn_enemy_from_list(1, 64, 240)
+	#spawn_enemy_from_list(1, 64, 240)
 
 func spawn_enemy_from_list(enemy_id: int, x: float, y: float):
 	var selected_enemy_data = enemy_list[str(enemy_id)]
