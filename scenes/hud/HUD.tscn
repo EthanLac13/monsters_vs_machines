@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://qd2wi5l3sj0g"]
 
 [ext_resource type="Script" uid="uid://c7tdwh5dup1f8" path="res://scenes/hud/hud.gd" id="1_xvj7f"]
+[ext_resource type="PackedScene" uid="uid://c1860al3rov2q" path="res://scenes/hud/HUDAttackCooldownButton.tscn" id="2_xvj7f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdg6f"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -48,3 +49,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xvj7f")
 max_value = 1.0
 value = 1.0
 show_percentage = false
+
+[node name="AttackCooldownButton1" parent="." unique_id=14137015 instance=ExtResource("2_xvj7f")]
+
+[node name="AttackCooldownButton2" parent="." unique_id=215296324 instance=ExtResource("2_xvj7f")]
+offset_left = 80.0
+offset_right = 144.0
+
+[node name="AttackCooldownButton3" parent="." unique_id=1766677195 instance=ExtResource("2_xvj7f")]
+offset_left = 152.0
+offset_right = 216.0
+
+[node name="AttackCooldownButton4" parent="." unique_id=1617974292 instance=ExtResource("2_xvj7f")]
+offset_left = 224.0
+offset_right = 288.0

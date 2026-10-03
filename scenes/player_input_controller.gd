@@ -2,10 +2,13 @@ extends Node2D
 
 @export var controlled_object: Node2D
 
+@export var hud: CanvasLayer
+
 var spawned_enemy
 
 func _ready() -> void:
 	controlled_object.ai_controller = self
+	controlled_object.hud = hud
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):

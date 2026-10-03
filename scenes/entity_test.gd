@@ -10,6 +10,7 @@ var animation_object
 @export var collision_blocker: Area2D
 
 var ai_controller: Node2D
+var hud: CanvasLayer
 
 var can_move: bool = true
 
@@ -42,6 +43,12 @@ var skill_list = [
 ]
 var skill_scenes = [
 	
+]
+var skill_cooldowns: Array[int] = [
+	0
+]
+var skill_max_cooldowns: Array[int] = [
+	120
 ]
 var current_skill_scene: Node = null
 
@@ -98,6 +105,12 @@ func _process(delta: float) -> void:
 				visible = true
 			else:
 				visible = false
+	
+	# Check for skill cooldowns
+	for i in range(0, skill_cooldowns.size()):
+		if skill_cooldowns[i] > 0:
+			skill_cooldowns[i] -= 1
+			hud.set_skill_cooldown(i, float(skill_cooldowns[i]) / skill_max_cooldowns[i])
 	
 	if can_move:
 		check_for_movement()
@@ -255,12 +268,17 @@ func move_absolute(new_pos_x: float, new_pos_y: float):
 
 # Attempts to use a skill from the array of skills
 func attempt_use_move(skill_index: int):
-	if !using_skill && !is_flinching:
+	if !using_skill && !is_flinching && skill_cooldowns[skill_index] <= 0:
 		if skill_scenes.size() > skill_index:
 			current_skill_scene = skill_scenes[skill_index].instantiate()
 			add_child(current_skill_scene)
 			current_skill_scene.position.x = 0
 			current_skill_scene.position.y = 0
+			
+			# Set skill cooldown
+			skill_cooldowns[skill_index] = skill_max_cooldowns[skill_index]
+			
+			# You can't move while using a skill
 			using_skill = true
 			can_move = false
 

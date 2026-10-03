@@ -13,8 +13,9 @@ size = Vector2(120, 20)
 
 [node name="MainScene" type="Node2D" unique_id=1545239290]
 
-[node name="PlayerInputController" parent="." unique_id=517211041 node_paths=PackedStringArray("controlled_object") instance=ExtResource("1_ibiss")]
+[node name="PlayerInputController" parent="." unique_id=517211041 node_paths=PackedStringArray("controlled_object", "hud") instance=ExtResource("1_ibiss")]
 controlled_object = NodePath("../Player")
+hud = NodePath("../HUD")
 
 [node name="Player" parent="." unique_id=1175444251 instance=ExtResource("1_echbf")]
 y_sort_enabled = false
