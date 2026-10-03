@@ -5,14 +5,23 @@ var target_entity: Node2D
 var player_entity: Node2D
 var target_crystal_entity: Node2D
 
+var track_line: Line2D
+var current_track_node: int
+var lost_track: bool = false # Whether we got distracted from following the track
+
 var stats
 
 var movement_speed: float = 0.0
+
+var crystal_chase_dir: float = 128.0
+var next_node_dir: float = 24.0
 
 func initialize():
 	player_entity = get_parent().get_node("Player")
 	target_crystal_entity = get_parent().get_node("TargetCrystal")
 	target_entity = player_entity
+	
+	track_line = get_parent().get_node("EnemyTrack0")
 	
 	# Get stats from stats holder
 	stats = controlled_entity.animation_object.anim_object
@@ -31,6 +40,9 @@ func initialize():
 	controlled_entity.can_flinch = stats.can_flinch
 	controlled_entity.weight = stats.weight
 	
+	crystal_chase_dir = stats.crystal_chase_dir
+	next_node_dir = stats.next_node_dir
+	
 	# Enemy has no mercy by default
 	controlled_entity.mercy_timer_max = 0
 
@@ -38,3 +50,36 @@ func _process(delta: float) -> void:
 	if controlled_entity == null:
 		queue_free()
 	
+
+func get_target_pos():
+	# Get player's position and move towards it
+	var target_pos = target_entity.position
+	# If the player is too far away, follow the track towards the crystal
+	if controlled_entity.position.distance_to(target_pos) >= crystal_chase_dir:
+		# If we've ended the track, make a beeline for the crystal
+		if current_track_node >= track_line.points.size():
+			target_pos = target_crystal_entity.position
+		# Otherwise, follow the track and go to the next node if we reach the current one
+		else:
+			# If we were distracted, then return to the closest node
+			if lost_track:
+				var min_track_node_index: int = 0
+				var min_track_node_distance: float = 99999.9 # Initialize with a high distance so any node will be lower
+				for i in range(0, track_line.points.size()):
+					print(i)
+					print(controlled_entity.position.distance_to(track_line.position + track_line.points[i]))
+					if controlled_entity.position.distance_to(track_line.position + track_line.points[i]) < min_track_node_distance:
+						min_track_node_index = i
+						min_track_node_distance = controlled_entity.position.distance_to(track_line.position + track_line.points[i])
+				current_track_node = min_track_node_index
+				print(current_track_node)
+				lost_track = false
+			
+			target_pos = track_line.position + track_line.points[current_track_node]
+			if controlled_entity.position.distance_to(target_pos) <= next_node_dir:
+				current_track_node += 1
+	else:
+		lost_track = true
+		current_track_node = -1
+	
+	return target_pos

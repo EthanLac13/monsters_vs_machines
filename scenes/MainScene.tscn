@@ -48,3 +48,7 @@ transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
 [node name="EnemySpawn0" type="Node2D" parent="." unique_id=336840909]
 position = Vector2(240, -64)
+
+[node name="EnemyTrack0" type="Line2D" parent="." unique_id=1764629572]
+position = Vector2(240, 0)
+points = PackedVector2Array(0, 0, 0, 50, 0, 100, 0, 140, -10, 150, -50, 150, -90, 150, -100, 160, -100, 200, -100, 240, -90, 250, -50, 250)

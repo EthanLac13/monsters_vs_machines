@@ -9,22 +9,6 @@
 					
 					"start_secs": 1.0,
 					"respawn_secs": 0.0
-				},
-				{
-					"id": 0,
-					"amount": 3,
-					"spawn_area": 0,
-					
-					"start_secs": 10.0,
-					"respawn_secs": [1.0, 2.0]
-				},
-				{
-					"id": 0,
-					"amount": 3,
-					"spawn_area": 0,
-					
-					"start_secs": [20.0, 25.0],
-					"respawn_secs": [1.0, 2.0]
 				}
 			]
 		}
