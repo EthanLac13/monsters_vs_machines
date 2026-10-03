@@ -1,6 +1,6 @@
 extends "res://scenes/characters/enemies/enemy_stat_block.gd"
 
-@export var max_chase_dir: float = 16.0
+@export var max_chase_dir: float = 20.0
 @export var crystal_chase_dir: float = 128.0
 
 # Map that converts external animations to internal ones.

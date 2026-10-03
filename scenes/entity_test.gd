@@ -69,6 +69,9 @@ func _ready() -> void:
 	
 	animation_object.change_animation.call_deferred("idle", move_dir)
 	
+	# Prevent us from colliding with our own collision
+	wall_collider.add_exception($CollisionParent/CollisionBlocker)
+	
 	# Load skill scenes
 	for i in range(0, skill_list.size()):
 		skill_scenes.append(load(skill_list[i]))

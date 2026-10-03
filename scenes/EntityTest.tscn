@@ -10,6 +10,9 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocns7"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_il27e"]
+radius = 8.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb32r"]
 bg_color = Color(0, 0, 0, 1)
 corner_detail = 1
@@ -43,6 +46,11 @@ collide_with_areas = true
 shape = SubResource("RectangleShape2D_ocns7")
 target_position = Vector2(0, 0)
 collide_with_areas = true
+
+[node name="CollisionBlocker" type="Area2D" parent="CollisionParent" unique_id=379836625]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionParent/CollisionBlocker" unique_id=12082377]
+shape = SubResource("CircleShape2D_il27e")
 
 [node name="StatsHolder" parent="." unique_id=1180321044 instance=ExtResource("3_il27e")]
 
