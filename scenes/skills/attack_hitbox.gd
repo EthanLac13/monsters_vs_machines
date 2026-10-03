@@ -20,6 +20,9 @@ var multi_target_damage_reduction: float = 0.5
 
 var multihit: bool = false
 
+# Status effects the hitbox applies on hit
+var status_effects = {}
+
 func _ready() -> void:
 	position_owner = self
 

@@ -39,16 +39,19 @@ var mercy_timer_max: int = 90
 var using_skill: bool = false
 
 var skill_list = [
-	"res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn"
+	"res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn",
+	"res://scenes/skills/heroes/slime/slime_shot/SkillSlimeShot.tscn"
 ]
 var skill_scenes = [
 	
 ]
 var skill_cooldowns: Array[int] = [
+	0,
 	0
 ]
 var skill_max_cooldowns: Array[int] = [
-	120
+	120,
+	300
 ]
 var current_skill_scene: Node = null
 
@@ -274,6 +277,10 @@ func attempt_use_move(skill_index: int):
 			add_child(current_skill_scene)
 			current_skill_scene.position.x = 0
 			current_skill_scene.position.y = 0
+			
+			print(current_skill_scene.charge_frames)
+			if current_skill_scene.charge_frames == 0:
+				current_skill_scene.state = 1
 			
 			# Set skill cooldown
 			skill_cooldowns[skill_index] = skill_max_cooldowns[skill_index]

@@ -1424,7 +1424,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_qii0v"]
 resource_name = "shoot_down"
-length = 1.000001718820818
+length = 0.5000016927437857
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1433,7 +1433,7 @@ tracks/0/path = NodePath("Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.41666666),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.75, 1.25), Vector2(1.5, 0.5), Vector2(1.5, 0.5), Vector2(1, 1)]
@@ -1445,7 +1445,7 @@ tracks/1/path = NodePath("Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.41666666),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(0, -7), Vector2(0, -10), Vector2(0, -1), Vector2(0, -1), Vector2(0, -7)]
@@ -1457,7 +1457,7 @@ tracks/2/path = NodePath("EyesParent:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.41666666),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 5), Vector2(0, 5), Vector2(0, 0)]
@@ -1465,7 +1465,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_1q5vg"]
 resource_name = "shoot_left"
-length = 1.000001718820818
+length = 0.5000016927437857
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1474,7 +1474,7 @@ tracks/0/path = NodePath("Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.4166667),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.75, 1.25), Vector2(1.5, 0.5), Vector2(1.5, 0.5), Vector2(1, 1)]
@@ -1486,7 +1486,7 @@ tracks/1/path = NodePath("Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.4166667),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(0, -7), Vector2(0, -10), Vector2(0, -1), Vector2(0, -1), Vector2(0, -7)]
@@ -1498,7 +1498,7 @@ tracks/2/path = NodePath("EyesParent:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.4166667),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 5), Vector2(0, 5), Vector2(0, 0)]
@@ -1530,7 +1530,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_omiem"]
 resource_name = "shoot_right"
-length = 1.000001718820818
+length = 0.5000016927437857
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1539,7 +1539,7 @@ tracks/0/path = NodePath("Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.4166667),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.75, 1.25), Vector2(1.5, 0.5), Vector2(1.5, 0.5), Vector2(1, 1)]
@@ -1551,7 +1551,7 @@ tracks/1/path = NodePath("Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.4166667),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(0, -7), Vector2(0, -10), Vector2(0, -1), Vector2(0, -1), Vector2(0, -7)]
@@ -1563,7 +1563,7 @@ tracks/2/path = NodePath("EyesParent:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.4166667),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -4), Vector2(0, 5), Vector2(0, 5), Vector2(0, 0)]
@@ -1595,7 +1595,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_cflyn"]
 resource_name = "shoot_up"
-length = 1.000001718820818
+length = 0.5000016927437857
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1604,7 +1604,7 @@ tracks/0/path = NodePath("Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.4166667),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.75, 1.25), Vector2(1.5, 0.5), Vector2(1.5, 0.5), Vector2(1, 1)]
@@ -1616,7 +1616,7 @@ tracks/1/path = NodePath("Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.41666666, 0.5, 0.9166667),
+"times": PackedFloat32Array(0, 0.08333334, 0.16666667, 0.19999999, 0.4166667),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
 "update": 0,
 "values": [Vector2(0, -7), Vector2(0, -10), Vector2(0, -1), Vector2(0, -1), Vector2(0, -7)]

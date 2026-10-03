@@ -43,7 +43,7 @@ func set_anim_player():
 	next_animation_map = anim_object.next_animation_map
 	directional_anims = anim_object.directional_anims
 
-func change_animation(new_anim: String, anim_dir: int = -1):
+func change_animation(new_anim: String, anim_dir: int = get_parent().move_dir):
 	# Reset the current animation
 	anim_player.play("RESET")
 	anim_player.seek(0)
