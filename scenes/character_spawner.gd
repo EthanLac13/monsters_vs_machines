@@ -1,19 +1,9 @@
 extends Node2D
 
-var enemy_list = {
-	"0": {
-		scene = "res://scenes/characters/enemies/sentry_droid/EnemySentryDroid.tscn",
-		name = "Sentry Droid",
-		internal_name = "SentryDroid"
-	},
-	"1": {
-		scene = "res://scenes/characters/enemies/six_blades/EnemySixBlades.tscn",
-		name = "Ol' Six-Blades",
-		internal_name = "SixBlades"
-	}
-}
+var enemy_list = {}
 
 func _ready() -> void:
+	enemy_list = GeneralFunctions.load_json_file("res://data/enemy_scene_data.json")
 	#spawn_enemy("res://scenes/characters/enemies/sentry_droid/EnemySentryDroid.tscn", 64, 64)
 	spawn_entity("res://scenes/characters/misc/target_crystal/TargetCrystal.tscn", 240, 240, 0, "TargetCrystal")
 	spawn_enemy_from_list(1, 64, 64)
@@ -26,10 +16,10 @@ func spawn_enemy_from_list(enemy_id: int, x: float, y: float):
 	new_enemy.get_node("HealthBar").modulate = Color(248, 0, 0)
 	return new_enemy
 
-func spawn_entity(entity_scene: String, x: float, y: float, entity_faction: int = 0, name: String = ""):
+func spawn_entity(entity_scene: String, x: float, y: float, entity_faction: int = 0, entity_name: String = ""):
 	var new_entity_scene = load("res://scenes/EntityTest.tscn")
 	var new_entity = new_entity_scene.instantiate()
-	new_entity.name = name
+	new_entity.name = entity_name
 	print(new_entity.name)
 	
 	get_parent().add_child.call_deferred(new_entity)
