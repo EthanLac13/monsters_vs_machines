@@ -5,6 +5,7 @@ var faction: int = 0
 var position_owner: Node2D
 
 var damage: float = 0
+var is_magical: bool = false # True to use magic attack/defense; false to use physical attack/defense
 
 var distance_falloff: bool = false
 var min_damage_mult: float = 1.0

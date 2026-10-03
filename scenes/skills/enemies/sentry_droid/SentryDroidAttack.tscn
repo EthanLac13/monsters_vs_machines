@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c3gho4rb3o5pr"]
+
+[ext_resource type="PackedScene" uid="uid://j27i3o81li2p" path="res://scenes/skills/AttackHitbox.tscn" id="1_7p0an"]
+[ext_resource type="Script" uid="uid://dgxhj8muxjajr" path="res://scenes/skills/enemies/sentry_droid/sentry_droid_attack.gd" id="1_dgksu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lujuy"]
+radius = 8.0
+height = 20.0
+
+[node name="SentryDroidAttack" type="Node2D" unique_id=544283631]
+script = ExtResource("1_dgksu")
+
+[node name="Hitbox" parent="." unique_id=1658913960 instance=ExtResource("1_7p0an")]
+process_mode = 4
+position = Vector2(8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1565710406]
+shape = SubResource("CapsuleShape2D_lujuy")

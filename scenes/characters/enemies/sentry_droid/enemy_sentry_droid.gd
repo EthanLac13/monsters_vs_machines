@@ -7,6 +7,7 @@ extends "res://scenes/characters/enemies/enemy_stat_block.gd"
 var animation_map = {
 	"idle": "walk",
 	"walk": "walk",
+	"attack": "attack",
 	"hurt": "hurt",
 	"death": "hurt"
 }
@@ -22,5 +23,6 @@ var next_animation_map = {
 # Map that tells us which animations are unidirectional.
 var directional_anims = {
 	"walk": true,
+	"attack": true,
 	"hurt": false
 }
