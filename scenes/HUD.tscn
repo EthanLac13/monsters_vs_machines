@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://qd2wi5l3sj0g"]
+
+[ext_resource type="Texture2D" uid="uid://c3r4ygigxidgx" path="res://icon.svg" id="1_qpvh6"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1038846884]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1537313308]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+texture = ExtResource("1_qpvh6")

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d3e2p257664lr" path="res://scenes/EntityTest.tscn" id="1_echbf"]
 [ext_resource type="PackedScene" uid="uid://hva4k4i1sqks" path="res://scenes/PlayerInputController.tscn" id="1_ibiss"]
+[ext_resource type="PackedScene" uid="uid://qd2wi5l3sj0g" path="res://scenes/HUD.tscn" id="1_ygjfp"]
 [ext_resource type="Script" uid="uid://h5nekwvln27d" path="res://scenes/camera_2d.gd" id="3_c6dvc"]
 [ext_resource type="Script" uid="uid://08vtd1phtruv" path="res://scenes/character_spawner.gd" id="3_k24pf"]
 [ext_resource type="Texture2D" uid="uid://c3r4ygigxidgx" path="res://icon.svg" id="4_611at"]
@@ -10,6 +11,8 @@
 size = Vector2(120, 20)
 
 [node name="MainScene" type="Node2D" unique_id=1545239290]
+
+[node name="HUD" parent="." unique_id=1038846884 instance=ExtResource("1_ygjfp")]
 
 [node name="PlayerInputController" parent="." unique_id=517211041 node_paths=PackedStringArray("controlled_object") instance=ExtResource("1_ibiss")]
 controlled_object = NodePath("../Player")
@@ -23,6 +26,7 @@ script = ExtResource("3_k24pf")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1212635600]
 position = Vector2(240, 135)
+zoom = Vector2(2, 2)
 script = ExtResource("3_c6dvc")
 
 [node name="Wall" type="Area2D" parent="." unique_id=856556345]
