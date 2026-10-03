@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://dgxhj8muxjajr" path="res://scenes/skills/enemies/sentry_droid/sentry_droid_attack.gd" id="1_dgksu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lujuy"]
-radius = 8.0
-height = 20.0
+radius = 16.0
+height = 32.0
 
 [node name="SentryDroidAttack" type="Node2D" unique_id=544283631]
 script = ExtResource("1_dgksu")
