@@ -321,6 +321,7 @@ func take_hitbox_hit(hitbox: Area2D):
 			stats_data.hp -= hitbox.damage
 			update_health_bar()
 			took_damage.emit()
+			hitbox.hit_landed.emit()
 			
 			# Apply status effects
 			for status_effect in hitbox.status_effects:

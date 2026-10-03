@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 func move_code():
 	charge_timer += 1
 	
-	if charge_timer == 10:
+	if charge_timer == 8:
 		var my_slime_ball_node = slime_ball_scene.instantiate()
 		my_slime_ball_node.movement_vector = Vector2(cos(rotation), sin(rotation))
 		

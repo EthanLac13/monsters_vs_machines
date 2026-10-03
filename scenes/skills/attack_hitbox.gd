@@ -23,6 +23,8 @@ var multihit: bool = false
 # Status effects the hitbox applies on hit
 var status_effects = {}
 
+signal hit_landed
+
 func _ready() -> void:
 	position_owner = self
 
