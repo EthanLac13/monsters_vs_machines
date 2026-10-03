@@ -37,3 +37,4 @@ func initialize():
 func _process(delta: float) -> void:
 	if controlled_entity == null:
 		queue_free()
+	
