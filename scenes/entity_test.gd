@@ -271,8 +271,6 @@ func end_using_skill():
 func take_hitbox_hit(hitbox: Area2D):
 	if !is_flinching:
 		if hitbox.faction != faction:
-			if hitbox.faction == 0:
-				print(hitbox)
 			stats_data.hp -= hitbox.damage
 			update_health_bar()
 			took_damage.emit()
@@ -284,7 +282,7 @@ func take_hitbox_hit(hitbox: Area2D):
 					
 					# Disable nodes we want deactivated on flinch
 					for disabled_node in disabled_nodes_on_flinch:
-						print(disabled_node.name)
+						#print(disabled_node.name)
 						disabled_node.process_mode = PROCESS_MODE_DISABLED
 						disabled_node.position.y += 10000
 					

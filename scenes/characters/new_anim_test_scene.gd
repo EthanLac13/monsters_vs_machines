@@ -50,8 +50,6 @@ func change_animation(new_anim: String, anim_dir: int = -1):
 	
 	if directional_anims[animation_map[new_anim]] == true:
 		current_direction_string = direction_to_string_dict[get_snapped_anim_dir(anim_dir)]
-		print(anim_dir)
-		print(current_direction_string)
 		anim_player.play(animation_map[new_anim] + "_" + current_direction_string)
 	else:# If no direction is specified, play the animation with no direction at the end
 		current_direction_string = "none"
