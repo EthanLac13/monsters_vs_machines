@@ -7,6 +7,7 @@ var stats_data: Node
 var animation_object
 @export var collision_area: ShapeCast2D
 @export var wall_collider: ShapeCast2D
+@export var collision_blocker: Area2D
 
 var ai_controller: Node2D
 
