@@ -4,7 +4,9 @@ extends Node2D
 
 # Track chasing
 @export var crystal_chase_dir: float = 128.0 ## How far away we need to be from the player to chase the crystal
+@export var crystal_chase_dir_variance: float = 8.0 ## Random variance for the crystal chase dir, to make enemies less uniform
 @export var next_node_dir: float = 24.0 ## How close we need to get to the current track node to move to the next
+@export var next_node_dir_variance: float = 8.0 ## Random variance for the next node dir, to make enemies less uniform
 
 # Stats
 @export var health: int = 0 ## Entity's max HP

@@ -40,8 +40,8 @@ func initialize():
 	controlled_entity.can_flinch = stats.can_flinch
 	controlled_entity.weight = stats.weight
 	
-	crystal_chase_dir = stats.crystal_chase_dir
-	next_node_dir = stats.next_node_dir
+	crystal_chase_dir = stats.crystal_chase_dir + randf_range(stats.crystal_chase_dir_variance * -1, stats.crystal_chase_dir_variance)
+	next_node_dir = stats.next_node_dir + randf_range(stats.next_node_dir_variance * -1, stats.next_node_dir_variance)
 	
 	# Enemy has no mercy by default
 	controlled_entity.mercy_timer_max = 0

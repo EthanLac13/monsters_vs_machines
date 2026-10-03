@@ -511,6 +511,8 @@ animations = [{
 [node name="EnemySixBlades" type="Node2D" unique_id=1958676736]
 script = ExtResource("1_tblr6")
 ai_script = ExtResource("2_8c1ix")
+crystal_chase_dir = 192.0
+next_node_dir = 48.0
 health = 150
 attack = 30
 movement_speed = 0.5
