@@ -8,6 +8,7 @@ var player_stat_file
 var player_stat_data
 
 var exp_handler_scene: PackedScene = load("res://scenes/battle/EXPHandler.tscn")
+var level_up_particles_scene: PackedScene = load("res://scenes/LevelUpParticles.tscn")
 
 var spawned_enemy
 
@@ -27,6 +28,12 @@ func _ready() -> void:
 	# Add EXP points handler to player
 	var my_exp_handler = exp_handler_scene.instantiate()
 	add_child(my_exp_handler)
+	
+	# Add level-up animation player
+	var my_level_up_particles = level_up_particles_scene.instantiate()
+	controlled_object.add_child(my_level_up_particles)
+	my_exp_handler.level_up_particle_node = my_level_up_particles
+
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):

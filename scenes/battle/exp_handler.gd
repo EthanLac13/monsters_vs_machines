@@ -7,6 +7,8 @@ var current_exp: int = 0
 var exp_to_next_level: int = 100
 var added_level_exp: int = 100
 
+var level_up_particle_node: Node2D
+
 # Adds EXP and checks for level-ups
 func add_exp(given_exp: int = 0):
 	if given_exp != 0:
@@ -25,3 +27,4 @@ func level_up():
 	get_parent().controlled_object.stats_data.level_up_stats(current_level, max_level)
 	get_parent()._on_player_damaged()
 	get_parent().hud.update_level(current_level)
+	level_up_particle_node.play_animation()
