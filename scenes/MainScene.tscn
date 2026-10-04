@@ -23,8 +23,9 @@ position = Vector2(240, 90)
 
 [node name="CharacterSpawner" parent="." unique_id=552045547 instance=ExtResource("3_ygjfp")]
 
-[node name="WaveSpawner" parent="." unique_id=1826685528 node_paths=PackedStringArray("spawn_zone_nodes") instance=ExtResource("4_1wiy7")]
+[node name="WaveSpawner" parent="." unique_id=1826685528 node_paths=PackedStringArray("spawn_zone_nodes", "enemy_tracks") instance=ExtResource("4_1wiy7")]
 spawn_zone_nodes = [NodePath("../EnemySpawn0")]
+enemy_tracks = [NodePath("../EnemyTrack0")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1212635600]
 position = Vector2(240, 135)

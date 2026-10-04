@@ -16,6 +16,8 @@ var enemy_spawner_scene: PackedScene = load("res://scenes/battle/EnemySpawner.ts
 
 # List of nodes where we spawn enemies
 @export var spawn_zone_nodes: Array[Node2D]
+# List of lines the enemies can follow
+@export var enemy_tracks: Array[Line2D]
 
 func _ready() -> void:
 	# Get character spawner
@@ -39,11 +41,21 @@ func create_enemy_spawners(current_wave: int):
 		# Set the enemy's spawn zones
 		var spawn_zone_array: Array[Node2D] = []
 		if typeof(spawn.spawn_area) == 19 || typeof(spawn.spawn_area) == 28: # array
-			for spawn_zone in spawn.spawn_area:
-				spawn_zone_array.append(spawn_zone_nodes[spawn_zone])
+			for i in range(0, spawn.spawn_area.size() - 1):
+				spawn_zone_array.append(spawn_zone_nodes[spawn.spawn_area[i]])
 		else:
 			spawn_zone_array.append(spawn_zone_nodes[spawn.spawn_area])
 		enemy_spawner.enemy_spawn_zones = spawn_zone_array
+		
+		# Set the enemy's tracks
+		var track_array: Array[Line2D] = []
+		if typeof(spawn.tracks) == 19 || typeof(spawn.tracks) == 28: # array
+			for i in range(0, spawn.tracks.size() - 1):
+				track_array.append(enemy_tracks[spawn.tracks[i]])
+		else:
+			track_array.append(enemy_tracks[spawn.tracks])
+		print(track_array)
+		enemy_spawner.tracks = track_array
 		
 		# Set the enemy's spawn time
 		var start_secs: float = 0.0

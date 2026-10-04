@@ -45,7 +45,7 @@ func move_code():
 	
 	if charge_timer == rush_times[0]: # Activate the hitbox when we begin charging
 		$Hitbox.activate()
-	if charge_timer == rush_times[1]: # Reduce knockback when slowing diwn
+	if charge_timer == rush_times[1]: # Reduce knockback when slowing down
 		$Hitbox.flinch_time *= 0.5
 		$Hitbox.knockback_power *= 0.5
 	if charge_timer == rush_times[2]: # Sourspot late in the attack

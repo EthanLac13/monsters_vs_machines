@@ -5,6 +5,7 @@ var character_spawner_scene: Node2D
 var enemy_id: int
 var enemy_spawn_count: int
 var enemy_spawn_zones: Array[Node2D]
+var tracks: Array[Line2D]
 
 var spawn_timer: int = 0
 var respawn_timer_min: int = 0
@@ -18,7 +19,10 @@ func _process(delta: float) -> void:
 		var my_spawn_zone = enemy_spawn_zones[randi_range(0, enemy_spawn_zones.size() - 1)]
 		
 		# Make the character spawner spawn the enemy
-		character_spawner_scene.spawn_enemy_from_list(enemy_id, my_spawn_zone.position.x, my_spawn_zone.position.y)
+		var spawned_enemy = character_spawner_scene.spawn_enemy_from_list(enemy_id, my_spawn_zone.position.x, my_spawn_zone.position.y)
+		
+		# Give the enemy its track
+		spawned_enemy.track = tracks[randi_range(0, tracks.size() - 1)]
 		
 		# Deduct the enemy
 		enemy_spawn_count -= 1

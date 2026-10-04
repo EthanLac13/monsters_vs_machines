@@ -74,6 +74,8 @@ var status_effects = {
 	
 }
 
+var track: Line2D
+
 # Signals
 signal took_damage
 

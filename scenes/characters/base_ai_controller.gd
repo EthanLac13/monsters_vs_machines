@@ -19,7 +19,7 @@ func initialize():
 	target_crystal_entity = get_parent().get_node("TargetCrystal")
 	target_entity = player_entity
 	
-	track_line = get_parent().get_node("EnemyTrack0")
+	track_line = controlled_entity.track
 	
 	# Get stats from stats holder
 	stats = controlled_entity.animation_object.anim_object
