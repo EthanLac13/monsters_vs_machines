@@ -5,7 +5,7 @@ var max_level: int = 20
 
 var current_exp: int = 0
 var exp_to_next_level: int = 100
-var added_level_exp: int = 50
+var added_level_exp: int = 100
 
 # Adds EXP and checks for level-ups
 func add_exp(given_exp: int = 0):
