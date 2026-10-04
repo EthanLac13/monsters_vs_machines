@@ -45,6 +45,11 @@ func initialize():
 	
 	# Enemy has no mercy by default
 	controlled_entity.mercy_timer_max = 0
+	
+	# Set enemy's collision
+	if controlled_entity.faction == 1:
+		controlled_entity.wall_collider.collision_mask = 513
+		controlled_entity.collision_blocker.collision_layer = 256
 
 func _process(delta: float) -> void:
 	if controlled_entity == null:

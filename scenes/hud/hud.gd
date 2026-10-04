@@ -38,6 +38,11 @@ func set_skill_cooldown(skill_index: int, cooldown: float):
 func update_crystal_hp():
 	$CrystalHealthBar.value = crystal_node.stats_data.hp / float(crystal_node.stats_data.max_hp)
 
+# Updates the player's HP
+func update_health_bar(current_hp: float, max_hp: float):
+	$HPText.text = gauge_text_template % [current_hp, max_hp]
+	$HPBar.value = current_hp / max_hp
+
 # Updates the player's EXP
 func update_exp_bar(current_exp: float, exp_to_max: float):
 	$EXPText.text = gauge_text_template % [current_exp, exp_to_max]

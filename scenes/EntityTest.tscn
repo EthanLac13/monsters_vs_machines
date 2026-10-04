@@ -46,9 +46,12 @@ collide_with_areas = true
 [node name="WallCollider" type="ShapeCast2D" parent="CollisionParent" unique_id=1293915911]
 shape = SubResource("RectangleShape2D_ocns7")
 target_position = Vector2(0, 0)
+collision_mask = 257
 collide_with_areas = true
 
 [node name="CollisionBlocker" type="Area2D" parent="CollisionParent" unique_id=379836625]
+collision_layer = 512
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionParent/CollisionBlocker" unique_id=12082377]
 shape = SubResource("CircleShape2D_il27e")
