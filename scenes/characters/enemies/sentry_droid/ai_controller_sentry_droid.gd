@@ -10,6 +10,7 @@ func initialize():
 	super()
 	max_chase_dir = stats.max_chase_dir
 	crystal_chase_dir = stats.crystal_chase_dir
+	controlled_entity.move_speed += randf_range(-stats.move_speed_variance, stats.move_speed_variance)
 	
 	controlled_entity.skill_list.append("res://scenes/skills/enemies/sentry_droid/SentryDroidAttack.tscn")
 	#controlled_entity.animation_object.change_animation("walk")

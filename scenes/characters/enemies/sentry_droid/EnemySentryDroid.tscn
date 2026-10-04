@@ -1490,6 +1490,7 @@ _data = {
 
 [node name="EnemySentryDroid" type="Node2D" unique_id=159277287]
 script = ExtResource("1_ajbn8")
+move_speed_variance = 0.1
 ai_script = ExtResource("2_ao34y")
 next_node_dir = 40.0
 next_node_dir_variance = 16.0
