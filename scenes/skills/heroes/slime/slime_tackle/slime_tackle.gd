@@ -18,7 +18,7 @@ func _ready() -> void:
 	backswing_frames = 0
 	
 	# Set hitbox damage; will be expanded later
-	$Hitbox.damage = 30
+	$Hitbox.damage = get_parent().stats_data.attack
 	$Hitbox.flinch = true
 	$Hitbox.position_owner = get_parent()
 	

@@ -4,6 +4,9 @@ extends Node2D
 
 @export var hud: CanvasLayer
 
+var player_stat_file
+var player_stat_data
+
 var exp_handler_scene: PackedScene = load("res://scenes/battle/EXPHandler.tscn")
 
 var spawned_enemy
@@ -11,6 +14,11 @@ var spawned_enemy
 func _ready() -> void:
 	controlled_object.ai_controller = self
 	controlled_object.hud = hud
+	
+	# Set player's stats
+	player_stat_file = GeneralFunctions.load_json_file("res://data/player_stat_data.json")
+	player_stat_data = player_stat_file["0"]
+	set_player_stats.call_deferred()
 	
 	# Hide player's mini HP bar
 	controlled_object.get_node("HealthBar").visible = false
@@ -38,3 +46,22 @@ func _process(delta: float):
 
 func _on_player_damaged():
 	hud.update_health_bar(controlled_object.stats_data.hp, controlled_object.stats_data.max_hp)
+
+func set_player_stats():
+	var stats = controlled_object.stats_data
+	stats.script = load("res://scenes/player_stats_holder.gd")
+	
+	
+	# Set player's default stats
+	stats.hp = player_stat_data.base_stats.hp
+	stats.base_stats.attack = player_stat_data.base_stats.attack
+	stats.base_stats.defense = player_stat_data.base_stats.defense
+	stats.base_stats.magic_attack = player_stat_data.base_stats.magic_attack
+	stats.base_stats.magic_defense = player_stat_data.base_stats.magic_defense
+	controlled_object.move_speed = player_stat_data.base_stats.move_speed
+	
+	# Set player's level 1 and level max stats
+	stats.level_1_stats = player_stat_data.base_stats.duplicate(true)
+	stats.max_level_stats = player_stat_data.max_level_stats.duplicate(true)
+	
+	controlled_object.stats_data.recalculate_stats()

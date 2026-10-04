@@ -100,6 +100,7 @@ func initialize_ai():
 	
 	ai_controller.controlled_entity = self
 	ai_controller.initialize()
+	stats_data.recalculate_stats()
 	
 	# Set animation map
 	animation_object.set_anim_player()
@@ -320,7 +321,12 @@ func end_using_skill():
 func take_hitbox_hit(hitbox: Area2D):
 	if !is_flinching:
 		if hitbox.faction != faction:
-			stats_data.hp -= hitbox.damage
+			var incoming_damage = hitbox.damage
+			if hitbox.is_magical:
+				incoming_damage -= stats_data.magic_defense
+			else:
+				incoming_damage -= stats_data.defense
+			stats_data.hp -= incoming_damage
 			update_health_bar()
 			took_damage.emit()
 			hitbox.hit_landed.emit()

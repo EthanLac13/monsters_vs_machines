@@ -25,7 +25,8 @@ func move_code():
 		my_slime_ball_node.movement_vector = Vector2(cos(rotation), sin(rotation))
 		
 		var slime_hitbox = my_slime_ball_node.get_node("Hitbox")
-		slime_hitbox.damage = get_parent().stats_data.base_stats.magic_attack * 0.5
+		slime_hitbox.damage = get_parent().stats_data.magic_attack
+		slime_hitbox.is_magical = true
 		slime_hitbox.flinch_weight = 2.0
 		slime_hitbox.status_effects = {
 			"slime_slowdown": {

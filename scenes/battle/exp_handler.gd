@@ -22,4 +22,6 @@ func add_exp(given_exp: int = 0):
 # Increments level and recalculates stats
 func level_up():
 	current_level += 1
+	get_parent().controlled_object.stats_data.level_up_stats(current_level, max_level)
+	get_parent()._on_player_damaged()
 	get_parent().hud.update_level(current_level)
