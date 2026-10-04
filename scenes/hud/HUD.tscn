@@ -66,6 +66,15 @@ expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 anti_aliasing_size = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxkr6"]
+bg_color = Color(0, 0.72156864, 0.972549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+
 [node name="HUD" type="CanvasLayer" unique_id=1038846884]
 script = ExtResource("1_xvj7f")
 
@@ -210,7 +219,7 @@ grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_constants/outline_size = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_fdg6f")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xvj7f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_oxkr6")
 max_value = 1.0
 value = 1.0
 show_percentage = false
