@@ -4,11 +4,17 @@ extends Node2D
 
 @export var hud: CanvasLayer
 
+var exp_handler_scene: PackedScene = load("res://scenes/battle/EXPHandler.tscn")
+
 var spawned_enemy
 
 func _ready() -> void:
 	controlled_object.ai_controller = self
 	controlled_object.hud = hud
+	
+	# Add EXP points handler to player
+	var my_exp_handler = exp_handler_scene.instantiate()
+	add_child(my_exp_handler)
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):

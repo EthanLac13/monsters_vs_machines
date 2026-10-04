@@ -16,6 +16,8 @@ extends Node2D
 @export var magic_defense: int = 0 ## Entity's elemental defense; subtracted from incoming elemental attacks
 @export var movement_speed: float = 0 ## How fast the entity moves, in pixels per frame
 
+@export var exp_yield: int = 1 ## How much EXP the enemy gives when destroyed
+
 # Other qualities
 @export var weight: float = 10.0 ## Affects how far the entity is knocked back. Set to -1 to make it still play the pain anim, but not move.
 @export var can_flinch: bool = true ## Controls whether the entity can flinch from attacks

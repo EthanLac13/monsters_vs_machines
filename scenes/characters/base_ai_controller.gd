@@ -35,6 +35,8 @@ func initialize():
 	
 	controlled_entity.move_speed = stats.movement_speed
 	
+	controlled_entity.exp_yield = stats.exp_yield
+	
 	controlled_entity.can_flinch = stats.can_flinch
 	controlled_entity.weight = stats.weight
 	

@@ -5,6 +5,8 @@ var crystal_node: Node2D
 
 var skill_buttons: Array[TextureRect]
 
+var gauge_text_template: String = "%d/%d"
+
 func _ready() -> void:
 	# Scale is set to 0.5 by default, so it looks okay in the editor
 	# Scale is reset to 1.0 in-game so it looks good there
@@ -35,3 +37,12 @@ func set_skill_cooldown(skill_index: int, cooldown: float):
 # Updates the crystal HP bar at the bottom of the screen
 func update_crystal_hp():
 	$CrystalHealthBar.value = crystal_node.stats_data.hp / float(crystal_node.stats_data.max_hp)
+
+# Updates the player's EXP
+func update_exp_bar(current_exp: float, exp_to_max: float):
+	$EXPText.text = gauge_text_template % [current_exp, exp_to_max]
+	$EXPBar.value = current_exp / exp_to_max
+
+# Updates the player's level
+func update_level(current_level: int):
+	$LevelText.text = str(current_level)

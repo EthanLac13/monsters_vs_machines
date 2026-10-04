@@ -66,6 +66,8 @@ var knockback_dir: float = 0.0
 var dying: bool = false
 var death_timer: int = 0
 
+var exp_yield: int = 0
+
 var disabled_nodes_on_flinch = []
 
 var status_effects = {
@@ -296,7 +298,7 @@ func attempt_use_move(skill_index: int):
 			current_skill_scene.position.x = 0
 			current_skill_scene.position.y = 0
 			
-			print(current_skill_scene.charge_frames)
+			#print(current_skill_scene.charge_frames)
 			if current_skill_scene.charge_frames == 0:
 				current_skill_scene.state = 1
 			
@@ -327,7 +329,7 @@ func take_hitbox_hit(hitbox: Area2D):
 			for status_effect in hitbox.status_effects:
 				if !status_effects.has(status_effect):
 					status_effects[status_effect] = hitbox.status_effects[status_effect]
-			print(status_effects)
+			#print(status_effects)
 			
 			# Flinch from the hit if we're supposed to
 			if stats_data.hp > 0:
@@ -355,6 +357,8 @@ func take_hitbox_hit(hitbox: Area2D):
 					mercy_timer = mercy_timer_max
 			else:
 				set_death_state()
+				give_exp()
+				
 				is_flinching = true
 				flinch_timer = 80
 				flinch_timer_max = 80
@@ -370,3 +374,7 @@ func set_death_state():
 	can_move = false
 	animation_object.change_animation("death")
 	#animation_object.hop(30.0, 20.0)
+
+# Give EXP to the player upon death
+func give_exp():
+	get_parent().get_node("PlayerInputController").get_node("EXPHandler").add_exp(exp_yield)
