@@ -1499,6 +1499,7 @@ attack = 15
 defense = 5
 movement_speed = 1.0
 exp_yield = 25
+money_yield = 20
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=352887532]
 libraries/ = SubResource("AnimationLibrary_ao34y")

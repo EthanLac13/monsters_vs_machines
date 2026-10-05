@@ -54,7 +54,6 @@ func create_enemy_spawners(current_wave: int):
 				track_array.append(enemy_tracks[spawn.tracks[i]])
 		else:
 			track_array.append(enemy_tracks[spawn.tracks])
-		print(track_array)
 		enemy_spawner.tracks = track_array
 		
 		# Set the enemy's spawn time

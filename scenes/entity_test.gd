@@ -78,6 +78,7 @@ var track: Line2D
 
 # Signals
 signal took_damage
+signal was_killed
 
 func _ready() -> void:
 	stats_data = $StatsHolder
@@ -176,6 +177,7 @@ func _process(delta: float) -> void:
 			modulate.a -= 0.1
 		
 		if death_timer == 35:
+			was_killed.emit()
 			queue_free()
 			ai_controller.queue_free()
 	

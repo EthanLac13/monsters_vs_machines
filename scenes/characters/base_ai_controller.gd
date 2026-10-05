@@ -1,5 +1,7 @@
 extends Node2D
 
+static var coin_dropper_scene: PackedScene = load("res://scenes/characters/enemies/EnemyCoinDropper.tscn")
+
 var controlled_entity: Node2D
 var target_entity: Node2D
 var player_entity: Node2D
@@ -35,7 +37,13 @@ func initialize():
 	
 	controlled_entity.move_speed = stats.movement_speed
 	
+	# Set enemy's EXP drop
 	controlled_entity.exp_yield = stats.exp_yield
+	# Set enemy's money drop
+	var my_coin_dropper = coin_dropper_scene.instantiate()
+	my_coin_dropper.coins_to_drop = stats.money_yield
+	controlled_entity.add_child(my_coin_dropper)
+	controlled_entity.was_killed.connect(my_coin_dropper.drop_coins)
 	
 	controlled_entity.can_flinch = stats.can_flinch
 	controlled_entity.weight = stats.weight

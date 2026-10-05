@@ -8,5 +8,4 @@ func _process(delta: float) -> void:
 		player_touched(collision_shapecast.get_collider(0))
 
 func player_touched(collider: Area2D):
-	print(collider)
 	queue_free()
