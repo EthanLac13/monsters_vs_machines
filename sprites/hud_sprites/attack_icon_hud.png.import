@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dep4hgpifr0pp"
-path="res://.godot/imported/exp_icon_gui.png-ee410fc5792eacedaca308ddb0d16875.ctex"
+uid="uid://c3sd2l1rmvab1"
+path="res://.godot/imported/attack_icon_hud.png-64f41df370c12ab26da1143fc6ed1a79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/hud_sprites/exp_icon_gui.png"
-dest_files=["res://.godot/imported/exp_icon_gui.png-ee410fc5792eacedaca308ddb0d16875.ctex"]
+source_file="res://sprites/hud_sprites/attack_icon_hud.png"
+dest_files=["res://.godot/imported/attack_icon_hud.png-64f41df370c12ab26da1143fc6ed1a79.ctex"]
 
 [params]
 

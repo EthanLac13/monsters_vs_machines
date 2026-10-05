@@ -17,6 +17,7 @@ extends Node2D
 @export var movement_speed: float = 0 ## How fast the entity moves, in pixels per frame
 
 @export var exp_yield: int = 1 ## How much EXP the enemy gives when destroyed
+@export var money_yield: int = 1 ## How much money the enemy drops when destroyed
 
 # Other qualities
 @export var weight: float = 10.0 ## Affects how far the entity is knocked back. Set to -1 to make it still play the pain anim, but not move.

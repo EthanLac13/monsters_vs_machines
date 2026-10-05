@@ -51,3 +51,7 @@ func update_exp_bar(current_exp: float, exp_to_max: float):
 # Updates the player's level
 func update_level(current_level: int):
 	$LevelText.text = str(current_level)
+
+# Updates the money count
+func update_money(new_money: int):
+	$MoneyText.text = " " + str(new_money)

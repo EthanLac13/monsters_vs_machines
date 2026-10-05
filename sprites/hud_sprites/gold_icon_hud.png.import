@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4x5bkxq4w04a"
-path="res://.godot/imported/hp_icon_gui.png-88bfe09fe8bc8abd1c183983f3ac4692.ctex"
+uid="uid://cslvw6v4wliui"
+path="res://.godot/imported/gold_icon_hud.png-95ecaa618c2fd3964417999696b964f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/hud_sprites/hp_icon_gui.png"
-dest_files=["res://.godot/imported/hp_icon_gui.png-88bfe09fe8bc8abd1c183983f3ac4692.ctex"]
+source_file="res://sprites/hud_sprites/gold_icon_hud.png"
+dest_files=["res://.godot/imported/gold_icon_hud.png-95ecaa618c2fd3964417999696b964f5.ctex"]
 
 [params]
 

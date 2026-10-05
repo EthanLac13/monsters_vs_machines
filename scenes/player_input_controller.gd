@@ -12,6 +12,8 @@ var level_up_particles_scene: PackedScene = load("res://scenes/LevelUpParticles.
 
 var spawned_enemy
 
+var player_money: int = 0
+
 func _ready() -> void:
 	controlled_object.ai_controller = self
 	controlled_object.hud = hud
@@ -72,3 +74,7 @@ func set_player_stats():
 	stats.max_level_stats = player_stat_data.max_level_stats.duplicate(true)
 	
 	controlled_object.stats_data.recalculate_stats()
+
+func add_money(money_added: int):
+	player_money += money_added
+	hud.update_money(player_money)

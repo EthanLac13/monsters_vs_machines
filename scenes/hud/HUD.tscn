@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://qd2wi5l3sj0g"]
 
 [ext_resource type="Script" uid="uid://c7tdwh5dup1f8" path="res://scenes/hud/hud.gd" id="1_xvj7f"]
-[ext_resource type="Texture2D" uid="uid://c3sd2l1rmvab1" path="res://sprites/hud_sprites/attack_icon_gui.png" id="2_arwy5"]
+[ext_resource type="Texture2D" uid="uid://c3sd2l1rmvab1" path="res://sprites/hud_sprites/attack_icon_hud.png" id="2_arwy5"]
 [ext_resource type="PackedScene" uid="uid://c1860al3rov2q" path="res://scenes/hud/HUDAttackCooldownButton.tscn" id="2_xvj7f"]
-[ext_resource type="Texture2D" uid="uid://dep4hgpifr0pp" path="res://sprites/hud_sprites/exp_icon_gui.png" id="4_6lywo"]
-[ext_resource type="Texture2D" uid="uid://b4x5bkxq4w04a" path="res://sprites/hud_sprites/hp_icon_gui.png" id="4_ltdg3"]
+[ext_resource type="Texture2D" uid="uid://dep4hgpifr0pp" path="res://sprites/hud_sprites/exp_icon_hud.png" id="4_6lywo"]
+[ext_resource type="Texture2D" uid="uid://b4x5bkxq4w04a" path="res://sprites/hud_sprites/hp_icon_hud.png" id="4_ltdg3"]
+[ext_resource type="Texture2D" uid="uid://cslvw6v4wliui" path="res://sprites/hud_sprites/gold_icon_hud.png" id="5_dui1j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dui1j"]
 bg_color = Color(0.1882353, 0, 0, 1)
@@ -200,6 +201,36 @@ theme_override_colors/default_color = Color(0.5019608, 0.8156863, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/normal_font_size = 16
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MoneyIcon" type="TextureRect" parent="." unique_id=448387958]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_top = -36.0
+offset_right = 270.0
+offset_bottom = -12.0
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("5_dui1j")
+
+[node name="MoneyText" type="RichTextLabel" parent="." unique_id=1591781860]
+modulate = Color(1, 0.8745098, 0.3137255, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 272.0
+offset_top = -38.0
+offset_right = 346.0
+offset_bottom = -15.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 16
+text = " 0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

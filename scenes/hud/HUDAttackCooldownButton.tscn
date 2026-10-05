@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1860al3rov2q"]
 
-[ext_resource type="Texture2D" uid="uid://c3sd2l1rmvab1" path="res://sprites/hud_sprites/attack_icon_gui.png" id="1_vs2du"]
+[ext_resource type="Texture2D" uid="uid://c3sd2l1rmvab1" path="res://sprites/hud_sprites/attack_icon_hud.png" id="1_vs2du"]
 [ext_resource type="Script" uid="uid://dkuw0rfjlq2j2" path="res://scenes/hud/hud_attack_cooldown_button.gd" id="2_x7x6k"]
 
 [sub_resource type="Gradient" id="Gradient_xvj7f"]
