@@ -41,7 +41,7 @@ func create_enemy_spawners(current_wave: int):
 		# Set the enemy's spawn zones
 		var spawn_zone_array: Array[Node2D] = []
 		if typeof(spawn.spawn_area) == 19 || typeof(spawn.spawn_area) == 28: # array
-			for i in range(0, spawn.spawn_area.size() - 1):
+			for i in range(0, spawn.spawn_area.size()):
 				spawn_zone_array.append(spawn_zone_nodes[spawn.spawn_area[i]])
 		else:
 			spawn_zone_array.append(spawn_zone_nodes[spawn.spawn_area])
@@ -50,7 +50,7 @@ func create_enemy_spawners(current_wave: int):
 		# Set the enemy's tracks
 		var track_array: Array[Line2D] = []
 		if typeof(spawn.tracks) == 19 || typeof(spawn.tracks) == 28: # array
-			for i in range(0, spawn.tracks.size() - 1):
+			for i in range(0, spawn.tracks.size()):
 				track_array.append(enemy_tracks[spawn.tracks[i]])
 		else:
 			track_array.append(enemy_tracks[spawn.tracks])

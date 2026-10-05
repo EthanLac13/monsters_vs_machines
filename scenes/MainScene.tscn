@@ -24,8 +24,8 @@ position = Vector2(240, 90)
 [node name="CharacterSpawner" parent="." unique_id=552045547 instance=ExtResource("3_ygjfp")]
 
 [node name="WaveSpawner" parent="." unique_id=1826685528 node_paths=PackedStringArray("spawn_zone_nodes", "enemy_tracks") instance=ExtResource("4_1wiy7")]
-spawn_zone_nodes = [NodePath("../EnemySpawn0")]
-enemy_tracks = [NodePath("../EnemyTrack0")]
+spawn_zone_nodes = [NodePath("../EnemySpawnsAndTracks/EnemySpawns/EnemySpawn0")]
+enemy_tracks = [NodePath("../EnemySpawnsAndTracks/EnemyTracks/EnemyTrack0"), NodePath("../EnemySpawnsAndTracks/EnemyTracks/EnemyTrack1")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1212635600]
 position = Vector2(240, 135)
@@ -48,9 +48,19 @@ texture = ExtResource("4_611at")
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 
-[node name="EnemySpawn0" type="Node2D" parent="." unique_id=336840909]
+[node name="EnemySpawnsAndTracks" type="Node2D" parent="." unique_id=465801565]
+
+[node name="EnemySpawns" type="Node2D" parent="EnemySpawnsAndTracks" unique_id=1589526173]
+
+[node name="EnemySpawn0" type="Node2D" parent="EnemySpawnsAndTracks/EnemySpawns" unique_id=336840909]
 position = Vector2(240, -64)
 
-[node name="EnemyTrack0" type="Line2D" parent="." unique_id=1764629572]
+[node name="EnemyTracks" type="Node2D" parent="EnemySpawnsAndTracks" unique_id=20527136]
+
+[node name="EnemyTrack0" type="Line2D" parent="EnemySpawnsAndTracks/EnemyTracks" unique_id=1764629572]
 position = Vector2(240, 0)
 points = PackedVector2Array(0, 0, 0, 50, 0, 100, 0, 140, -10, 150, -50, 150, -90, 150, -100, 160, -100, 200, -100, 240, -90, 250, -50, 250)
+
+[node name="EnemyTrack1" type="Line2D" parent="EnemySpawnsAndTracks/EnemyTracks" unique_id=1250210111]
+position = Vector2(240, 0)
+points = PackedVector2Array(0, 0, 0, 50, 0, 100, 0, 140, 10, 150, 50, 150, 90, 150, 100, 160, 100, 200, 100, 240, 90, 250, 50, 250)
