@@ -5,6 +5,7 @@ var faction: int = 0
 var position_owner: Node2D
 
 var damage: float = 0
+var is_magical: bool = false # True to use magic attack/defense; false to use physical attack/defense
 
 var distance_falloff: bool = false
 var min_damage_mult: float = 1.0
@@ -18,6 +19,11 @@ var multi_target: bool = false
 var multi_target_damage_reduction: float = 0.5
 
 var multihit: bool = false
+
+# Status effects the hitbox applies on hit
+var status_effects = {}
+
+signal hit_landed
 
 func _ready() -> void:
 	position_owner = self

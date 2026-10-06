@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c1860al3rov2q"]
+
+[ext_resource type="Texture2D" uid="uid://c3sd2l1rmvab1" path="res://sprites/hud_sprites/attack_icon_hud.png" id="1_vs2du"]
+[ext_resource type="Script" uid="uid://dkuw0rfjlq2j2" path="res://scenes/hud/hud_attack_cooldown_button.gd" id="2_x7x6k"]
+
+[sub_resource type="Gradient" id="Gradient_xvj7f"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.49803922)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ocns7"]
+gradient = SubResource("Gradient_xvj7f")
+width = 50
+height = 50
+
+[node name="AttackCooldownButton" type="TextureRect" unique_id=14137015]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -72.0
+offset_right = 72.0
+offset_bottom = -8.0
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("1_vs2du")
+script = ExtResource("2_x7x6k")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=203363590]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 58.0
+offset_bottom = 58.0
+max_value = 1.0
+step = 0.01
+value = 0.66
+fill_mode = 5
+texture_progress = SubResource("GradientTexture2D_ocns7")

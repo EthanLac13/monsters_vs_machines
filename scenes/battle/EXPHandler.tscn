@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://s76ydjhv2ldl"]
+
+[ext_resource type="Script" uid="uid://blqklm4od5nx2" path="res://scenes/battle/exp_handler.gd" id="1_3s8m7"]
+
+[node name="EXPHandler" type="Node2D" unique_id=1835735403]
+script = ExtResource("1_3s8m7")

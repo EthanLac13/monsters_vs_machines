@@ -11,7 +11,7 @@ var charge_frames: int = 30
 var backswing_frames: int = 30
 
 func _ready() -> void:
-	get_parent().animation_object.change_animation("idle", get_parent().move_dir)
+	get_parent().animation_object.change_animation("idle")
 
 func _process(delta: float) -> void:
 	match state:

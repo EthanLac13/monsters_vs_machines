@@ -5,6 +5,7 @@ extends Node2D
 var animation_map = {
 	"idle": "idle",
 	"walk": "jump_start",
+	"shoot": "shoot",
 	"hurt": "hurt",
 	"death": "hurt"
 }
@@ -25,5 +26,6 @@ var directional_anims = {
 	"jump_start": true,
 	"jump_middle": true,
 	"jump_end": true,
+	"shoot": true,
 	"hurt": false
 }
