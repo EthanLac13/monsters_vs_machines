@@ -21,6 +21,5 @@ func _process(delta: float) -> void:
 				magnetized_objects.remove_at(i)
 
 func _on_pickup_magnet_area_area_entered(area: Area2D) -> void:
-	print(area)
 	magnetized_objects.append(area.get_parent())
 	pass # Replace with function body.
