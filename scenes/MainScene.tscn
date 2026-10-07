@@ -67,4 +67,7 @@ position = Vector2(240, 0)
 points = PackedVector2Array(0, 0, 0, 50, 0, 100, 0, 140, 10, 150, 50, 150, 90, 150, 100, 160, 100, 200, 100, 240, 90, 250, 50, 250)
 
 [node name="SmallCoin" parent="." unique_id=1182742864 instance=ExtResource("8_u1u68")]
-position = Vector2(280, 120)
+position = Vector2(363, 124)
+
+[node name="SmallCoin2" parent="." unique_id=328605380 instance=ExtResource("8_u1u68")]
+position = Vector2(378, 126)

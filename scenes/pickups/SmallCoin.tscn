@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ebwj"]
 size = Vector2(12, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocns7"]
+size = Vector2(12, 12)
+
 [node name="SmallCoin" type="Node2D" unique_id=1182742864 node_paths=PackedStringArray("collision_shapecast")]
 script = ExtResource("1_17yry")
 collision_shapecast = NodePath("CollisionShapecast")
@@ -19,3 +22,10 @@ shape = SubResource("RectangleShape2D_5ebwj")
 target_position = Vector2(0, 0)
 collision_mask = 512
 collide_with_areas = true
+
+[node name="MagneticDetectArea" type="Area2D" parent="." unique_id=2101132169]
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagneticDetectArea" unique_id=1613297075]
+shape = SubResource("RectangleShape2D_ocns7")

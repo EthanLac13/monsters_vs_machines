@@ -9,6 +9,7 @@ var player_stat_data
 
 var exp_handler_scene: PackedScene = load("res://scenes/battle/EXPHandler.tscn")
 var level_up_particles_scene: PackedScene = load("res://scenes/LevelUpParticles.tscn")
+var pickup_magnet_scene: PackedScene = load("res://scenes/characters/heroes/PickupMagnet.tscn")
 
 var spawned_enemy
 
@@ -35,6 +36,10 @@ func _ready() -> void:
 	var my_level_up_particles = level_up_particles_scene.instantiate()
 	controlled_object.add_child(my_level_up_particles)
 	my_exp_handler.level_up_particle_node = my_level_up_particles
+	
+	# Add pickup attractor to player
+	var my_pickup_attractor = pickup_magnet_scene.instantiate()
+	controlled_object.add_child(my_pickup_attractor)
 
 
 func _process(delta: float):
