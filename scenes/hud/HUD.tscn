@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dep4hgpifr0pp" path="res://sprites/hud_sprites/exp_icon_hud.png" id="4_6lywo"]
 [ext_resource type="Texture2D" uid="uid://b4x5bkxq4w04a" path="res://sprites/hud_sprites/hp_icon_hud.png" id="4_ltdg3"]
 [ext_resource type="Texture2D" uid="uid://cslvw6v4wliui" path="res://sprites/hud_sprites/gold_icon_hud.png" id="5_dui1j"]
+[ext_resource type="Texture2D" uid="uid://dsrurs8ad2mek" path="res://sprites/hud_sprites/wave_flag_hud.png" id="7_se64a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dui1j"]
 bg_color = Color(0.1882353, 0, 0, 1)
@@ -270,3 +271,24 @@ offset_right = 880.0
 [node name="AttackCooldownButton4" parent="." unique_id=1617974292 instance=ExtResource("2_xvj7f")]
 offset_left = 888.0
 offset_right = 952.0
+
+[node name="WaveFlag" type="TextureRect" parent="." unique_id=2027008425]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 24.0
+scale = Vector2(2, 2)
+texture = ExtResource("7_se64a")
+
+[node name="WaveText" type="RichTextLabel" parent="." unique_id=1147366161]
+offset_left = 40.0
+offset_top = 2.0
+offset_right = 140.0
+offset_bottom = 47.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 28
+text = " 1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
