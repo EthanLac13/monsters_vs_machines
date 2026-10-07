@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 			else:
 				$Sprite.frame = current_frame
 			
-			if current_frame == 2:
+			if current_frame == 3:
 				dying_entity.global_position = global_position
 				dying_entity.die()
 				

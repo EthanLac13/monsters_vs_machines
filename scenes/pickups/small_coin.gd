@@ -6,6 +6,8 @@ var anim_frame: int = 0
 
 var value: int = 1
 
+@export var pickup_scene: PackedScene
+
 func _process(delta: float) -> void:
 	super(delta)
 	anim_timer += 1
@@ -18,4 +20,10 @@ func _process(delta: float) -> void:
 func player_touched(collider: Area2D):
 	var player = collider.get_parent().get_parent()
 	player.ai_controller.add_money(value)
+	
+	# Spawn the glitter effect
+	var my_particles = pickup_scene.instantiate()
+	get_parent().add_child(my_particles)
+	my_particles.position = position
+	
 	super(collider)

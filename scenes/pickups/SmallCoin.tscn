@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bi0ts17pfol5d"]
 
 [ext_resource type="Script" uid="uid://8egu1l6uv7ao" path="res://scenes/pickups/small_coin.gd" id="1_17yry"]
+[ext_resource type="PackedScene" uid="uid://dte04omgu1phy" path="res://scenes/particles/SmallGlitterEmitter.tscn" id="2_1k467"]
 [ext_resource type="Texture2D" uid="uid://bvl0io2iwfi2s" path="res://sprites/object_sprites/pickups/coin_small.png" id="2_17yry"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ebwj"]
@@ -10,7 +11,9 @@ size = Vector2(12, 12)
 size = Vector2(12, 12)
 
 [node name="SmallCoin" type="Node2D" unique_id=1182742864 node_paths=PackedStringArray("collision_shapecast")]
+z_index = 4000
 script = ExtResource("1_17yry")
+pickup_scene = ExtResource("2_1k467")
 collision_shapecast = NodePath("CollisionShapecast")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=255696810]
