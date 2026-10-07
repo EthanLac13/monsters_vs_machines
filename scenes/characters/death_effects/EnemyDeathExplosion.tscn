@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dmjcqg6u0s3lh"]
+
+[ext_resource type="Script" uid="uid://818hdx75fau" path="res://scenes/characters/death_effects/enemy_death_explosion.gd" id="1_63qxn"]
+[ext_resource type="Texture2D" uid="uid://cr0k48bc2j6k0" path="res://sprites/object_sprites/explosion/explosion_1.png" id="2_i01ai"]
+[ext_resource type="Texture2D" uid="uid://bwjrwaxofdg4a" path="res://sprites/object_sprites/explosion/explosion_2.png" id="3_ef8dj"]
+[ext_resource type="Texture2D" uid="uid://bn30cej8rcdst" path="res://sprites/object_sprites/explosion/explosion_3.png" id="4_21eto"]
+[ext_resource type="Texture2D" uid="uid://cdpewsi2ssv30" path="res://sprites/object_sprites/explosion/explosion_4.png" id="5_1bhhn"]
+[ext_resource type="Texture2D" uid="uid://v7h0wnphqi7u" path="res://sprites/object_sprites/explosion/explosion_5.png" id="6_8ygai"]
+[ext_resource type="Texture2D" uid="uid://dmtvxptb7jhmp" path="res://sprites/object_sprites/explosion/explosion_6.png" id="7_vgnph"]
+[ext_resource type="Texture2D" uid="uid://cm1m4vh36hfm7" path="res://sprites/object_sprites/explosion/explosion_7.png" id="8_aw87h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocns7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i01ai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ef8dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_21eto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1bhhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8ygai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vgnph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aw87h")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="Node2D" unique_id=1461482251]
+visible = false
+script = ExtResource("1_63qxn")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1472781113]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ocns7")
+frame = 3
+offset = Vector2(0, -8)

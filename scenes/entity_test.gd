@@ -64,7 +64,9 @@ var knockback_movement: float = 0
 var knockback_dir: float = 0.0
 
 var dying: bool = false
-var death_timer: int = 0
+var can_die: bool = false # Whether we can die during the death state
+var death_scene: PackedScene = load("res://scenes/characters/death_effects/EnemyDeathExplosion.tscn")
+var death_controller: Node2D = null
 
 var exp_yield: int = 0
 
@@ -161,25 +163,6 @@ func _process(delta: float) -> void:
 				take_hitbox_hit(collision_area.get_collider(i))
 				if !collision_area.get_collider(i).multihit:
 					collision_area.add_exception(collision_area.get_collider(i))
-	
-	# Flow for dying (enemies; players are TODO)
-	if dying:
-		death_timer += 1
-		
-		move_dir += 30.0
-		if move_dir >= 360:
-			move_dir -= 360.0
-		
-		#if death_timer % 3 == 2:
-			#animation_object.change_animation("hurt", move_dir)
-		
-		if death_timer >= 25 && death_timer < 35:
-			modulate.a -= 0.1
-		
-		if death_timer == 35:
-			was_killed.emit()
-			queue_free()
-			ai_controller.queue_free()
 	
 	# Reset inputs
 	input_right = false
@@ -372,7 +355,7 @@ func take_hitbox_hit(hitbox: Area2D):
 				is_flinching = true
 				flinch_timer = 80
 				flinch_timer_max = 80
-				knockback_movement = 2.0
+				knockback_movement = randf_range(4.0, 6.0)
 				knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
 
 # Update HP bar percentage
@@ -383,8 +366,20 @@ func set_death_state():
 	dying = true
 	can_move = false
 	animation_object.change_animation("death")
+	
+	death_controller = death_scene.instantiate()
+	get_parent().add_child(death_controller)
+	death_controller.position = position
+	death_controller.z_index = z_index + 100
+	death_controller.dying_entity = self
 	#animation_object.hop(30.0, 20.0)
 
 # Give EXP to the player upon death
 func give_exp():
 	get_parent().get_node("PlayerInputController").get_node("EXPHandler").add_exp(exp_yield)
+
+# Removes this entity
+func die():
+	was_killed.emit()
+	queue_free()
+	ai_controller.queue_free()
