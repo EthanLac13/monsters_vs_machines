@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blwhytc3e7w5q"]
 
-[ext_resource type="Script" uid="uid://b55785hroque1" path="res://scenes/characters/misc/target_crystal/shop_controller.gd" id="1_sedcj"]
+[ext_resource type="Script" uid="uid://b55785hroque1" path="res://scenes/objects/interactable/shop/shop_controller.gd" id="1_sedcj"]
 [ext_resource type="Texture2D" uid="uid://sl1p4cmmgcmp" path="res://sprites/hud_sprites/black_box_nineslice_hud.png" id="2_i4vv1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4vv1"]

@@ -6,6 +6,8 @@ var player: Node2D
 var crystal_glow: Sprite2D
 var crystal_fade_amount: float = 0.05
 
+var shop_menu_scene: PackedScene = load("res://scenes/characters/misc/target_crystal/ShopMenu.tscn")
+
 func _ready() -> void:
 	$Tooltip.modulate.a = 0.0
 

@@ -1,6 +1,6 @@
 extends "res://scenes/characters/base_ai_controller.gd"
 
-var shop_controller_scene: PackedScene = load("res://scenes/characters/misc/target_crystal/ShopController.tscn")
+var shop_controller_scene: PackedScene = load("res://scenes/objects/interactable/shop/ShopController.tscn")
 
 func initialize():
 	super()
