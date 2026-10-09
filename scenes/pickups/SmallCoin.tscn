@@ -23,7 +23,7 @@ hframes = 4
 [node name="CollisionShapecast" type="ShapeCast2D" parent="." unique_id=13708416]
 shape = SubResource("RectangleShape2D_5ebwj")
 target_position = Vector2(0, 0)
-collision_mask = 512
+collision_mask = 2048
 collide_with_areas = true
 
 [node name="MagneticDetectArea" type="Area2D" parent="." unique_id=2101132169]

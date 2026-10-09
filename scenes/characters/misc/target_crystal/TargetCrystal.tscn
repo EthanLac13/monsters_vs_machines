@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c6luxsxn1m007" path="res://sprites/object_sprites/target_crystal/target_crystal.png" id="2_in4ol"]
 [ext_resource type="Script" uid="uid://bdgmqtsewhpox" path="res://scenes/characters/misc/target_crystal/ai_controller_target_crystal.gd" id="2_s7med"]
 [ext_resource type="Texture2D" uid="uid://bh3eweckhl74q" path="res://sprites/object_sprites/target_crystal/target_crystal_flash.png" id="4_8gnxq"]
+[ext_resource type="Texture2D" uid="uid://c2g1lerivjih4" path="res://sprites/object_sprites/target_crystal/target_crystal_glow.png" id="6_m8m02"]
 
 [sub_resource type="Animation" id="Animation_s7med"]
 resource_name = "RESET"
@@ -123,3 +124,7 @@ texture = ExtResource("2_in4ol")
 [node name="Flash" type="Sprite2D" parent="Crystal" unique_id=2027223593]
 modulate = Color(1, 1, 1, 0)
 texture = ExtResource("4_8gnxq")
+
+[node name="Glow" type="Sprite2D" parent="Crystal" unique_id=2122885394]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("6_m8m02")

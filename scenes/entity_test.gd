@@ -50,7 +50,7 @@ var skill_cooldowns: Array[int] = [
 	0
 ]
 var skill_max_cooldowns: Array[int] = [
-	30,
+	60,
 	300
 ]
 var current_skill_scene: Node = null

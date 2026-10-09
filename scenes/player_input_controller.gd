@@ -28,6 +28,9 @@ func _ready() -> void:
 	controlled_object.get_node("HealthBar").visible = false
 	controlled_object.took_damage.connect(_on_player_damaged)
 	
+	# Make player able to collide with coins
+	controlled_object.collision_blocker.collision_layer += 2048
+	
 	# Add EXP points handler to player
 	var my_exp_handler = exp_handler_scene.instantiate()
 	add_child(my_exp_handler)

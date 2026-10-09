@@ -44,9 +44,7 @@ func _ready() -> void:
 	level_data = GeneralFunctions.load_json_file(stage_data_path_template % [current_world, current_map, current_stage])
 
 func _process(delta: float) -> void:
-	start_timer -= 1
-	if start_timer == 0:
-		start_wave()
+	pass
 
 func start_wave():
 	create_enemy_spawners(wave)
