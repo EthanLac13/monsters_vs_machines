@@ -68,6 +68,7 @@ func set_player_stats():
 	
 	# Set player's default stats
 	stats.hp = player_stat_data.base_stats.hp
+	stats.max_hp = player_stat_data.base_stats.hp
 	stats.base_stats.attack = player_stat_data.base_stats.attack
 	stats.base_stats.defense = player_stat_data.base_stats.defense
 	stats.base_stats.magic_attack = player_stat_data.base_stats.magic_attack
@@ -79,6 +80,7 @@ func set_player_stats():
 	stats.max_level_stats = player_stat_data.max_level_stats.duplicate(true)
 	
 	controlled_object.stats_data.recalculate_stats()
+	hud.update_health_bar(controlled_object.stats_data.hp, controlled_object.stats_data.max_hp)
 
 func add_money(money_added: int):
 	player_money += money_added
