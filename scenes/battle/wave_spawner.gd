@@ -8,6 +8,8 @@ var current_stage: int = 0
 
 var stage_data_path_template: String = "res://data/levels/world_%d/map_%d/stage_%d.json"
 
+var wave: int = 0
+
 # Scene for the object that handles spawning enemies
 var character_spawner: Node2D
 
@@ -19,14 +21,35 @@ var enemy_spawner_scene: PackedScene = load("res://scenes/battle/EnemySpawner.ts
 # List of lines the enemies can follow
 @export var enemy_tracks: Array[Line2D]
 
+var start_timer: int = 180
+
+# Current amount of enemies that have been spawned
+var enemies_spawned: int = 0
+# Maximum amount of enemies for this wave
+var max_enemy_spawns: int = 0
+
+# Connection to the HUD node
+var hud: CanvasLayer
+
 func _ready() -> void:
+	# Get HUD
+	hud = get_tree().get_nodes_in_group("hud")[0]
+	
 	# Get character spawner
 	character_spawner = get_parent().get_node("CharacterSpawner")
 	
 	# Load wave data from a file
 	level_data = GeneralFunctions.load_json_file(stage_data_path_template % [current_world, current_map, current_stage])
-	
-	create_enemy_spawners(0)
+
+func _process(delta: float) -> void:
+	start_timer -= 1
+	if start_timer == 0:
+		start_wave()
+
+func start_wave():
+	create_enemy_spawners(wave)
+	hud.set_enemy_count(enemies_spawned, max_enemy_spawns)
+	hud.show_wave_hud()
 
 func create_enemy_spawners(current_wave: int):
 	var current_wave_data = level_data.waves[str(current_wave)]
@@ -37,6 +60,7 @@ func create_enemy_spawners(current_wave: int):
 		# Set the enemy ID to spawn
 		enemy_spawner.enemy_id = spawn.id
 		enemy_spawner.enemy_spawn_count = spawn.amount
+		max_enemy_spawns += spawn.amount
 		
 		# Set the enemy's spawn zones
 		var spawn_zone_array: Array[Node2D] = []
@@ -77,3 +101,8 @@ func create_enemy_spawners(current_wave: int):
 		enemy_spawner.respawn_timer_max = int(max_respawn_time * 60)
 		
 		add_child(enemy_spawner)
+		enemy_spawner.enemy_was_spawned.connect(notify_enemy_spawned)
+
+func notify_enemy_spawned(enemy_id: int):
+	enemies_spawned += 1
+	hud.set_enemy_count(enemies_spawned, max_enemy_spawns)

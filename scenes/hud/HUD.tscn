@@ -78,7 +78,7 @@ border_width_bottom = 1
 border_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
-[node name="HUD" type="CanvasLayer" unique_id=1038846884]
+[node name="HUD" type="CanvasLayer" unique_id=1038846884 groups=["hud"]]
 script = ExtResource("1_xvj7f")
 
 [node name="PlayerPortrait" type="TextureRect" parent="." unique_id=925058253]

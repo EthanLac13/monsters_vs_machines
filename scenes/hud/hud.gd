@@ -4,6 +4,7 @@ var player_node: Node2D
 var crystal_node: Node2D
 
 var skill_buttons: Array[TextureRect]
+var wave_hud: Array[Control]
 
 var gauge_text_template: String = "%d/%d"
 
@@ -19,6 +20,13 @@ func _ready() -> void:
 		$AttackCooldownButton3,
 		$AttackCooldownButton4
 	]
+	wave_hud = [
+		$WaveFlag,
+		$WaveText,
+		$EnemyCountIcon,
+		$EnemyCountText
+	]
+	hide_wave_hud()
 	
 	get_main_objects.call_deferred()
 
@@ -55,3 +63,22 @@ func update_level(current_level: int):
 # Updates the money count
 func update_money(new_money: int):
 	$MoneyText.text = " " + str(new_money)
+
+
+# Shows the wave and enemy count
+func show_wave_hud():
+	for wave_hud_element in wave_hud:
+		wave_hud_element.visible = true
+
+# Hides the wave and enemy count
+func hide_wave_hud():
+	for wave_hud_element in wave_hud:
+		wave_hud_element.visible = false
+
+# Sets wave text
+func set_wave_text(current_wave: int):
+	$WaveText.text = str(current_wave)
+
+# Sets enemy count
+func set_enemy_count(current_enemies: int, max_enemies: int):
+	$EnemyCountText.text = (gauge_text_template % [current_enemies, max_enemies]) + " "

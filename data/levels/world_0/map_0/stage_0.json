@@ -4,7 +4,7 @@
 			"spawns": [
 				{
 					"id": 0,
-					"amount": 1,
+					"amount": 10,
 					"spawn_area": 0,
 					"tracks": [0, 1],
 					

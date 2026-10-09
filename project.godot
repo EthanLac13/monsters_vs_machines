@@ -28,6 +28,13 @@ GeneralFunctions="*uid://cvoelwf26n0x4"
 window/size/viewport_width=960
 window/size/viewport_height=540
 
+[global_group]
+
+hud="The game's HUD"
+player_characters="Characters controlled by the player"
+friendly_characters="Players and towers"
+enemy_characters="Enemies spawned in a wave"
+
 [input]
 
 InputLeft={
