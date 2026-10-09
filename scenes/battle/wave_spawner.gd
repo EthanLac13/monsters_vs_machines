@@ -43,7 +43,7 @@ func _ready() -> void:
 	# Load wave data from a file
 	level_data = GeneralFunctions.load_json_file(stage_data_path_template % [current_world, current_map, current_stage])
 	
-	start_wave()
+	#start_wave()
 
 func _process(delta: float) -> void:
 	pass

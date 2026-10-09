@@ -6,7 +6,7 @@ var player: Node2D
 var crystal_glow: Sprite2D
 var crystal_fade_amount: float = 0.05
 
-var shop_menu_scene: PackedScene = load("res://scenes/characters/misc/target_crystal/ShopMenu.tscn")
+var shop_menu_scene: PackedScene = load("res://scenes/objects/interactable/shop/ShopMenu.tscn")
 
 func _ready() -> void:
 	$Tooltip.modulate.a = 0.0
@@ -34,4 +34,10 @@ func set_not_interactable():
 
 func interact():
 	super()
-	print("Interacted")
+	
+	var my_shop_ui = shop_menu_scene.instantiate()
+	player.ai_controller.hud.add_child(my_shop_ui)
+	get_tree().paused = true
+	
+	#my_shop_ui.scale.x = 0.5
+	#my_shop_ui.scale.y = 0.5
