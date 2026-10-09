@@ -27,6 +27,8 @@ var start_timer: int = 180
 var enemies_spawned: int = 0
 # Maximum amount of enemies for this wave
 var max_enemy_spawns: int = 0
+# Amount of currently-active enemies
+var active_enemies: int = 0
 
 # Connection to the HUD node
 var hud: CanvasLayer
@@ -48,7 +50,7 @@ func _process(delta: float) -> void:
 
 func start_wave():
 	create_enemy_spawners(wave)
-	hud.set_enemy_count(enemies_spawned, max_enemy_spawns)
+	hud.set_enemy_count(active_enemies)
 	hud.show_wave_hud()
 
 func create_enemy_spawners(current_wave: int):
@@ -103,6 +105,12 @@ func create_enemy_spawners(current_wave: int):
 		add_child(enemy_spawner)
 		enemy_spawner.enemy_was_spawned.connect(notify_enemy_spawned)
 
-func notify_enemy_spawned(enemy_id: int):
+func notify_enemy_spawned(enemy: Node2D):
 	enemies_spawned += 1
-	hud.set_enemy_count(enemies_spawned, max_enemy_spawns)
+	active_enemies += 1
+	hud.set_enemy_count(active_enemies)
+	enemy.was_killed.connect(notify_enemy_destroyed)
+
+func notify_enemy_destroyed():
+	active_enemies -= 1
+	hud.set_enemy_count(active_enemies)

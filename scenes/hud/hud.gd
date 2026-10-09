@@ -80,5 +80,5 @@ func set_wave_text(current_wave: int):
 	$WaveText.text = str(current_wave)
 
 # Sets enemy count
-func set_enemy_count(current_enemies: int, max_enemies: int):
-	$EnemyCountText.text = (gauge_text_template % [current_enemies, max_enemies]) + " "
+func set_enemy_count(enemies: int):
+	$EnemyCountText.text = str(enemies) + " "

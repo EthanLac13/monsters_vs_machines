@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 		
 		# Make the character spawner spawn the enemy
 		var spawned_enemy = character_spawner_scene.spawn_enemy_from_list(enemy_id, my_spawn_zone.position.x, my_spawn_zone.position.y)
-		enemy_was_spawned.emit(enemy_id)
+		enemy_was_spawned.emit(spawned_enemy)
 		
 		# Give the enemy its track
 		spawned_enemy.track = tracks[randi_range(0, tracks.size() - 1)]
