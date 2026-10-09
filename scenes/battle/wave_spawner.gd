@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 
 func start_wave():
 	create_enemy_spawners(wave)
+	hud.set_wave_text(wave + 1)
 	hud.set_enemy_count(active_enemies)
 	hud.show_wave_hud()
 

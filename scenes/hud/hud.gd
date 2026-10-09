@@ -77,7 +77,7 @@ func hide_wave_hud():
 
 # Sets wave text
 func set_wave_text(current_wave: int):
-	$WaveText.text = str(current_wave)
+	$WaveText.text = " " + str(current_wave)
 
 # Sets enemy count
 func set_enemy_count(enemies: int):
