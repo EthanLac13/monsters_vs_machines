@@ -3,24 +3,23 @@
 [ext_resource type="Script" uid="uid://b55785hroque1" path="res://scenes/characters/misc/target_crystal/shop_controller.gd" id="1_sedcj"]
 [ext_resource type="Texture2D" uid="uid://sl1p4cmmgcmp" path="res://sprites/hud_sprites/black_box_nineslice_hud.png" id="2_i4vv1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ocns7"]
-radius = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4vv1"]
+size = Vector2(16, 16)
 
-[node name="ShopController" type="Node2D" unique_id=836382828]
+[node name="ShopController" type="Node2D" unique_id=836382828 groups=["interactable_objects"]]
 script = ExtResource("1_sedcj")
 
 [node name="ShopEntryArea" type="Area2D" parent="." unique_id=1530516144]
-collision_layer = 0
+collision_layer = 4096
 collision_mask = 2048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShopEntryArea" unique_id=1842699023]
-shape = SubResource("CircleShape2D_ocns7")
+shape = SubResource("RectangleShape2D_i4vv1")
 
 [node name="Tooltip" type="NinePatchRect" parent="." unique_id=1286481521]
-modulate = Color(1, 1, 1, 0)
 z_index = 4000
 z_as_relative = false
-offset_right = 48.0
+offset_right = 64.0
 offset_bottom = 16.0
 texture = ExtResource("2_i4vv1")
 patch_margin_left = 4
@@ -30,10 +29,10 @@ patch_margin_bottom = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Tooltip" unique_id=1374832630]
 layout_mode = 0
-offset_right = 48.0
+offset_right = 64.0
 offset_bottom = 16.0
 theme_override_font_sizes/normal_font_size = 10
-text = "Press X"
+text = "Press Space"
 scroll_active = false
 horizontal_alignment = 1
 

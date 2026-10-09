@@ -10,6 +10,8 @@ var player_stat_data
 var exp_handler_scene: PackedScene = load("res://scenes/battle/EXPHandler.tscn")
 var level_up_particles_scene: PackedScene = load("res://scenes/LevelUpParticles.tscn")
 var pickup_magnet_scene: PackedScene = load("res://scenes/characters/heroes/PickupMagnet.tscn")
+var interaction_zone_scene: PackedScene = load("res://scenes/characters/heroes/InteractionZone.tscn")
+var my_interaction_zone: Node2D
 
 var spawned_enemy
 
@@ -43,6 +45,10 @@ func _ready() -> void:
 	# Add pickup attractor to player
 	var my_pickup_attractor = pickup_magnet_scene.instantiate()
 	controlled_object.add_child(my_pickup_attractor)
+	
+	# Add interaction zone to player
+	my_interaction_zone = interaction_zone_scene.instantiate()
+	controlled_object.add_child(my_interaction_zone)
 
 
 func _process(delta: float):
@@ -60,6 +66,9 @@ func _process(delta: float):
 		controlled_object.attempt_use_move(0)
 	if Input.is_action_just_pressed("UseMove2"):
 		controlled_object.attempt_use_move(1)
+	
+	if Input.is_action_just_pressed("Interact"):
+		my_interaction_zone.attempt_interact()
 
 func _on_player_damaged():
 	hud.update_health_bar(controlled_object.stats_data.hp, controlled_object.stats_data.max_hp)
