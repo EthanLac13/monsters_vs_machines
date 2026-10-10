@@ -21,9 +21,9 @@
 			"slime_tackle_0",
 			"slime_shot_0"
 		],
-		"unlockable_attacks": [
+		"unlockable_skills": [
 			{
-				"scene": "res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn",
+				"skill": "slime_burst",
 				"cost": 1000
 			}
 		]
