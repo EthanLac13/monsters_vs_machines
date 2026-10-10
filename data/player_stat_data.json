@@ -17,9 +17,9 @@
 			"move_speed": 2.0
 		},
 		
-		"base_attack_scenes": [
-			"res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn",
-			"res://scenes/skills/heroes/slime/slime_shot/SkillSlimeShot.tscn"
+		"starting_skills": [
+			"slime_tackle_0",
+			"slime_shot_0"
 		],
 		"unlockable_attacks": [
 			{

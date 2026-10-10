@@ -26,6 +26,17 @@ func _ready() -> void:
 	player_stat_data = player_stat_file["0"]
 	set_player_stats.call_deferred()
 	
+	# Give player skill scenes
+	for i in range(0, player_stat_data.starting_skills.size()):
+		var skill_name = player_stat_data.starting_skills[i]
+		var skill_data = GeneralFunctions.load_json_file("res://data/skills/%s.json" % skill_name)
+		
+		controlled_object.skill_list.append(skill_name)
+		controlled_object.skill_scenes.append(load(skill_data.scene))
+		controlled_object.skill_params.append(skill_data.params)
+		controlled_object.skill_cooldowns.append(0)
+		controlled_object.skill_max_cooldowns.append(skill_data.cooldown)
+	
 	# Hide player's mini HP bar
 	controlled_object.get_node("HealthBar").visible = false
 	controlled_object.took_damage.connect(_on_player_damaged)

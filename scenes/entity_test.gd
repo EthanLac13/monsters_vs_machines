@@ -38,21 +38,11 @@ var mercy_timer_max: int = 90
 
 var using_skill: bool = false
 
-var skill_list = [
-	"res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn",
-	"res://scenes/skills/heroes/slime/slime_shot/SkillSlimeShot.tscn"
-]
-var skill_scenes = [
-	
-]
-var skill_cooldowns: Array[int] = [
-	0,
-	0
-]
-var skill_max_cooldowns: Array[int] = [
-	60,
-	300
-]
+var skill_list: Array[String] = []
+var skill_scenes: Array[PackedScene] = []
+var skill_params = []
+var skill_cooldowns: Array[int] = []
+var skill_max_cooldowns: Array[int] = []
 var current_skill_scene: Node = null
 
 var hitbox_scene = load("res://scenes/skills/AttackHitbox.tscn")
@@ -93,10 +83,6 @@ func _ready() -> void:
 	
 	# Prevent us from colliding with our own collision
 	wall_collider.add_exception($CollisionParent/CollisionBlocker)
-	
-	# Load skill scenes
-	for i in range(0, skill_list.size()):
-		skill_scenes.append(load(skill_list[i]))
 
 func initialize_ai():
 	ai_controller = Node2D.new()
@@ -285,6 +271,7 @@ func attempt_use_move(skill_index: int):
 			add_child(current_skill_scene)
 			current_skill_scene.position.x = 0
 			current_skill_scene.position.y = 0
+			current_skill_scene.params = skill_params[skill_index]
 			
 			#print(current_skill_scene.charge_frames)
 			if current_skill_scene.charge_frames == 0:

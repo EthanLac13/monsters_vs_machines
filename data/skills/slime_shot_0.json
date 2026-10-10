@@ -1,0 +1,15 @@
+{
+	"scene": "res://scenes/skills/heroes/slime/slime_shot/SkillSlimeShot.tscn",
+	"cooldown": 300,
+	"params": {
+		"damage_mult": 1.0,
+		"slow_time_mult": 1.0,
+		"speed_mult": 1.0
+	},
+	"upgrades": [
+		{
+			"upgrade_name": "slime_shot_1",
+			"cost": 200
+		}
+	]
+}

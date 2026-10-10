@@ -30,6 +30,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 
+func set_move_params():
+	super()
+	$Hitbox.damage *= params.damage_mult
+	rush_speed_start *= params.dash_dist_mult
+	rush_speed_medium *= params.dash_dist_mult
+	rush_speed_end *= params.dash_dist_mult
 
 func move_code():
 	charge_timer += 1
