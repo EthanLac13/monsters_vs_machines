@@ -1,5 +1,6 @@
 {
 	"scene": "res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn",
+	"icon": "none",
 	"cooldown": 60,
 	"params": {
 		"damage_mult": 1.0,
