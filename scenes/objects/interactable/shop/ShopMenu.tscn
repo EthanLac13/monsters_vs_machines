@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cf66f1l3oro00" path="res://sprites/hud_sprites/bricks_nineslice_hud.png" id="1_1i2ia"]
 [ext_resource type="Script" uid="uid://btgmu5efq2j23" path="res://scenes/objects/interactable/shop/shop_menu.gd" id="1_ne6iv"]
+[ext_resource type="FontFile" uid="uid://klb66ve7uxeh" path="res://fonts/font_grid.fnt" id="3_lmn3c"]
 
 [sub_resource type="Gradient" id="Gradient_1i2ia"]
 offsets = PackedFloat32Array(0)
@@ -11,6 +12,7 @@ colors = PackedColorArray(0, 0, 0, 1)
 gradient = SubResource("Gradient_1i2ia")
 
 [node name="ShopMenu" type="Control" unique_id=600142232]
+process_mode = 3
 z_index = 4000
 layout_mode = 3
 anchors_preset = 15
@@ -21,6 +23,7 @@ grow_vertical = 2
 script = ExtResource("1_ne6iv")
 
 [node name="MainScreen" type="NinePatchRect" parent="." unique_id=1377345523]
+self_modulate = Color(0.8156863, 0.8156863, 0.8156863, 1)
 z_index = 1
 layout_mode = 1
 anchors_preset = 8
@@ -99,6 +102,27 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UpgradeContainer" type="HBoxContainer" parent="MainScreen" unique_id=851273164]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 320.0
+offset_bottom = 132.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="UpgradeText" type="RichTextLabel" parent="MainScreen" unique_id=17041362]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 312.0
+offset_bottom = 176.0
+theme_override_fonts/normal_font = ExtResource("3_lmn3c")
+bbcode_enabled = true
+text = "Line 1
+Line 2
+Line 3
+Line 4"
 
 [node name="BlackOut" type="TextureRect" parent="." unique_id=684273417]
 visible = false

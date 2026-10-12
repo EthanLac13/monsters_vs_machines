@@ -20,6 +20,7 @@ var player_money: int = 0
 func _ready() -> void:
 	controlled_object.ai_controller = self
 	controlled_object.hud = hud
+	controlled_object.add_to_group("friendly_characters")
 	
 	# Set player's stats
 	player_stat_file = GeneralFunctions.load_json_file("res://data/player_stat_data.json")
