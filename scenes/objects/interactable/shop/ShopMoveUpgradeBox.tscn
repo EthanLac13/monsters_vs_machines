@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c3sd2l1rmvab1" path="res://sprites/hud_sprites/attack_icon_hud.png" id="1_tgevl"]
 [ext_resource type="Texture2D" uid="uid://co3bbj2ahnhu6" path="res://sprites/shop_sprites/upgrade_arrow.png" id="2_xap8x"]
 [ext_resource type="Texture2D" uid="uid://c6518p5uwpdb3" path="res://sprites/shop_sprites/upgrade_button.png" id="3_uetyw"]
-[ext_resource type="Texture2D" uid="uid://cjscob8kmsy42" path="res://sprites/shop_sprites/upgrade_button_pressed.png" id="4_ffbp1"]
 [ext_resource type="Texture2D" uid="uid://dfqawdodgy0bi" path="res://sprites/hud_sprites/attack_icon_hud_glow.png" id="4_u0j76"]
-[ext_resource type="Texture2D" uid="uid://c7u7m43ti2qrs" path="res://sprites/shop_sprites/upgrade_button_hovered.png" id="5_ffbp1"]
+[ext_resource type="Texture2D" uid="uid://b5uagtykdtrkj" path="res://sprites/shop_sprites/upgrade_button_glow.png" id="8_muafo"]
 
 [node name="UpgradeBox" type="VBoxContainer" unique_id=503009327]
 offset_left = -80.0
@@ -21,15 +20,6 @@ modulate = Color(0.5019608, 0.5019608, 0.5019608, 1)
 layout_mode = 2
 texture = ExtResource("1_tgevl")
 stretch_mode = 3
-
-[node name="Glow" type="TextureRect" parent="UpgradeAttackButton" unique_id=220535429]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_right = 40.0
-offset_bottom = 32.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("4_u0j76")
 
 [node name="Arrow" type="TextureRect" parent="." unique_id=566784121]
 layout_mode = 2
@@ -54,9 +44,13 @@ texture = ExtResource("4_u0j76")
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="Button" type="TextureButton" parent="." unique_id=949672656]
+[node name="Button" type="TextureRect" parent="." unique_id=439065894]
 layout_mode = 2
-disabled = true
-texture_normal = ExtResource("3_uetyw")
-texture_pressed = ExtResource("4_ffbp1")
-texture_focused = ExtResource("5_ffbp1")
+texture = ExtResource("3_uetyw")
+
+[node name="Glow" type="TextureRect" parent="Button" unique_id=1372094224]
+visible = false
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 16.0
+texture = ExtResource("8_muafo")

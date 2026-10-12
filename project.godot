@@ -15,13 +15,14 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="monsters_vs_machines"
-run/main_scene="uid://dlnkjjr6h8t1x"
+run/main_scene="uid://db3wfmas8514p"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GeneralFunctions="*uid://cvoelwf26n0x4"
+StringFunctions="*uid://c2lmto0b5yxte"
 
 [display]
 

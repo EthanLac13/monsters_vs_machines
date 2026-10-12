@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://db3wfmas8514p"]
+
+[ext_resource type="Script" uid="uid://bdb3551tgc4d7" path="res://scenes/global_controller.gd" id="1_h4jrg"]
+
+[node name="GlobalController" type="Node2D" unique_id=1467715797]
+script = ExtResource("1_h4jrg")

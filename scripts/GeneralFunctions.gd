@@ -16,3 +16,11 @@ func save_json_file(json_data, file_to_save_to):
 		save_file.store_line(data_as_text)
 	else:
 		printerr("ERROR: Tried to save null data!")
+
+# Loads from a translated language file
+func load_translated_json_file(file_path):
+	var base_path = "res://data/strings/%s/" % StringData.language
+	print(base_path + file_path)
+	var json_as_text = FileAccess.get_file_as_string(base_path + file_path)
+	var json_data = JSON.parse_string(json_as_text)
+	return json_data
