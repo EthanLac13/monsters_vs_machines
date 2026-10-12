@@ -5,6 +5,9 @@ var player: Node2D
 var upgrade_boxes: Array[VBoxContainer] = []
 var upgrade_text: Array[String] = []
 
+# Whether we're viewing current skills or upgrading them
+var upgrade_mode: bool = true
+
 var skill_text_path: String = "res://data/strings/skill_text.json"
 var skill_data = []
 var skill_text = []
@@ -40,6 +43,11 @@ func create_upgrade_boxes():
 
 # Set focus on an upgrade box
 func focus_on_upgrade(upgrade_index: int):
-	upgrade_boxes[upgrade_index].get_node("Button").grab_focus()
 	var individual_text = skill_text[player.skill_list[upgrade_index]]
-	$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc
+	if upgrade_mode:
+		upgrade_boxes[upgrade_index].set_upgrade_skill_mode()
+		var upgrade_skill_text = skill_text[skill_data[upgrade_index].upgrades[0].upgrade_name]
+		$MainScreen/UpgradeText.text = upgrade_skill_text.name + "\n" + upgrade_skill_text.upgrade_text
+	else:
+		upgrade_boxes[upgrade_index].set_current_skill_mode()
+		$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc
