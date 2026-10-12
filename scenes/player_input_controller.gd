@@ -38,6 +38,10 @@ func _ready() -> void:
 		controlled_object.skill_cooldowns.append(0)
 		controlled_object.skill_max_cooldowns.append(skill_data.cooldown)
 	
+	# Give player purchasable skill scenes
+	for i in range(0, player_stat_data.unlockable_skills.size()):
+		controlled_object.potential_skills.append(player_stat_data.unlockable_skills[i])
+	
 	# Hide player's mini HP bar
 	controlled_object.get_node("HealthBar").visible = false
 	controlled_object.took_damage.connect(_on_player_damaged)

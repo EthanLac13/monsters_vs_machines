@@ -6,7 +6,7 @@ var upgrade_boxes: Array[VBoxContainer] = []
 var upgrade_text: Array[String] = []
 
 # Whether we're viewing current skills or upgrading them
-var upgrade_mode: bool = true
+var upgrade_mode: bool = false
 
 # Currently-selected skill
 var current_skill: int = 0
@@ -14,6 +14,7 @@ var current_skill: int = 0
 var previous_skill: int = 0
 
 var skill_text_path: String = "skill_text.json"
+var skill_indexes: Array[String] = []
 var skill_data = []
 var skill_text = []
 var skill_data_path_template: String = "res://data/skills/%s.json"
@@ -67,22 +68,41 @@ func create_upgrade_boxes():
 		var my_upgrade_box = upgrade_box_scene.instantiate()
 		$MainScreen/UpgradeContainer.add_child(my_upgrade_box)
 		upgrade_boxes.append(my_upgrade_box)
+		skill_indexes.append(player.skill_list[i])
 		
 		# Get upgrade text
 		skill_data.append(GeneralFunctions.load_json_file(skill_data_path_template % player.skill_list[i]))
 	
 	# Create upgrade boxes for the skills you can purchase
 	# TODO
+	for i in range(0, player.potential_skills.size()):
+		var my_upgrade_box = upgrade_box_scene.instantiate()
+		my_upgrade_box.unlocked = false
+		$MainScreen/UpgradeContainer.add_child(my_upgrade_box)
+		upgrade_boxes.append(my_upgrade_box)
+		skill_indexes.append(player.potential_skills[i])
+		
+		# Get upgrade text
+		skill_data.append(GeneralFunctions.load_json_file(skill_data_path_template % player.potential_skills[i]))
 	
 
 # Set focus on an upgrade box
 func focus_on_upgrade(upgrade_index: int):
+	if !upgrade_mode:
+		if !upgrade_boxes[upgrade_index].unlocked:
+			upgrade_mode = true
+	
 	upgrade_boxes[previous_skill].unfocus()
-	var individual_text = skill_text[player.skill_list[upgrade_index]]
+	print(skill_indexes[upgrade_index])
+	var individual_text = skill_text[skill_indexes[upgrade_index]]
+		
 	if upgrade_mode:
 		upgrade_boxes[upgrade_index].set_upgrade_skill_mode()
-		var upgrade_skill_text = skill_text[skill_data[upgrade_index].upgrades[0].upgrade_name]
-		$MainScreen/UpgradeText.text = upgrade_skill_text.name + "\n" + upgrade_skill_text.upgrade_text
+		if upgrade_boxes[upgrade_index].unlocked: # Show upgrade text if we can upgrade the skill
+			var upgrade_skill_text = skill_text[skill_data[upgrade_index].upgrades[0].upgrade_name]
+			$MainScreen/UpgradeText.text = upgrade_skill_text.name + "\n" + upgrade_skill_text.upgrade_text
+		else: # Show unlock text if we can unlock the skill
+			$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc
 	else:
 		upgrade_boxes[upgrade_index].set_current_skill_mode()
 		$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc

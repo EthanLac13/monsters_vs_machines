@@ -44,6 +44,7 @@ var skill_params = []
 var skill_cooldowns: Array[int] = []
 var skill_max_cooldowns: Array[int] = []
 var current_skill_scene: Node = null
+var potential_skills: Array[String] = []
 
 var hitbox_scene = load("res://scenes/skills/AttackHitbox.tscn")
 

@@ -22,10 +22,7 @@
 			"slime_shot_0"
 		],
 		"unlockable_skills": [
-			{
-				"skill": "slime_burst",
-				"cost": 1000
-			}
+			"slime_burst_0"
 		]
 	}
 }

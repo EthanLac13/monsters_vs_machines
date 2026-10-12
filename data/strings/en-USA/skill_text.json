@@ -27,5 +27,10 @@
 		"name": "Slime Shot (lv. 2)",
 		"desc": "Fire a slimeball at a nearby enemy, dealing light magical damage and slowing it down.",
 		"upgrade_text": "The slimeball deals more damage and slows enemies for longer."
+	},
+	
+	"slime_burst_0": {
+		"name": "Slime Burst (lv. 1)",
+		"desc": "Create an explosion of slime, hitting enemies all around you hard."
 	}
 }
