@@ -2,6 +2,9 @@ extends Control
 
 var state: int = 1
 
+var top_menu_option: int = 0
+var current_button: NinePatchRect
+
 var upgrade_box_scene: PackedScene = load("res://scenes/objects/interactable/shop/ShopMoveUpgradeBox.tscn")
 var player: Node2D
 var upgrade_boxes: Array[VBoxContainer] = []
@@ -24,6 +27,9 @@ var skill_data_path_template: String = "res://data/skills/%s.json"
 func _ready() -> void:
 	skill_text = GeneralFunctions.load_translated_json_file(skill_text_path)
 	player = get_tree().get_nodes_in_group("friendly_characters")[0]
+	current_button = $MainScreen/NextWaveButton
+	
+	$MainScreen/ExitButton.was_pressed.connect(quit_menu)
 	
 	create_upgrade_boxes()
 	set_upgrade_mode()
@@ -32,7 +38,26 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match state:
 		0: # Next wave or exit flow
-			pass
+			if Input.is_action_just_pressed("InputRight"):
+				current_button.release()
+				current_button = $MainScreen/ExitButton
+				current_button.focus()
+			if Input.is_action_just_pressed("InputLeft"):
+				current_button.release()
+				current_button = $MainScreen/NextWaveButton
+				current_button.focus()
+			
+			if Input.is_action_just_pressed("InputDown"):
+				state = 1
+				upgrade_boxes[current_skill].set_current_skill_mode()
+				$MainScreen/NextWaveButton.unfocus()
+				$MainScreen/ExitButton.unfocus()
+			
+			if Input.is_action_just_pressed("Interact"):
+				current_button.press_down()
+			
+			if Input.is_action_just_released("Interact"):
+				current_button.press_up()
 		
 		1: # Upgrade/unlock flow
 			if Input.is_action_just_pressed("InputRight"):
@@ -53,7 +78,8 @@ func _input(event: InputEvent) -> void:
 				else:
 					state = 0
 					upgrade_boxes[current_skill].unfocus()
-					$MainScreen/NextWaveButton.focus()
+					current_button = $MainScreen/NextWaveButton
+					current_button.focus()
 			if Input.is_action_just_pressed("InputDown"):
 				upgrade_mode = true
 				focus_on_upgrade(current_skill)
@@ -136,3 +162,8 @@ func focus_on_upgrade(upgrade_index: int):
 		upgrade_boxes[upgrade_index].set_current_skill_mode()
 		$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc
 	previous_skill = upgrade_index
+
+# Exits the menu
+func quit_menu():
+	get_tree().paused = false
+	queue_free()
