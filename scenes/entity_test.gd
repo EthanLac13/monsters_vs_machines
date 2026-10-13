@@ -160,6 +160,24 @@ func _process(delta: float) -> void:
 	# Update z-index based on position to avoid z-fighting
 	z_index = int(position.y) * 10
 
+# Sets the entity's skill scenes and cooldowns
+func refresh_skills():
+	# Clear skill qualities
+	skill_scenes.clear()
+	skill_params.clear()
+	skill_cooldowns.clear()
+	skill_max_cooldowns.clear()
+	
+	# Loop through skills and get their qualities
+	for i in range(0, skill_list.size()):
+		var current_skill: String = skill_list[i]
+		var skill_data = GeneralFunctions.load_json_file("res://data/skills/%s.json" % current_skill)
+		
+		skill_scenes.append(skill_data.scene)
+		skill_params.append(skill_data.params)
+		skill_cooldowns.append(0)
+		skill_max_cooldowns.append(skill_data.cooldown)
+
 func set_sprite(sprite_string: String):
 	# Remove the old animation object
 	animation_object.get_node("AnimObject").queue_free()

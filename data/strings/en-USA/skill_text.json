@@ -24,7 +24,7 @@
 		"upgrade_text": "The slimeball travels faster and deals more damage."
 	},
 	"slime_shot_2": {
-		"name": "Slime Shot (lv. 2)",
+		"name": "Slime Shot (lv. 3)",
 		"desc": "Fire a slimeball at a nearby enemy, dealing light magical damage and slowing it down.",
 		"upgrade_text": "The slimeball deals more damage and slows enemies for longer."
 	},

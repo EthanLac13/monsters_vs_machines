@@ -53,7 +53,24 @@ func _input(event: InputEvent) -> void:
 		if upgrade_mode:
 			# Do stuff if we selected the upgrade
 			if upgrade_boxes[current_skill].pressed_down:
-				pass
+				if upgrade_boxes[current_skill].unlocked:
+					# Get the name of the upgraded skill
+					var next_skill_name: String = skill_data[current_skill].upgrades[0].upgrade_name
+					
+					# Set the skill list
+					player.skill_list[current_skill] = next_skill_name
+					skill_indexes[current_skill] = next_skill_name
+					
+					# Sets the skill data
+					skill_data[current_skill] = GeneralFunctions.load_json_file(skill_data_path_template % next_skill_name)
+					
+					# Set the player's skill scenes and cooldowns
+					player.refresh_skills()
+					
+					# Highlight the new skill
+					upgrade_mode = false
+					focus_on_upgrade(current_skill)
+				
 			upgrade_boxes[current_skill].press_up()
 
 func set_upgrade_mode():
