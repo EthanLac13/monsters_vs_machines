@@ -1,5 +1,7 @@
 extends Control
 
+var state: int = 1
+
 var upgrade_box_scene: PackedScene = load("res://scenes/objects/interactable/shop/ShopMoveUpgradeBox.tscn")
 var player: Node2D
 var upgrade_boxes: Array[VBoxContainer] = []
@@ -28,50 +30,60 @@ func _ready() -> void:
 	focus_on_upgrade(current_skill)
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("InputRight"):
-		current_skill += 1
-		if current_skill >= upgrade_boxes.size():
-			current_skill -= 1
-		focus_on_upgrade(current_skill)
-	if Input.is_action_just_pressed("InputLeft"):
-		current_skill -= 1
-		if current_skill < 0:
-			current_skill += 1
-		focus_on_upgrade(current_skill)
-	
-	if Input.is_action_just_pressed("InputUp"):
-		upgrade_mode = false
-		focus_on_upgrade(current_skill)
-	if Input.is_action_just_pressed("InputDown"):
-		upgrade_mode = true
-		focus_on_upgrade(current_skill)
+	match state:
+		0: # Next wave or exit flow
+			pass
 		
-	if Input.is_action_just_pressed("Interact"):
-		if upgrade_mode:
-			upgrade_boxes[current_skill].press_down()
-	if Input.is_action_just_released("Interact"):
-		if upgrade_mode:
-			# Do stuff if we selected the upgrade
-			if upgrade_boxes[current_skill].pressed_down:
-				if upgrade_boxes[current_skill].unlocked:
-					# Get the name of the upgraded skill
-					var next_skill_name: String = skill_data[current_skill].upgrades[0].upgrade_name
-					
-					# Set the skill list
-					player.skill_list[current_skill] = next_skill_name
-					skill_indexes[current_skill] = next_skill_name
-					
-					# Sets the skill data
-					skill_data[current_skill] = GeneralFunctions.load_json_file(skill_data_path_template % next_skill_name)
-					
-					# Set the player's skill scenes and cooldowns
-					player.refresh_skills()
-					
-					# Highlight the new skill
+		1: # Upgrade/unlock flow
+			if Input.is_action_just_pressed("InputRight"):
+				current_skill += 1
+				if current_skill >= upgrade_boxes.size():
+					current_skill -= 1
+				focus_on_upgrade(current_skill)
+			if Input.is_action_just_pressed("InputLeft"):
+				current_skill -= 1
+				if current_skill < 0:
+					current_skill += 1
+				focus_on_upgrade(current_skill)
+			
+			if Input.is_action_just_pressed("InputUp"):
+				if upgrade_mode:
 					upgrade_mode = false
 					focus_on_upgrade(current_skill)
+				else:
+					state = 0
+					upgrade_boxes[current_skill].unfocus()
+					$MainScreen/NextWaveButton.focus()
+			if Input.is_action_just_pressed("InputDown"):
+				upgrade_mode = true
+				focus_on_upgrade(current_skill)
 				
-			upgrade_boxes[current_skill].press_up()
+			if Input.is_action_just_pressed("Interact"):
+				if upgrade_mode:
+					upgrade_boxes[current_skill].press_down()
+			if Input.is_action_just_released("Interact"):
+				if upgrade_mode:
+					# Do stuff if we selected the upgrade
+					if upgrade_boxes[current_skill].pressed_down:
+						if upgrade_boxes[current_skill].unlocked:
+							# Get the name of the upgraded skill
+							var next_skill_name: String = skill_data[current_skill].upgrades[0].upgrade_name
+							
+							# Set the skill list
+							player.skill_list[current_skill] = next_skill_name
+							skill_indexes[current_skill] = next_skill_name
+							
+							# Sets the skill data
+							skill_data[current_skill] = GeneralFunctions.load_json_file(skill_data_path_template % next_skill_name)
+							
+							# Set the player's skill scenes and cooldowns
+							player.refresh_skills()
+							
+							# Highlight the new skill
+							upgrade_mode = false
+							focus_on_upgrade(current_skill)
+						
+					upgrade_boxes[current_skill].press_up()
 
 func set_upgrade_mode():
 	$MainScreen/UpgradesTab.position.y = -28.0

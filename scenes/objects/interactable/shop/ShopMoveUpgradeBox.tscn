@@ -41,7 +41,8 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("4_u0j76")
 
 [node name="HSeparator" type="HSeparator" parent="." unique_id=1193150072]
-custom_minimum_size = Vector2(0, 8)
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
 [node name="Button" type="TextureRect" parent="." unique_id=439065894]
