@@ -2,6 +2,8 @@ extends Control
 
 var state: int = 1
 
+var my_wave_spawner: Node2D
+
 var top_menu_option: int = 0
 var current_button: NinePatchRect
 
@@ -33,10 +35,14 @@ var upgrade_template_no_money_string: String = StringData.strings["shop_upgrade_
 func _ready() -> void:
 	skill_text = GeneralFunctions.load_translated_json_file(skill_text_path)
 	player = get_tree().get_nodes_in_group("friendly_characters")[0]
+	my_wave_spawner = get_tree().get_nodes_in_group("wave_spawners")[0]
+	
 	current_button = $MainScreen/NextWaveButton
 	
+	$MainScreen/NextWaveButton.was_focused.connect(show_start_wave_text)
 	$MainScreen/NextWaveButton.was_pressed.connect(start_next_wave)
-	$MainScreen/ExitButton.was_pressed.connect(quit_menu)
+	$MainScreen/ExitButton.was_focused.connect(show_exit_text)
+	$MainScreen/ExitButton.was_pressed.connect(exit_menu)
 	
 	create_upgrade_boxes()
 	set_upgrade_mode()
@@ -57,6 +63,7 @@ func _input(event: InputEvent) -> void:
 			if Input.is_action_just_pressed("InputDown"):
 				state = 1
 				upgrade_boxes[current_skill].set_current_skill_mode()
+				focus_on_upgrade(current_skill)
 				$MainScreen/NextWaveButton.unfocus()
 				$MainScreen/ExitButton.unfocus()
 			
@@ -79,7 +86,7 @@ func _input(event: InputEvent) -> void:
 				focus_on_upgrade(current_skill)
 			
 			if Input.is_action_just_pressed("InputUp"):
-				if upgrade_mode:
+				if upgrade_mode && upgrade_boxes[current_skill].unlocked:
 					upgrade_mode = false
 					focus_on_upgrade(current_skill)
 				else:
@@ -178,13 +185,19 @@ func focus_on_upgrade(upgrade_index: int):
 		$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc
 	previous_skill = upgrade_index
 
+# Shows wave start text
+func show_start_wave_text():
+	$MainScreen/UpgradeText.text = StringData.strings["shop_next_wave_text"] % [my_wave_spawner.wave + 1, my_wave_spawner.max_wave]
+# Show exit text
+func show_exit_text():
+	$MainScreen/UpgradeText.text = StringData.strings["shop_exit_text"]
+
 # Starts the next wave
 func start_next_wave():
-	var my_wave_spawner = get_tree().get_nodes_in_group("wave_spawners")[0]
 	my_wave_spawner.start_wave()
-	quit_menu()
+	exit_menu()
 
 # Exits the menu
-func quit_menu():
+func exit_menu():
 	get_tree().paused = false
 	queue_free()

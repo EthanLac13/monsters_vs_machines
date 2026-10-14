@@ -4,6 +4,7 @@ var unpressed_texture: Texture2D = texture
 @export var pressed_texture: Texture2D = load("res://sprites/hud_sprites/buttons/button_anysize_pressed.png")
 var pressed_down: bool = false
 
+signal was_focused
 signal was_pressed
 
 func _ready() -> void:
@@ -33,5 +34,6 @@ func release():
 
 func focus():
 	$Glow.visible = true
+	was_focused.emit()
 func unfocus():
 	$Glow.visible = false

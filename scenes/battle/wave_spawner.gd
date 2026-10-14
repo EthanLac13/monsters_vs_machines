@@ -9,6 +9,7 @@ var current_stage: int = 0
 var stage_data_path_template: String = "res://data/levels/world_%d/map_%d/stage_%d.json"
 
 var wave: int = 0
+var max_wave: int = 0
 
 # Scene for the object that handles spawning enemies
 var character_spawner: Node2D
@@ -42,7 +43,7 @@ func _ready() -> void:
 	
 	# Load wave data from a file
 	level_data = GeneralFunctions.load_json_file(stage_data_path_template % [current_world, current_map, current_stage])
-	
+	max_wave = level_data.waves.size()
 	#start_wave()
 
 func _process(delta: float) -> void:
@@ -50,11 +51,12 @@ func _process(delta: float) -> void:
 
 func start_wave():
 	create_enemy_spawners(wave)
-	hud.set_wave_text(wave + 1)
+	hud.set_wave_text(wave + 1, max_wave)
 	hud.set_enemy_count(active_enemies)
 	hud.show_wave_hud()
 
 func end_wave():
+	wave += 1
 	hud.hide_wave_hud()
 
 func create_enemy_spawners(current_wave: int):

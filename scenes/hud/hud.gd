@@ -76,8 +76,8 @@ func hide_wave_hud():
 		wave_hud_element.visible = false
 
 # Sets wave text
-func set_wave_text(current_wave: int):
-	$WaveText.text = " " + str(current_wave)
+func set_wave_text(current_wave: int, max_wave: int):
+	$WaveText.text = " " + gauge_text_template % [current_wave, max_wave]
 
 # Sets enemy count
 func set_enemy_count(enemies: int):
