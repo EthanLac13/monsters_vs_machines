@@ -28,6 +28,7 @@ func _ready() -> void:
 	set_player_stats.call_deferred()
 	
 	# Give player skill scenes
+	var skill_icon_list: Array[String] = []
 	for i in range(0, player_stat_data.starting_skills.size()):
 		var skill_name = player_stat_data.starting_skills[i]
 		var skill_data = GeneralFunctions.load_json_file("res://data/skills/%s.json" % skill_name)
@@ -37,6 +38,13 @@ func _ready() -> void:
 		controlled_object.skill_params.append(skill_data.params)
 		controlled_object.skill_cooldowns.append(0)
 		controlled_object.skill_max_cooldowns.append(skill_data.cooldown)
+		
+		skill_icon_list.append(skill_data.icon)
+	
+	controlled_object.refresh_skills()
+	
+	# Update skill buttons
+	hud.update_skill_buttons.call_deferred(skill_icon_list)
 	
 	# Give player purchasable skill scenes
 	for i in range(0, player_stat_data.unlockable_skills.size()):

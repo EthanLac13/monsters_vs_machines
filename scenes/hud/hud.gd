@@ -7,6 +7,7 @@ var skill_buttons: Array[TextureRect]
 var wave_hud: Array[Control]
 
 var gauge_text_template: String = "%d/%d"
+var skill_icon_path_template: String = "res://sprites/attack_icons/%s.png"
 
 func _ready() -> void:
 	# Scale is set to 0.5 by default, so it looks okay in the editor
@@ -41,6 +42,12 @@ func get_main_objects():
 # Set the cooldown of a player skill
 func set_skill_cooldown(skill_index: int, cooldown: float):
 	skill_buttons[skill_index].set_progress(cooldown)
+
+# Sets the image on a skill button
+func update_skill_buttons(skill_list: Array[String]):
+	for i in range(0, skill_list.size()):
+		print(skill_icon_path_template % skill_list[i])
+		skill_buttons[i].get_node("Icon").texture = load(skill_icon_path_template % skill_list[i])
 
 # Updates the crystal HP bar at the bottom of the screen
 func update_crystal_hp():

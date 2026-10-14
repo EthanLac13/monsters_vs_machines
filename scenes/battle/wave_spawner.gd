@@ -40,6 +40,7 @@ func _ready() -> void:
 	
 	# Get character spawner
 	character_spawner = get_parent().get_node("CharacterSpawner")
+	get_parent().get_node("EnemySpawnsAndTracks").visible = false
 	
 	# Load wave data from a file
 	level_data = GeneralFunctions.load_json_file(stage_data_path_template % [current_world, current_map, current_stage])

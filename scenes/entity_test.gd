@@ -173,6 +173,7 @@ func refresh_skills():
 		var current_skill: String = skill_list[i]
 		var skill_data = GeneralFunctions.load_json_file("res://data/skills/%s.json" % current_skill)
 		
+		# Add the skill's data to our lists
 		skill_scenes.append(skill_data.scene)
 		skill_params.append(skill_data.params)
 		skill_cooldowns.append(0)

@@ -8,3 +8,7 @@ func _ready() -> void:
 
 func set_progress(progress: float):
 	my_progress_bar.value = progress
+	if my_progress_bar.value == 0.0:
+		$CooldownDarkness.visible = false
+	else:
+		$CooldownDarkness.visible = true
