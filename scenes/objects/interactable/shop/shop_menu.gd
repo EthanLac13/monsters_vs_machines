@@ -24,6 +24,12 @@ var skill_data = []
 var skill_text = []
 var skill_data_path_template: String = "res://data/skills/%s.json"
 
+# Strings used for upgrade display
+var unlock_template_string: String = StringData.strings["shop_unlock_preview"]
+var unlock_template_no_money_string: String = StringData.strings["shop_unlock_preview_no_money"]
+var upgrade_template_string: String = StringData.strings["shop_upgrade_preview"]
+var upgrade_template_no_money_string: String = StringData.strings["shop_upgrade_preview_no_money"]
+
 func _ready() -> void:
 	skill_text = GeneralFunctions.load_translated_json_file(skill_text_path)
 	player = get_tree().get_nodes_in_group("friendly_characters")[0]
@@ -156,9 +162,17 @@ func focus_on_upgrade(upgrade_index: int):
 		upgrade_boxes[upgrade_index].set_upgrade_skill_mode()
 		if upgrade_boxes[upgrade_index].unlocked: # Show upgrade text if we can upgrade the skill
 			var upgrade_skill_text = skill_text[skill_data[upgrade_index].upgrades[0].upgrade_name]
-			$MainScreen/UpgradeText.text = upgrade_skill_text.name + "\n" + upgrade_skill_text.upgrade_text
+			var upgrade_cost: int = skill_data[upgrade_index].upgrades[0].cost
+			var upgrade_header_string: String = upgrade_template_string
+			if player.ai_controller.player_money < upgrade_cost:
+				upgrade_header_string = upgrade_template_no_money_string
+			$MainScreen/UpgradeText.text = (upgrade_header_string % [upgrade_cost, individual_text.name]) + "\n" + upgrade_skill_text.upgrade_text
 		else: # Show unlock text if we can unlock the skill
-			$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc
+			var unlock_cost: int = skill_data[upgrade_index].unlock_cost
+			var unlock_header_string: String = unlock_template_string
+			if player.ai_controller.player_money < unlock_cost:
+				unlock_header_string = unlock_template_no_money_string
+			$MainScreen/UpgradeText.text = (unlock_header_string % [unlock_cost, individual_text.name]) + "\n" + individual_text.desc
 	else:
 		upgrade_boxes[upgrade_index].set_current_skill_mode()
 		$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc

@@ -1,3 +1,7 @@
 {
-	"shop_upgrade_preview": "Upgrade to %s"
+	"shop_unlock_preview": "Unlock ([color=#ffd000]%d[/color]): %s",
+	"shop_unlock_preview_no_money": "Unlock ([color=#ffd000]%d[/color]): %s [color=#c02020](Not enough money)[/color]",
+	
+	"shop_upgrade_preview": "Upgrade ([color=#ffd000]%d[/color]): %s",
+	"shop_upgrade_preview_no_money":  "Upgrade ([color=#ffd000]%d[/color]): %s [color=#c02020](Not enough money)[/color]"
 }
