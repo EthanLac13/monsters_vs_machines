@@ -36,6 +36,7 @@ player_characters="Characters controlled by the player"
 friendly_characters="Players and towers"
 enemy_characters="Enemies spawned in a wave"
 interactable_objects="Objects that can be interacted with by the player"
+wave_spawners="Objects that handle wave spawning"
 
 [input]
 

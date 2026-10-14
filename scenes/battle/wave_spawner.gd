@@ -54,6 +54,9 @@ func start_wave():
 	hud.set_enemy_count(active_enemies)
 	hud.show_wave_hud()
 
+func end_wave():
+	hud.hide_wave_hud()
+
 func create_enemy_spawners(current_wave: int):
 	var current_wave_data = level_data.waves[str(current_wave)]
 	for spawn in current_wave_data.spawns:
@@ -115,3 +118,7 @@ func notify_enemy_spawned(enemy: Node2D):
 func notify_enemy_destroyed():
 	active_enemies -= 1
 	hud.set_enemy_count(active_enemies)
+	
+	if max_enemy_spawns >= enemies_spawned:
+		if active_enemies <= 0:
+			end_wave()

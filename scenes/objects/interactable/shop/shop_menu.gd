@@ -29,6 +29,7 @@ func _ready() -> void:
 	player = get_tree().get_nodes_in_group("friendly_characters")[0]
 	current_button = $MainScreen/NextWaveButton
 	
+	$MainScreen/NextWaveButton.was_pressed.connect(start_next_wave)
 	$MainScreen/ExitButton.was_pressed.connect(quit_menu)
 	
 	create_upgrade_boxes()
@@ -162,6 +163,12 @@ func focus_on_upgrade(upgrade_index: int):
 		upgrade_boxes[upgrade_index].set_current_skill_mode()
 		$MainScreen/UpgradeText.text = individual_text.name + "\n" + individual_text.desc
 	previous_skill = upgrade_index
+
+# Starts the next wave
+func start_next_wave():
+	var my_wave_spawner = get_tree().get_nodes_in_group("wave_spawners")[0]
+	my_wave_spawner.start_wave()
+	quit_menu()
 
 # Exits the menu
 func quit_menu():
