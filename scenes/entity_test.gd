@@ -169,12 +169,15 @@ func refresh_skills():
 	skill_max_cooldowns.clear()
 	
 	# Loop through skills and get their qualities
+	print(skill_list.size())
 	for i in range(0, skill_list.size()):
 		var current_skill: String = skill_list[i]
+		print(current_skill)
 		var skill_data = GeneralFunctions.load_json_file("res://data/skills/%s.json" % current_skill)
 		
 		# Add the skill's data to our lists
-		skill_scenes.append(skill_data.scene)
+		print(skill_data.scene)
+		skill_scenes.append(load(skill_data.scene))
 		skill_params.append(skill_data.params)
 		skill_cooldowns.append(0)
 		skill_max_cooldowns.append(skill_data.cooldown)
@@ -286,6 +289,7 @@ func get_effective_move_speed():
 # Attempts to use a skill from the array of skills
 func attempt_use_move(skill_index: int):
 	if !using_skill && !is_flinching && skill_cooldowns[skill_index] <= 0:
+		print(skill_scenes.size())
 		if skill_scenes.size() > skill_index:
 			current_skill_scene = skill_scenes[skill_index].instantiate()
 			add_child(current_skill_scene)
