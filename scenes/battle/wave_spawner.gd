@@ -12,15 +12,16 @@ var wave: int = 0
 var max_wave: int = 0
 
 # Scene for the object that handles spawning enemies
+var player_controller: Node2D
 var character_spawner: Node2D
 
 # Scene for the objects that track which enemies to spawn and when
 var enemy_spawner_scene: PackedScene = load("res://scenes/battle/EnemySpawner.tscn")
 
 # List of nodes where we spawn enemies
-@export var spawn_zone_nodes: Array[Node2D]
+@export var spawn_zone_nodes: Array[Node]
 # List of lines the enemies can follow
-@export var enemy_tracks: Array[Line2D]
+@export var enemy_tracks: Array[Node]
 
 var start_timer: int = 180
 
@@ -38,14 +39,34 @@ func _ready() -> void:
 	# Get HUD
 	hud = get_tree().get_nodes_in_group("hud")[0]
 	
-	# Get character spawner
+	# Get player controller and character spawner
+	player_controller = get_parent().get_node("PlayerInputController")
 	character_spawner = get_parent().get_node("CharacterSpawner")
-	get_parent().get_node("EnemySpawnsAndTracks").visible = false
 	
-	# Load wave data from a file
+	# Load level data from a file
 	level_data = GeneralFunctions.load_json_file(stage_data_path_template % [current_world, current_map, current_stage])
+	
+	# Load the map's visuals and tracks
+	var map_scene = load("res://scenes/maps/%s.tscn" % level_data.map)
+	var map_node = map_scene.instantiate()
+	get_parent().add_child.call_deferred(map_node)
+	map_node.position = Vector2(0, 0)
+	
+	spawn_zone_nodes = map_node.get_node("EnemySpawnsAndTracks/EnemySpawns").get_children()
+	enemy_tracks = map_node.get_node("EnemySpawnsAndTracks/EnemyTracks").get_children()
+	
+	# Set the max wave
 	max_wave = level_data.waves.size()
 	#start_wave()
+	
+	# Just in case, make tracks invisible
+	map_node.get_node("EnemySpawnsAndTracks").visible = false
+	
+	# Shift control to the player input controller
+	player_controller.spawn_player(map_node.get_node("CharacterSpawnPoints/PlayerSpawnPoint").position)
+	
+	# Make the character spawner create the crystal
+	character_spawner.spawn_entity.call_deferred("res://scenes/characters/misc/target_crystal/TargetCrystal.tscn", 240, 240, 0, "TargetCrystal")
 
 func _process(delta: float) -> void:
 	pass

@@ -9,6 +9,7 @@ var crystal_fade_amount: float = 0.05
 var shop_menu_scene: PackedScene = load("res://scenes/objects/interactable/shop/ShopMenu.tscn")
 
 func _ready() -> void:
+	player = get_tree().get_nodes_in_group("friendly_characters")[0]
 	$Tooltip.modulate.a = 0.0
 
 func _process(delta: float) -> void:
