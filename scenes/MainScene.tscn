@@ -46,6 +46,12 @@ enemy_tracks = [NodePath("../EnemySpawnsAndTracks/EnemyTracks/EnemyTrack0"), Nod
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1212635600]
 position = Vector2(240, 135)
 zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 480
+limit_bottom = 270
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
 script = ExtResource("3_c6dvc")
 
 [node name="Wall" type="Area2D" parent="." unique_id=856556345]

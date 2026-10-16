@@ -1,5 +1,7 @@
 extends Camera2D
 
+var target_object: Node2D
+
 func _ready() -> void:
 	var window_size_x = 960
 	var window_size_y = 540
@@ -22,3 +24,8 @@ func _ready() -> void:
 		var window_size = window.get_size_with_decorations()
 		# Set its position to the middle
 		window.position = screen_rect.position + (screen_rect.size / 2 - window_size / 2)
+	
+	target_object = get_parent().get_node("Player")
+
+func _process(delta: float) -> void:
+	position = target_object.position
