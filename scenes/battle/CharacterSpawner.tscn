@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cknkhbna6srsm"]
+
+[ext_resource type="Script" uid="uid://08vtd1phtruv" path="res://scenes/battle/character_spawner.gd" id="1_t8xtr"]
+
+[node name="CharacterSpawner" type="Node2D" unique_id=552045547]
+script = ExtResource("1_t8xtr")

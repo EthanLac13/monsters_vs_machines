@@ -10,6 +10,9 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocns7"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_il27e"]
+radius = 8.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb32r"]
 bg_color = Color(0, 0, 0, 1)
 corner_detail = 1
@@ -22,11 +25,12 @@ expand_margin_bottom = 1.0
 bg_color = Color(1, 1, 1, 1)
 corner_detail = 1
 
-[node name="EntityTest" type="Node2D" unique_id=979850551 node_paths=PackedStringArray("collision_area", "wall_collider")]
+[node name="EntityTest" type="Node2D" unique_id=979850551 node_paths=PackedStringArray("collision_area", "wall_collider", "collision_blocker")]
 y_sort_enabled = true
 script = ExtResource("1_3uif4")
 collision_area = NodePath("CollisionParent/CollisionArea")
 wall_collider = NodePath("CollisionParent/WallCollider")
+collision_blocker = NodePath("CollisionParent/CollisionBlocker")
 
 [node name="NewAnimTestScene" parent="." unique_id=1767502227 instance=ExtResource("2_il27e")]
 position = Vector2(0, 3)
@@ -42,7 +46,15 @@ collide_with_areas = true
 [node name="WallCollider" type="ShapeCast2D" parent="CollisionParent" unique_id=1293915911]
 shape = SubResource("RectangleShape2D_ocns7")
 target_position = Vector2(0, 0)
+collision_mask = 257
 collide_with_areas = true
+
+[node name="CollisionBlocker" type="Area2D" parent="CollisionParent" unique_id=379836625]
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionParent/CollisionBlocker" unique_id=12082377]
+shape = SubResource("CircleShape2D_il27e")
 
 [node name="StatsHolder" parent="." unique_id=1180321044 instance=ExtResource("3_il27e")]
 

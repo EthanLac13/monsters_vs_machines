@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://byanlcr7k84ev"]
+
+[ext_resource type="PackedScene" uid="uid://j27i3o81li2p" path="res://scenes/skills/AttackHitbox.tscn" id="1_6mobn"]
+[ext_resource type="Script" uid="uid://bkmbnln3pmuyv" path="res://scenes/skills/heroes/slime/slime_shot/slime_shot_slime_ball.gd" id="1_qwg18"]
+[ext_resource type="Texture2D" uid="uid://degm5uaaubu01" path="res://sprites/character_sprites/heroes/slime/slimeball.png" id="2_qwg18"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocns7"]
+
+[node name="SlimeShotSlimeBall" type="Node2D" unique_id=1431576445]
+script = ExtResource("1_qwg18")
+
+[node name="Hitbox" parent="." unique_id=1658913960 instance=ExtResource("1_6mobn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1064224998]
+shape = SubResource("CircleShape2D_ocns7")
+
+[node name="SlimeballSprite" type="Sprite2D" parent="." unique_id=1663293733]
+texture = ExtResource("2_qwg18")

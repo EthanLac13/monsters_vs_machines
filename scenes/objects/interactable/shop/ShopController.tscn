@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://blwhytc3e7w5q"]
+
+[ext_resource type="Script" uid="uid://b55785hroque1" path="res://scenes/objects/interactable/shop/shop_controller.gd" id="1_sedcj"]
+[ext_resource type="Texture2D" uid="uid://sl1p4cmmgcmp" path="res://sprites/hud_sprites/black_box_nineslice_hud.png" id="2_i4vv1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4vv1"]
+size = Vector2(16, 16)
+
+[node name="ShopController" type="Node2D" unique_id=836382828 groups=["interactable_objects"]]
+script = ExtResource("1_sedcj")
+
+[node name="ShopEntryArea" type="Area2D" parent="." unique_id=1530516144]
+collision_layer = 4096
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopEntryArea" unique_id=1842699023]
+shape = SubResource("RectangleShape2D_i4vv1")
+
+[node name="Tooltip" type="NinePatchRect" parent="." unique_id=1286481521]
+z_index = 4000
+z_as_relative = false
+offset_right = 64.0
+offset_bottom = 16.0
+texture = ExtResource("2_i4vv1")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tooltip" unique_id=1374832630]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 16.0
+theme_override_font_sizes/normal_font_size = 10
+text = "Press Space"
+scroll_active = false
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="ShopEntryArea" to="." method="_on_shop_entry_area_area_entered"]
+[connection signal="area_exited" from="ShopEntryArea" to="." method="_on_shop_entry_area_area_exited"]

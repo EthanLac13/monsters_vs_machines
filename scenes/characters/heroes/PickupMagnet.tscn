@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cngdd5f43mu8q"]
+
+[ext_resource type="Script" uid="uid://bfxsghcmojd6s" path="res://scenes/pickup_magnet.gd" id="1_5ooh3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocns7"]
+radius = 64.0
+
+[node name="PickupMagnet" type="Node2D" unique_id=1013497839]
+script = ExtResource("1_5ooh3")
+
+[node name="PickupMagnetArea" type="Area2D" parent="." unique_id=432367601]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupMagnetArea" unique_id=2003333442]
+shape = SubResource("CircleShape2D_ocns7")
+
+[connection signal="area_entered" from="PickupMagnetArea" to="." method="_on_pickup_magnet_area_area_entered"]

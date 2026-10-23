@@ -38,12 +38,13 @@ func set_anim_object(anim_object_string: String):
 
 func set_anim_player():
 	anim_player = anim_object.get_node("AnimationPlayer")
-	anim_player.animation_finished.connect(_on_animation_finished)
+	if !anim_player.animation_finished.is_connected(_on_animation_finished):
+		anim_player.animation_finished.connect(_on_animation_finished)
 	animation_map = anim_object.animation_map
 	next_animation_map = anim_object.next_animation_map
 	directional_anims = anim_object.directional_anims
 
-func change_animation(new_anim: String, anim_dir: int = -1):
+func change_animation(new_anim: String, anim_dir: int = get_parent().move_dir):
 	# Reset the current animation
 	anim_player.play("RESET")
 	anim_player.seek(0)

@@ -10,8 +10,11 @@ var types: Array[String]
 var charge_frames: int = 30
 var backswing_frames: int = 30
 
+var params
+
 func _ready() -> void:
-	get_parent().animation_object.change_animation("idle", get_parent().move_dir)
+	get_parent().animation_object.change_animation("idle")
+	set_move_params.call_deferred()
 
 func _process(delta: float) -> void:
 	match state:
@@ -28,6 +31,9 @@ func _process(delta: float) -> void:
 			charge_timer += 1
 			if charge_timer >= backswing_frames:
 				end_attack()
+
+func set_move_params():
+	pass
 
 func move_code():
 	state = 2

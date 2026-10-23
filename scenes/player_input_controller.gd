@@ -2,10 +2,85 @@ extends Node2D
 
 @export var controlled_object: Node2D
 
+@export var hud: CanvasLayer
+
+var player_stat_file
+var player_stat_data
+
+var exp_handler_scene: PackedScene = load("res://scenes/battle/EXPHandler.tscn")
+var level_up_particles_scene: PackedScene = load("res://scenes/LevelUpParticles.tscn")
+var pickup_magnet_scene: PackedScene = load("res://scenes/characters/heroes/PickupMagnet.tscn")
+var interaction_zone_scene: PackedScene = load("res://scenes/characters/heroes/InteractionZone.tscn")
+var my_interaction_zone: Node2D
+
 var spawned_enemy
 
-func _ready() -> void:
+var player_money: int = 0
+
+func spawn_player(player_pos: Vector2):
+	var player_scene: PackedScene = load("res://scenes/EntityTest.tscn")
+	
+	controlled_object = player_scene.instantiate()
+	get_parent().add_child.call_deferred(controlled_object)
+	controlled_object.position = player_pos
+	print(controlled_object.position)
+	
 	controlled_object.ai_controller = self
+	controlled_object.hud = hud
+	controlled_object.add_to_group("friendly_characters")
+	
+	# Set player's stats
+	player_stat_file = GeneralFunctions.load_json_file("res://data/player_stat_data.json")
+	player_stat_data = player_stat_file["0"]
+	
+	# Give player skill scenes
+	var skill_icon_list: Array[String] = []
+	for i in range(0, player_stat_data.starting_skills.size()):
+		var skill_name = player_stat_data.starting_skills[i]
+		var skill_data = GeneralFunctions.load_json_file("res://data/skills/%s.json" % skill_name)
+		
+		controlled_object.skill_list.append(skill_name)
+		controlled_object.skill_scenes.append(load(skill_data.scene))
+		controlled_object.skill_params.append(skill_data.params)
+		controlled_object.skill_cooldowns.append(0)
+		controlled_object.skill_max_cooldowns.append(skill_data.cooldown)
+		
+		skill_icon_list.append(skill_data.icon)
+	
+	controlled_object.refresh_skills()
+	set_player_stats.call_deferred()
+	
+	# Update skill buttons
+	hud.update_skill_buttons.call_deferred(skill_icon_list)
+	
+	# Give player purchasable skill scenes
+	for i in range(0, player_stat_data.unlockable_skills.size()):
+		controlled_object.potential_skills.append(player_stat_data.unlockable_skills[i])
+	
+	# Hide player's mini HP bar
+	controlled_object.get_node("HealthBar").visible = false
+	controlled_object.took_damage.connect(_on_player_damaged)
+	
+	# Make player able to collide with coins
+	controlled_object.collision_blocker.collision_layer += 2048
+	
+	# Add EXP points handler to player
+	var my_exp_handler = exp_handler_scene.instantiate()
+	add_child(my_exp_handler)
+	
+	# Add level-up animation player
+	var my_level_up_particles = level_up_particles_scene.instantiate()
+	controlled_object.add_child(my_level_up_particles)
+	my_exp_handler.level_up_particle_node = my_level_up_particles
+	
+	# Add pickup attractor to player
+	var my_pickup_attractor = pickup_magnet_scene.instantiate()
+	controlled_object.add_child(my_pickup_attractor)
+	
+	# Add interaction zone to player
+	my_interaction_zone = interaction_zone_scene.instantiate()
+	controlled_object.add_child(my_interaction_zone)
+
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):
@@ -22,3 +97,34 @@ func _process(delta: float):
 		controlled_object.attempt_use_move(0)
 	if Input.is_action_just_pressed("UseMove2"):
 		controlled_object.attempt_use_move(1)
+	
+	if Input.is_action_just_pressed("Interact"):
+		my_interaction_zone.attempt_interact()
+
+func _on_player_damaged():
+	hud.update_health_bar(controlled_object.stats_data.hp, controlled_object.stats_data.max_hp)
+
+func set_player_stats():
+	var stats = controlled_object.stats_data
+	stats.script = load("res://scenes/player_stats_holder.gd")
+	
+	
+	# Set player's default stats
+	stats.hp = player_stat_data.base_stats.hp
+	stats.max_hp = player_stat_data.base_stats.hp
+	stats.base_stats.attack = player_stat_data.base_stats.attack
+	stats.base_stats.defense = player_stat_data.base_stats.defense
+	stats.base_stats.magic_attack = player_stat_data.base_stats.magic_attack
+	stats.base_stats.magic_defense = player_stat_data.base_stats.magic_defense
+	controlled_object.move_speed = player_stat_data.base_stats.move_speed
+	
+	# Set player's level 1 and level max stats
+	stats.level_1_stats = player_stat_data.base_stats.duplicate(true)
+	stats.max_level_stats = player_stat_data.max_level_stats.duplicate(true)
+	
+	controlled_object.stats_data.recalculate_stats()
+	hud.update_health_bar(controlled_object.stats_data.hp, controlled_object.stats_data.max_hp)
+
+func add_money(money_added: int):
+	player_money += money_added
+	hud.update_money(player_money)

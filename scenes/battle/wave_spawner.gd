@@ -1,0 +1,148 @@
+extends Node2D
+
+var level_data = {}
+
+var current_world: int = 0
+var current_map: int = 0
+var current_stage: int = 0
+
+var stage_data_path_template: String = "res://data/levels/world_%d/map_%d/stage_%d.json"
+
+var wave: int = 0
+var max_wave: int = 0
+
+# Scene for the object that handles spawning enemies
+var player_controller: Node2D
+var character_spawner: Node2D
+
+# Scene for the objects that track which enemies to spawn and when
+var enemy_spawner_scene: PackedScene = load("res://scenes/battle/EnemySpawner.tscn")
+
+# List of nodes where we spawn enemies
+@export var spawn_zone_nodes: Array[Node]
+# List of lines the enemies can follow
+@export var enemy_tracks: Array[Node]
+
+var start_timer: int = 180
+
+# Current amount of enemies that have been spawned
+var enemies_spawned: int = 0
+# Maximum amount of enemies for this wave
+var max_enemy_spawns: int = 0
+# Amount of currently-active enemies
+var active_enemies: int = 0
+
+# Connection to the HUD node
+var hud: CanvasLayer
+
+func _ready() -> void:
+	# Get HUD
+	hud = get_tree().get_nodes_in_group("hud")[0]
+	
+	# Get player controller and character spawner
+	player_controller = get_parent().get_node("PlayerInputController")
+	character_spawner = get_parent().get_node("CharacterSpawner")
+	
+	# Load level data from a file
+	level_data = GeneralFunctions.load_json_file(stage_data_path_template % [current_world, current_map, current_stage])
+	
+	# Load the map's visuals and tracks
+	var map_scene = load("res://scenes/maps/%s.tscn" % level_data.map)
+	var map_node = map_scene.instantiate()
+	get_parent().add_child.call_deferred(map_node)
+	map_node.position = Vector2(0, 0)
+	
+	spawn_zone_nodes = map_node.get_node("EnemySpawnsAndTracks/EnemySpawns").get_children()
+	enemy_tracks = map_node.get_node("EnemySpawnsAndTracks/EnemyTracks").get_children()
+	
+	# Set the max wave
+	max_wave = level_data.waves.size()
+	#start_wave()
+	
+	# Just in case, make tracks invisible
+	map_node.get_node("EnemySpawnsAndTracks").visible = false
+	
+	# Shift control to the player input controller
+	player_controller.spawn_player(map_node.get_node("CharacterSpawnPoints/PlayerSpawnPoint").position)
+	
+	# Make the character spawner create the crystal
+	character_spawner.spawn_entity.call_deferred("res://scenes/characters/misc/target_crystal/TargetCrystal.tscn", 240, 240, 0, "TargetCrystal")
+
+func _process(delta: float) -> void:
+	pass
+
+func start_wave():
+	create_enemy_spawners(wave)
+	hud.set_wave_text(wave + 1, max_wave)
+	hud.set_enemy_count(active_enemies)
+	hud.show_wave_hud()
+
+func end_wave():
+	wave += 1
+	hud.hide_wave_hud()
+
+func create_enemy_spawners(current_wave: int):
+	var current_wave_data = level_data.waves[str(current_wave)]
+	for spawn in current_wave_data.spawns:
+		var enemy_spawner = enemy_spawner_scene.instantiate()
+		enemy_spawner.character_spawner_scene = character_spawner
+		
+		# Set the enemy ID to spawn
+		enemy_spawner.enemy_id = spawn.id
+		enemy_spawner.enemy_spawn_count = spawn.amount
+		max_enemy_spawns += spawn.amount
+		
+		# Set the enemy's spawn zones
+		var spawn_zone_array: Array[Node2D] = []
+		if typeof(spawn.spawn_area) == 28: # array
+			for i in range(0, spawn.spawn_area.size()):
+				spawn_zone_array.append(spawn_zone_nodes[spawn.spawn_area[i]])
+		else:
+			spawn_zone_array.append(spawn_zone_nodes[spawn.spawn_area])
+		enemy_spawner.enemy_spawn_zones = spawn_zone_array
+		
+		# Set the enemy's tracks
+		var track_array: Array[Line2D] = []
+		if typeof(spawn.tracks) == 28: # array
+			for i in range(0, spawn.tracks.size()):
+				track_array.append(enemy_tracks[spawn.tracks[i]])
+		else:
+			track_array.append(enemy_tracks[spawn.tracks])
+		enemy_spawner.tracks = track_array
+		
+		# Set the enemy's spawn time
+		var start_secs: float = 0.0
+		if typeof(spawn.start_secs) == 28: # array
+			start_secs = randf_range(spawn.start_secs[0], spawn.start_secs[1])
+		else:
+			start_secs = spawn.start_secs
+		enemy_spawner.spawn_timer = int(start_secs * 60)
+		
+		# Sets the enemy's respawn time
+		var min_respawn_time: float = 0.0
+		var max_respawn_time: float = 0.0
+		if typeof(spawn.respawn_secs) == 28: # array
+			min_respawn_time = spawn.respawn_secs[0]
+			max_respawn_time = spawn.respawn_secs[1]
+		else:
+			min_respawn_time = spawn.respawn_secs
+			max_respawn_time = spawn.respawn_secs
+		enemy_spawner.respawn_timer_min = int(min_respawn_time * 60)
+		enemy_spawner.respawn_timer_max = int(max_respawn_time * 60)
+		
+		add_child(enemy_spawner)
+		enemy_spawner.enemy_was_spawned.connect(notify_enemy_spawned)
+
+func notify_enemy_spawned(enemy: Node2D):
+	enemies_spawned += 1
+	active_enemies += 1
+	hud.set_enemy_count(active_enemies)
+	enemy.was_killed.connect(notify_enemy_destroyed)
+
+func notify_enemy_destroyed():
+	active_enemies -= 1
+	hud.set_enemy_count(active_enemies)
+	
+	if max_enemy_spawns >= enemies_spawned:
+		if active_enemies <= 0:
+			end_wave()

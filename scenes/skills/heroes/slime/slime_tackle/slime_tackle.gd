@@ -18,7 +18,7 @@ func _ready() -> void:
 	backswing_frames = 0
 	
 	# Set hitbox damage; will be expanded later
-	$Hitbox.damage = 30
+	$Hitbox.damage = get_parent().stats_data.attack
 	$Hitbox.flinch = true
 	$Hitbox.position_owner = get_parent()
 	
@@ -30,6 +30,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 
+func set_move_params():
+	super()
+	$Hitbox.damage *= params.damage_mult
+	rush_speed_start *= params.dash_dist_mult
+	rush_speed_medium *= params.dash_dist_mult
+	rush_speed_end *= params.dash_dist_mult
 
 func move_code():
 	charge_timer += 1
@@ -45,7 +51,7 @@ func move_code():
 	
 	if charge_timer == rush_times[0]: # Activate the hitbox when we begin charging
 		$Hitbox.activate()
-	if charge_timer == rush_times[1]: # Reduce knockback when slowing diwn
+	if charge_timer == rush_times[1]: # Reduce knockback when slowing down
 		$Hitbox.flinch_time *= 0.5
 		$Hitbox.knockback_power *= 0.5
 	if charge_timer == rush_times[2]: # Sourspot late in the attack

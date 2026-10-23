@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dte04omgu1phy"]
+
+[ext_resource type="Texture2D" uid="uid://dxjldfjnrkeck" path="res://sprites/particle_sprites/gleam/gleam_3.png" id="1_qt87s"]
+[ext_resource type="Script" uid="uid://dbv7fm6yttrqc" path="res://scenes/particles/small_glitter_emitter.gd" id="2_ktl73"]
+
+[sub_resource type="Curve" id="Curve_5ebwj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.4954955, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="SmallGlitterEmitter" type="CPUParticles2D" unique_id=1229120576]
+emitting = false
+amount = 12
+texture = ExtResource("1_qt87s")
+lifetime = 0.33
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_5ebwj")
+script = ExtResource("2_ktl73")
+
+[node name="Timer" type="Timer" parent="." unique_id=689486528]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,7 +2,6 @@ extends "res://scenes/characters/base_ai_controller.gd"
 
 var max_chase_dir: float = 16.0
 var player_chase_dir: float = 128.0
-var crystal_chase_dir: float = 144.0
 
 var chasing_player: bool = true
 
@@ -23,7 +22,9 @@ func initialize():
 	attack_hitbox.flinch = true
 	attack_hitbox.flinch_weight = 15.0
 	attack_hitbox.multihit = true
+	
 	controlled_entity.add_child(attack_node)
+	controlled_entity.disabled_nodes_on_flinch.append(attack_hitbox)
 
 func _process(delta: float) -> void:
 	super(delta)
@@ -34,22 +35,13 @@ func _process(delta: float) -> void:
 			attack_hitbox.position_owner = controlled_entity
 			started_animating = true
 		if controlled_entity.can_move:
-			# Get player's position and move towards it
-			var target_pos
-			if chasing_player:
-				target_pos = target_entity.position
-				if controlled_entity.position.distance_to(target_pos) > controlled_entity.position.distance_to(target_crystal_entity.position):
-					target_pos = target_crystal_entity.position
-					chasing_player = false
-			else:
-				target_pos = target_crystal_entity.position
-				if controlled_entity.position.distance_to(target_entity.position) < controlled_entity.position.distance_to(target_crystal_entity.position):
-					target_pos = target_entity.position
-					chasing_player = true
+			# Decide whether to chase the player or follow the track
+			var target_pos = get_target_pos()
 			
 			# If we're farther than max_chase_dir range away from the target, get closer
 			if controlled_entity.position.distance_to(target_pos) >= max_chase_dir:
 				var movement_vector = controlled_entity.position.direction_to(target_pos).normalized()
+				var movement_speed = controlled_entity.get_effective_move_speed()
 				controlled_entity.move(movement_vector * movement_speed)
 		
 			

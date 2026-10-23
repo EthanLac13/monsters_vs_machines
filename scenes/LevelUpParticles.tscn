@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://ds3etehmfabr1"]
+
+[ext_resource type="Script" uid="uid://cxpidstlt7xtu" path="res://scenes/level_up_particles.gd" id="1_1pp4v"]
+
+[sub_resource type="Gradient" id="Gradient_il27e"]
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0, 0.6901961, 0.972549, 1, 0, 0.6901961, 0.972549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ocns7"]
+gradient = SubResource("Gradient_il27e")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_xx6po"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4954955, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_5ebwj"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_rrlil"]
+offsets = PackedFloat32Array(0, 0.175, 0.59, 0.68)
+colors = PackedColorArray(0, 0.72156864, 0.972549, 0, 0, 0.72156864, 0.972549, 0, 0, 0.72156864, 0.972549, 1, 0, 0.72156864, 0.972549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ebwj"]
+gradient = SubResource("Gradient_rrlil")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_cr3d3"]
+_data = [Vector2(0, 0), 0.0, 1.3293413, 0, 1, Vector2(0.7522523, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vqplh"]
+offsets = PackedFloat32Array(0, 0.68877554, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="LevelUpParticles" type="Node2D" unique_id=1091006177]
+z_index = 10
+script = ExtResource("1_1pp4v")
+
+[node name="PointBurstParticles" type="CPUParticles2D" parent="." unique_id=1685067816]
+emitting = false
+amount = 64
+texture = SubResource("GradientTexture2D_ocns7")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+direction = Vector2(0, -1)
+spread = 120.0
+gravity = Vector2(0, 600)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+scale_amount_curve = SubResource("Curve_xx6po")
+color_ramp = SubResource("Gradient_5ebwj")
+
+[node name="RingParticles" type="CPUParticles2D" parent="." unique_id=1077927853]
+emitting = false
+amount = 1
+texture = SubResource("GradientTexture2D_5ebwj")
+lifetime = 0.5
+one_shot = true
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_cr3d3")
+color_ramp = SubResource("Gradient_vqplh")

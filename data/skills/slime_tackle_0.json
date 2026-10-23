@@ -1,0 +1,15 @@
+{
+	"scene": "res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn",
+	"icon": "slime_tackle",
+	"cooldown": 60,
+	"params": {
+		"damage_mult": 1.0,
+		"dash_dist_mult": 1.0
+	},
+	"upgrades": [
+		{
+			"upgrade_name": "slime_tackle_1",
+			"cost": 100
+		}
+	]
+}

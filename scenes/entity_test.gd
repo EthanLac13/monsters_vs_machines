@@ -7,8 +7,10 @@ var stats_data: Node
 var animation_object
 @export var collision_area: ShapeCast2D
 @export var wall_collider: ShapeCast2D
+@export var collision_blocker: Area2D
 
 var ai_controller: Node2D
+var hud: CanvasLayer
 
 var can_move: bool = true
 
@@ -36,13 +38,13 @@ var mercy_timer_max: int = 90
 
 var using_skill: bool = false
 
-var skill_list = [
-	"res://scenes/skills/heroes/slime/slime_tackle/SkillSlimeTackle.tscn"
-]
-var skill_scenes = [
-	
-]
+var skill_list: Array[String] = []
+var skill_scenes: Array[PackedScene] = []
+var skill_params = []
+var skill_cooldowns: Array[int] = []
+var skill_max_cooldowns: Array[int] = []
 var current_skill_scene: Node = null
+var potential_skills: Array[String] = []
 
 var hitbox_scene = load("res://scenes/skills/AttackHitbox.tscn")
 
@@ -53,7 +55,23 @@ var knockback_movement: float = 0
 var knockback_dir: float = 0.0
 
 var dying: bool = false
-var death_timer: int = 0
+var can_die: bool = false # Whether we can die during the death state
+var death_scene: PackedScene = load("res://scenes/characters/death_effects/EnemyDeathExplosion.tscn")
+var death_controller: Node2D = null
+
+var exp_yield: int = 0
+
+var disabled_nodes_on_flinch = []
+
+var status_effects = {
+	
+}
+
+var track: Line2D
+
+# Signals
+signal took_damage
+signal was_killed
 
 func _ready() -> void:
 	stats_data = $StatsHolder
@@ -64,9 +82,8 @@ func _ready() -> void:
 	
 	animation_object.change_animation.call_deferred("idle", move_dir)
 	
-	# Load skill scenes
-	for i in range(0, skill_list.size()):
-		skill_scenes.append(load(skill_list[i]))
+	# Prevent us from colliding with our own collision
+	wall_collider.add_exception($CollisionParent/CollisionBlocker)
 
 func initialize_ai():
 	ai_controller = Node2D.new()
@@ -75,11 +92,19 @@ func initialize_ai():
 	
 	ai_controller.controlled_entity = self
 	ai_controller.initialize()
+	stats_data.recalculate_stats()
 	
 	# Set animation map
 	animation_object.set_anim_player()
 
 func _process(delta: float) -> void:
+	# Check for status effects ticking down
+	for status_effect in status_effects:
+		if status_effects[status_effect].has("duration"):
+			status_effects[status_effect].duration -= 1
+			if status_effects[status_effect].duration <= 0:
+				status_effects.erase(status_effect)
+	
 	# Check for mercy timer
 	if !is_flinching:
 		if mercy_timer > 0:
@@ -89,6 +114,12 @@ func _process(delta: float) -> void:
 				visible = true
 			else:
 				visible = false
+	
+	# Check for skill cooldowns
+	for i in range(0, skill_cooldowns.size()):
+		if skill_cooldowns[i] > 0:
+			skill_cooldowns[i] -= 1
+			hud.set_skill_cooldown(i, float(skill_cooldowns[i]) / skill_max_cooldowns[i])
 	
 	if can_move:
 		check_for_movement()
@@ -105,6 +136,11 @@ func _process(delta: float) -> void:
 			is_flinching = false
 			can_move = true
 			animation_object.change_animation("idle")
+			
+			# Re-enable disabled nodes
+			for disabled_node in disabled_nodes_on_flinch:
+				disabled_node.process_mode = PROCESS_MODE_INHERIT
+				disabled_node.position.y -= 10000
 	
 	# Check for taking hit
 	if mercy_timer == 0:
@@ -115,24 +151,6 @@ func _process(delta: float) -> void:
 				if !collision_area.get_collider(i).multihit:
 					collision_area.add_exception(collision_area.get_collider(i))
 	
-	# Flow for dying (enemies; players are TODO)
-	if dying:
-		death_timer += 1
-		
-		move_dir += 30.0
-		if move_dir >= 360:
-			move_dir -= 360.0
-		
-		#if death_timer % 3 == 2:
-			#animation_object.change_animation("hurt", move_dir)
-		
-		if death_timer >= 25 && death_timer < 35:
-			modulate.a -= 0.1
-		
-		if death_timer == 35:
-			queue_free()
-			ai_controller.queue_free()
-	
 	# Reset inputs
 	input_right = false
 	input_down = false
@@ -141,6 +159,28 @@ func _process(delta: float) -> void:
 	
 	# Update z-index based on position to avoid z-fighting
 	z_index = int(position.y) * 10
+
+# Sets the entity's skill scenes and cooldowns
+func refresh_skills():
+	# Clear skill qualities
+	skill_scenes.clear()
+	skill_params.clear()
+	skill_cooldowns.clear()
+	skill_max_cooldowns.clear()
+	
+	# Loop through skills and get their qualities
+	print(skill_list.size())
+	for i in range(0, skill_list.size()):
+		var current_skill: String = skill_list[i]
+		print(current_skill)
+		var skill_data = GeneralFunctions.load_json_file("res://data/skills/%s.json" % current_skill)
+		
+		# Add the skill's data to our lists
+		print(skill_data.scene)
+		skill_scenes.append(load(skill_data.scene))
+		skill_params.append(skill_data.params)
+		skill_cooldowns.append(0)
+		skill_max_cooldowns.append(skill_data.cooldown)
 
 func set_sprite(sprite_string: String):
 	# Remove the old animation object
@@ -185,7 +225,8 @@ func check_for_movement():
 	
 	# Move and change animations
 	if is_moving: # Set walk animation when moving
-		move(total_input * move_speed)
+		var effective_move_speed = get_effective_move_speed()
+		move(total_input * effective_move_speed)
 		if !was_previously_moving:
 			animation_object.change_animation("walk", move_dir)
 	else: # Set idle animation when no longer moving
@@ -238,15 +279,32 @@ func move_absolute(new_pos_x: float, new_pos_y: float):
 	if wall_collider.is_colliding():
 		position.y = last_position_y
 
+func get_effective_move_speed():
+	var effective_move_speed = move_speed
+	if status_effects.has("slime_slowdown"):
+		var slowdown = status_effects.slime_slowdown.slow_amount
+		effective_move_speed *= slowdown
+	return effective_move_speed
 
 # Attempts to use a skill from the array of skills
 func attempt_use_move(skill_index: int):
-	if !using_skill && !is_flinching:
+	if !using_skill && !is_flinching && skill_cooldowns[skill_index] <= 0:
+		print(skill_scenes.size())
 		if skill_scenes.size() > skill_index:
 			current_skill_scene = skill_scenes[skill_index].instantiate()
 			add_child(current_skill_scene)
 			current_skill_scene.position.x = 0
 			current_skill_scene.position.y = 0
+			current_skill_scene.params = skill_params[skill_index]
+			
+			#print(current_skill_scene.charge_frames)
+			if current_skill_scene.charge_frames == 0:
+				current_skill_scene.state = 1
+			
+			# Set skill cooldown
+			skill_cooldowns[skill_index] = skill_max_cooldowns[skill_index]
+			
+			# You can't move while using a skill
 			using_skill = true
 			can_move = false
 
@@ -261,14 +319,33 @@ func end_using_skill():
 func take_hitbox_hit(hitbox: Area2D):
 	if !is_flinching:
 		if hitbox.faction != faction:
-			if hitbox.faction == 0:
-				print(hitbox)
-			stats_data.hp -= hitbox.damage
+			var incoming_damage = hitbox.damage
+			if hitbox.is_magical:
+				incoming_damage -= stats_data.magic_defense
+			else:
+				incoming_damage -= stats_data.defense
+			stats_data.hp -= incoming_damage
 			update_health_bar()
+			took_damage.emit()
+			hitbox.hit_landed.emit()
+			
+			# Apply status effects
+			for status_effect in hitbox.status_effects:
+				if !status_effects.has(status_effect):
+					status_effects[status_effect] = hitbox.status_effects[status_effect]
+			#print(status_effects)
+			
+			# Flinch from the hit if we're supposed to
 			if stats_data.hp > 0:
 				if hitbox.flinch:
 					can_move = false
 					is_flinching = true
+					
+					# Disable nodes we want deactivated on flinch
+					for disabled_node in disabled_nodes_on_flinch:
+						#print(disabled_node.name)
+						disabled_node.process_mode = PROCESS_MODE_DISABLED
+						disabled_node.position.y += 10000
 					
 					if using_skill:
 						current_skill_scene.free()
@@ -284,10 +361,12 @@ func take_hitbox_hit(hitbox: Area2D):
 					mercy_timer = mercy_timer_max
 			else:
 				set_death_state()
+				give_exp()
+				
 				is_flinching = true
 				flinch_timer = 80
 				flinch_timer_max = 80
-				knockback_movement = 2.0
+				knockback_movement = randf_range(4.0, 6.0)
 				knockback_dir = rad_to_deg(get_angle_to(hitbox.position_owner.position)) + 180.0
 
 # Update HP bar percentage
@@ -298,4 +377,20 @@ func set_death_state():
 	dying = true
 	can_move = false
 	animation_object.change_animation("death")
+	
+	death_controller = death_scene.instantiate()
+	get_parent().add_child(death_controller)
+	death_controller.position = position
+	death_controller.z_index = z_index + 100
+	death_controller.dying_entity = self
 	#animation_object.hop(30.0, 20.0)
+
+# Give EXP to the player upon death
+func give_exp():
+	get_parent().get_node("PlayerInputController").get_node("EXPHandler").add_exp(exp_yield)
+
+# Removes this entity
+func die():
+	was_killed.emit()
+	queue_free()
+	ai_controller.queue_free()
