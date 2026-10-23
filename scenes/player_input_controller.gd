@@ -17,7 +17,14 @@ var spawned_enemy
 
 var player_money: int = 0
 
-func _ready() -> void:
+func spawn_player(player_pos: Vector2):
+	var player_scene: PackedScene = load("res://scenes/EntityTest.tscn")
+	
+	controlled_object = player_scene.instantiate()
+	get_parent().add_child.call_deferred(controlled_object)
+	controlled_object.position = player_pos
+	print(controlled_object.position)
+	
 	controlled_object.ai_controller = self
 	controlled_object.hud = hud
 	controlled_object.add_to_group("friendly_characters")
@@ -25,7 +32,6 @@ func _ready() -> void:
 	# Set player's stats
 	player_stat_file = GeneralFunctions.load_json_file("res://data/player_stat_data.json")
 	player_stat_data = player_stat_file["0"]
-	set_player_stats.call_deferred()
 	
 	# Give player skill scenes
 	var skill_icon_list: Array[String] = []
@@ -42,6 +48,7 @@ func _ready() -> void:
 		skill_icon_list.append(skill_data.icon)
 	
 	controlled_object.refresh_skills()
+	set_player_stats.call_deferred()
 	
 	# Update skill buttons
 	hud.update_skill_buttons.call_deferred(skill_icon_list)

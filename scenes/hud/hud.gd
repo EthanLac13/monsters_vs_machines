@@ -29,7 +29,7 @@ func _ready() -> void:
 	]
 	hide_wave_hud()
 	
-	get_main_objects.call_deferred()
+	#get_main_objects.call_deferred()
 
 func get_main_objects():
 	# Get player and crystal objects

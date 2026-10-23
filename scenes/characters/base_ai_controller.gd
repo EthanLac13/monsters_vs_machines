@@ -17,7 +17,7 @@ var crystal_chase_dir: float = 128.0
 var next_node_dir: float = 24.0
 
 func initialize():
-	player_entity = get_parent().get_node("Player")
+	player_entity = get_tree().get_nodes_in_group("friendly_characters")[0]
 	target_crystal_entity = get_parent().get_node("TargetCrystal")
 	target_entity = player_entity
 	
