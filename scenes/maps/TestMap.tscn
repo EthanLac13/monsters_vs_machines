@@ -31,6 +31,7 @@ position = Vector2(0, 44)
 shape = SubResource("RectangleShape2D_5nvpj")
 
 [node name="WallSprite" type="Sprite2D" parent="." unique_id=852216190]
+visible = false
 position = Vector2(240, 178.99998)
 scale = Vector2(0.93750006, 0.15625)
 texture = ExtResource("2_w16d7")
