@@ -1,4 +1,4 @@
-extends "res://scenes/characters/base_ai_controller.gd"
+extends "res://scenes/characters/enemies/base_enemy_ai_controller.gd"
 
 var max_chase_dir: float = 16.0
 var player_chase_dir: float = 128.0
