@@ -8,5 +8,10 @@
 		"scene": "res://scenes/characters/enemies/six_blades/EnemySixBlades.tscn",
 		"name_index": "six_blades",
 		"internal_name": "SixBlades"
+	},
+	"2": {
+		"scene": "res://scenes/characters/enemies/turretank/EnemyTurretank.tscn",
+		"name_index": "turretank",
+		"internal_name": "Turretank"
 	}
 }
