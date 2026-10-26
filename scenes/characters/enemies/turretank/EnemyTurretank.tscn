@@ -10,9 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://cem0cxh53dlv7" path="res://sprites/character_sprites/enemies/turretank/turretank_head.png" id="7_x7nfw"]
 [ext_resource type="Texture2D" uid="uid://d3r61tph7b1cf" path="res://sprites/character_sprites/enemies/turretank/turretank_camera_front.png" id="8_g3m40"]
 [ext_resource type="Texture2D" uid="uid://cli3yoemhqooa" path="res://sprites/character_sprites/enemies/turretank/turretank_gun_front.png" id="9_ybgfq"]
+[ext_resource type="Texture2D" uid="uid://bgjejsyk06y0a" path="res://sprites/character_sprites/enemies/turretank/turretank_gun_downside.png" id="11_7d81g"]
 [ext_resource type="Texture2D" uid="uid://dkinirsmwioga" path="res://sprites/character_sprites/enemies/turretank/turretank_gun_side.png" id="11_d4wk3"]
 [ext_resource type="Texture2D" uid="uid://b25ykmmseod0p" path="res://sprites/character_sprites/enemies/turretank/turretank_camera_side.png" id="12_0gm3a"]
+[ext_resource type="Texture2D" uid="uid://b4i01gm1mpatn" path="res://sprites/character_sprites/enemies/turretank/turretank_camera_downside.png" id="12_0ojwx"]
 [ext_resource type="Texture2D" uid="uid://ijdy6cvqkgcl" path="res://sprites/character_sprites/enemies/turretank/turretank_camera_back.png" id="13_2enav"]
+[ext_resource type="Texture2D" uid="uid://olkx52jhk46" path="res://sprites/character_sprites/enemies/turretank/turretank_gun_upside.png" id="15_sfo25"]
+[ext_resource type="Texture2D" uid="uid://btrh12jt5yitq" path="res://sprites/character_sprites/enemies/turretank/turretank_camera_upside.png" id="16_1rlto"]
 
 [sub_resource type="Animation" id="Animation_2enav"]
 resource_name = "RESET"
@@ -234,6 +238,17 @@ texture = ExtResource("9_ybgfq")
 position = Vector2(0, -5)
 texture = ExtResource("8_g3m40")
 
+[node name="DownRightHeadParent" type="Node2D" parent="Body/Pivot/Head" unique_id=313890420]
+visible = false
+
+[node name="DownRightGun" type="Sprite2D" parent="Body/Pivot/Head/DownRightHeadParent" unique_id=1757991359]
+position = Vector2(11, 7)
+texture = ExtResource("11_7d81g")
+
+[node name="DownRightCamera" type="Sprite2D" parent="Body/Pivot/Head/DownRightHeadParent" unique_id=495020415]
+position = Vector2(0, -5)
+texture = ExtResource("12_0ojwx")
+
 [node name="RightHeadParent" type="Node2D" parent="Body/Pivot/Head" unique_id=737980644]
 visible = false
 
@@ -242,8 +257,20 @@ position = Vector2(16, 1)
 texture = ExtResource("11_d4wk3")
 
 [node name="RightCamera" type="Sprite2D" parent="Body/Pivot/Head/RightHeadParent" unique_id=1058812572]
-position = Vector2(0, -5)
+position = Vector2(0, -6)
 texture = ExtResource("12_0gm3a")
+
+[node name="UpRightHeadParent" type="Node2D" parent="Body/Pivot/Head" unique_id=632973731]
+visible = false
+
+[node name="UpRightGun" type="Sprite2D" parent="Body/Pivot/Head/UpRightHeadParent" unique_id=16898964]
+z_index = -1
+position = Vector2(10, -3)
+texture = ExtResource("15_sfo25")
+
+[node name="UpRightCamera" type="Sprite2D" parent="Body/Pivot/Head/UpRightHeadParent" unique_id=1577429364]
+position = Vector2(0, -6)
+texture = ExtResource("16_1rlto")
 
 [node name="UpHeadParent" type="Node2D" parent="Body/Pivot/Head" unique_id=801248826]
 visible = false
@@ -251,6 +278,20 @@ visible = false
 [node name="UpCamera" type="Sprite2D" parent="Body/Pivot/Head/UpHeadParent" unique_id=2075156483]
 position = Vector2(0, -5)
 texture = ExtResource("13_2enav")
+
+[node name="UpLeftHeadParent" type="Node2D" parent="Body/Pivot/Head" unique_id=901386627]
+visible = false
+
+[node name="UpLeftGun" type="Sprite2D" parent="Body/Pivot/Head/UpLeftHeadParent" unique_id=1528943708]
+z_index = -1
+position = Vector2(-10, -3)
+scale = Vector2(-1, 1)
+texture = ExtResource("15_sfo25")
+
+[node name="UpLeftCamera" type="Sprite2D" parent="Body/Pivot/Head/UpLeftHeadParent" unique_id=283846175]
+position = Vector2(0, -6)
+scale = Vector2(-1, 1)
+texture = ExtResource("16_1rlto")
 
 [node name="LeftHeadParent" type="Node2D" parent="Body/Pivot/Head" unique_id=1339290979]
 visible = false
@@ -264,3 +305,16 @@ texture = ExtResource("11_d4wk3")
 position = Vector2(0, -5)
 scale = Vector2(-1, 1)
 texture = ExtResource("12_0gm3a")
+
+[node name="DownLeftHeadParent" type="Node2D" parent="Body/Pivot/Head" unique_id=681599308]
+visible = false
+
+[node name="DownLeftGun" type="Sprite2D" parent="Body/Pivot/Head/DownLeftHeadParent" unique_id=1508843133]
+position = Vector2(-11, 7)
+scale = Vector2(-1, 1)
+texture = ExtResource("11_7d81g")
+
+[node name="DownLeftCamera" type="Sprite2D" parent="Body/Pivot/Head/DownLeftHeadParent" unique_id=105600791]
+position = Vector2(0, -5)
+scale = Vector2(-1, 1)
+texture = ExtResource("12_0ojwx")

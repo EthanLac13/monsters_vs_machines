@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 				controlled_entity.animation_object.change_direction(move_dir)
 				
 				crystal_chase_dir = 128.0
-				target_pos = get_target_pos()
+				target_pos = player_entity.position#get_target_pos()
 				crystal_chase_dir = 0.0
 				
 				movement_vector = controlled_entity.position.direction_to(target_pos).normalized()
