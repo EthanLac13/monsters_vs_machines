@@ -9,6 +9,8 @@ var down_head: Node2D
 var left_head: Node2D
 var up_head: Node2D
 
+var direction_heads: Array[Node2D] = []
+
 var last_visible_head: Node2D
 
 func initialize():
@@ -20,12 +22,19 @@ func _process(delta: float) -> void:
 	if anim_nodes_initialized == false:
 		anim_nodes_initialized = true
 		
-		right_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/RightHeadParent")
-		down_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/DownHeadParent")
-		left_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/LeftHeadParent")
-		up_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/UpHeadParent")
+		direction_heads = [
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/RightHeadParent"),
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/DownRightHeadParent"),
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/DownHeadParent"),
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/DownLeftHeadParent"),
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/LeftHeadParent"),
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/UpLeftHeadParent"),
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/UpHeadParent"),
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/UpRightHeadParent"),
+			controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/RightHeadParent")
+		]
 		
-		last_visible_head = right_head
+		last_visible_head = direction_heads[2]
 	
 	if controlled_entity != null:
 		if controlled_entity.can_move && !controlled_entity.using_skill && !controlled_entity.is_flinching:
@@ -59,15 +68,8 @@ func set_head_dir(direction: float):
 	last_visible_head.visible = false
 	
 	# Set the head sprite based on pointing dir
-	var angle_dir = int(direction + 360) % 360
-	if angle_dir >= 45 && angle_dir < 135:
-		last_visible_head = down_head
-	elif angle_dir >= 135 && angle_dir < 225:
-		last_visible_head = left_head
-	elif angle_dir >= 135 && angle_dir < 315:
-		last_visible_head = up_head
-	else:
-		last_visible_head = right_head
+	var angle_dir = int(((int(direction + 360) % 360) + 22.5) / 45.0)
+	last_visible_head = direction_heads[angle_dir]
 	
 	# Set the new head to be visible
 	last_visible_head.visible = true
