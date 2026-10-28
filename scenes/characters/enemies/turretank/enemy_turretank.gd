@@ -1,6 +1,9 @@
 extends "res://scenes/characters/enemies/enemy_stat_block.gd"
 
 @export var shoot_range: float = 128.0
+@export var shoot_time_secs: float = 4.0
+@export var shoot_variance: float = 0.5
+@export var shoot_angle_variance: float = 15.0
 @export var move_speed_variance: float = 0.1
 
 # Map that converts external animations to internal ones.
