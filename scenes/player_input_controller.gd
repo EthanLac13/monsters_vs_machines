@@ -80,7 +80,17 @@ func spawn_player(player_pos: Vector2):
 	# Add interaction zone to player
 	my_interaction_zone = interaction_zone_scene.instantiate()
 	controlled_object.add_child(my_interaction_zone)
+	
+	# Make camera follow the player
+	get_parent().get_node("Camera2D").set_target(controlled_object)
 
+# Set the camera's boundaries
+func set_camera_bounds(map_node: Node2D):
+	get_parent().get_node("Camera2D").limit_left = map_node.camera_bounds_h.x
+	get_parent().get_node("Camera2D").limit_right = map_node.camera_bounds_h.y
+	
+	get_parent().get_node("Camera2D").limit_top = map_node.camera_bounds_v.x
+	get_parent().get_node("Camera2D").limit_bottom = map_node.camera_bounds_v.y
 
 func _process(delta: float):
 	if Input.is_action_pressed("InputRight"):

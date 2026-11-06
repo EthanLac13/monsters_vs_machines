@@ -1,12 +1,16 @@
 [gd_scene format=4 uid="uid://g0n2vn8cxjl8"]
 
 [ext_resource type="TileSet" uid="uid://dcdgkreohjagt" path="res://tilesets/test_tileset.tres" id="1_kbf6l"]
+[ext_resource type="Script" uid="uid://bwhpfhm7h7ynf" path="res://scenes/maps/map.gd" id="1_w16d7"]
 [ext_resource type="Texture2D" uid="uid://c3r4ygigxidgx" path="res://icon.svg" id="2_w16d7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5nvpj"]
 size = Vector2(120, 20)
 
 [node name="Map0" type="Node2D" unique_id=1369142135]
+script = ExtResource("1_w16d7")
+camera_bounds_h = Vector2(0, 960)
+camera_bounds_v = Vector2(0, 540)
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1327732204]
 z_index = -100
