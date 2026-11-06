@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 				controlled_entity.animation_object.change_direction(move_dir)
 				
 				crystal_chase_dir = 128.0
-				target_pos = player_entity.position#get_target_pos()
+				target_pos = target_entity.position
 				crystal_chase_dir = 0.0
 				
 				movement_vector = controlled_entity.position.direction_to(target_pos).normalized()
@@ -96,7 +96,9 @@ func _process(delta: float) -> void:
 					base_head.scale.y = base_head.scale.x
 					
 					if shoot_secs == 20:
-						fire_projectile(move_dir + randf_range(-shoot_angle_variance, shoot_angle_variance))
+						var shot_variance = randf_range(-shoot_angle_variance, shoot_angle_variance)
+						print(shot_variance)
+						fire_projectile(move_dir + shot_variance)
 
 func fire_projectile(shot_dir: float):
 	var projectile_node = projectile_scene.instantiate()

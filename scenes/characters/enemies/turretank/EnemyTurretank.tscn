@@ -174,6 +174,7 @@ _data = {
 
 [node name="EnemyTurretank" type="Node2D" unique_id=1537831339]
 script = ExtResource("1_6emhj")
+shoot_angle_variance = 5.0
 ai_script = ExtResource("2_pixqp")
 crystal_chase_dir = 0.0
 health = 150
