@@ -1492,6 +1492,7 @@ _data = {
 script = ExtResource("1_ajbn8")
 move_speed_variance = 0.1
 ai_script = ExtResource("2_ao34y")
+crystal_chase_dir = 96.0
 next_node_dir = 40.0
 next_node_dir_variance = 16.0
 health = 100

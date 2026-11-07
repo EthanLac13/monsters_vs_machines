@@ -74,24 +74,24 @@ position = Vector2(992, 384)
 
 [node name="EnemyTrack0" type="Line2D" parent="EnemySpawnsAndTracks/EnemyTracks" unique_id=1329721105]
 position = Vector2(-32, 128)
-points = PackedVector2Array(0, 0, 64, 0, 128, 0, 192, 0, 256, 0, 320, 0, 384, 0, 448, 0)
+points = PackedVector2Array(0, 0, 64, 0, 128, 0, 192, 0, 256, 0, 320, 0, 384, 0, 448, 0, 512, 128)
 
 [node name="EnemyTrack1" type="Line2D" parent="EnemySpawnsAndTracks/EnemyTracks" unique_id=160711528]
 position = Vector2(-32, 256)
-points = PackedVector2Array(0, 0, 64, 0, 128, 0, 192, 0, 256, 0, 320, 0, 384, 0, 448, 0)
+points = PackedVector2Array(0, 0, 64, 0, 128, 0, 192, 0, 256, 0, 320, 0, 384, 0, 448, 0, 512, 0)
 
 [node name="EnemyTrack2" type="Line2D" parent="EnemySpawnsAndTracks/EnemyTracks" unique_id=1673112506]
 position = Vector2(-32, 384)
-points = PackedVector2Array(0, 0, 64, 0, 128, 0, 192, 0, 256, 0, 320, 0, 384, 0, 448, 0)
+points = PackedVector2Array(0, 0, 64, 0, 128, 0, 192, 0, 256, 0, 320, 0, 384, 0, 448, 0, 512, -128)
 
 [node name="EnemyTrack3" type="Line2D" parent="EnemySpawnsAndTracks/EnemyTracks" unique_id=473669040]
 position = Vector2(992, 128)
-points = PackedVector2Array(0, 0, -64, 0, -128, 0, -192, 0, -256, 0, -320, 0, -384, 0, -448, 0)
+points = PackedVector2Array(0, 0, -64, 0, -128, 0, -192, 0, -256, 0, -320, 0, -384, 0, -448, 0, -512, 128)
 
 [node name="EnemyTrack4" type="Line2D" parent="EnemySpawnsAndTracks/EnemyTracks" unique_id=1281733611]
 position = Vector2(992, 256)
-points = PackedVector2Array(0, 0, -64, 0, -128, 0, -192, 0, -256, 0, -320, 0, -384, 0, -448, 0)
+points = PackedVector2Array(0, 0, -64, 0, -128, 0, -192, 0, -256, 0, -320, 0, -384, 0, -448, 0, -512, 0)
 
 [node name="EnemyTrack5" type="Line2D" parent="EnemySpawnsAndTracks/EnemyTracks" unique_id=939307856]
 position = Vector2(992, 384)
-points = PackedVector2Array(0, 0, -64, 0, -128, 0, -192, 0, -256, 0, -320, 0, -384, 0, -448, 0)
+points = PackedVector2Array(0, 0, -64, 0, -128, 0, -192, 0, -256, 0, -320, 0, -384, 0, -448, 0, -512, -128)
