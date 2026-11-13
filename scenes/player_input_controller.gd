@@ -51,6 +51,7 @@ func spawn_player(player_pos: Vector2):
 	set_player_stats.call_deferred()
 	
 	# Update skill buttons
+	hud.get_main_objects.call_deferred()
 	hud.update_skill_buttons.call_deferred(skill_icon_list)
 	
 	# Give player purchasable skill scenes
@@ -110,6 +111,21 @@ func _process(delta: float):
 	
 	if Input.is_action_just_pressed("Interact"):
 		my_interaction_zone.attempt_interact()
+	
+	show_hud_enemies()
+	
+# Show enemies on the HUD
+func show_hud_enemies():
+	var enemy_list = get_tree().get_nodes_in_group("enemy_characters")
+	var distance_to_player = Vector2(0, 0)
+	var farthest_enemy: int = -1
+	for i in range(0, enemy_list.size()):
+		if abs(enemy_list[i].position - controlled_object.position) > distance_to_player:
+			distance_to_player = (enemy_list[i].position - controlled_object.position)
+			farthest_enemy = i
+	#print(distance_to_player)
+	if farthest_enemy != -1:
+		hud.update_enemy_arrow_pos(enemy_list[farthest_enemy].position)
 
 func _on_player_damaged():
 	hud.update_health_bar(controlled_object.stats_data.hp, controlled_object.stats_data.max_hp)

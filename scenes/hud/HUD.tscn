@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cslvw6v4wliui" path="res://sprites/hud_sprites/gold_icon_hud.png" id="5_dui1j"]
 [ext_resource type="Texture2D" uid="uid://dsrurs8ad2mek" path="res://sprites/hud_sprites/wave_flag_hud.png" id="7_se64a"]
 [ext_resource type="Texture2D" uid="uid://cwt08q6apaepu" path="res://sprites/hud_sprites/enemy_count_hud.png" id="8_oxkr6"]
+[ext_resource type="Texture2D" uid="uid://co3bbj2ahnhu6" path="res://sprites/shop_sprites/upgrade_arrow.png" id="9_yixhj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dui1j"]
 bg_color = Color(0.1882353, 0, 0, 1)
@@ -323,3 +324,29 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 2
+
+[node name="EnemyLocationCenter" type="Control" parent="." unique_id=1316681675]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyLocationArrow" type="TextureRect" parent="EnemyLocationCenter" unique_id=488069287]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+texture = ExtResource("9_yixhj")

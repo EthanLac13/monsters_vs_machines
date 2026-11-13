@@ -31,13 +31,17 @@ func _ready() -> void:
 	
 	#get_main_objects.call_deferred()
 
+func update_enemy_arrow_pos(enemy_pos: Vector2):
+	$EnemyLocationCenter.rotation_degrees = rad_to_deg(player_node.position.angle_to(enemy_pos))
+	print($EnemyLocationCenter.rotation_degrees)
+
 func get_main_objects():
 	# Get player and crystal objects
-	player_node = get_parent().get_node("Player")
-	crystal_node = get_parent().get_node("TargetCrystal")
+	player_node = get_tree().get_first_node_in_group("friendly_characters")
+	#crystal_node = get_parent().get_node("TargetCrystal")
 	#print(crystal_node)
 	
-	crystal_node.took_damage.connect(update_crystal_hp)
+	#crystal_node.took_damage.connect(update_crystal_hp)
 
 # Set the cooldown of a player skill
 func set_skill_cooldown(skill_index: int, cooldown: float):

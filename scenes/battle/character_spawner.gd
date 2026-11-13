@@ -14,6 +14,7 @@ func spawn_enemy_from_list(enemy_id: int, x: float, y: float):
 	var new_enemy = spawn_entity(selected_enemy_data.scene, x, y, 1, selected_enemy_data.internal_name)
 	# Give its health bar a red color
 	new_enemy.get_node("HealthBar").modulate = Color(248, 0, 0)
+	new_enemy.add_to_group("enemy_characters")
 	return new_enemy
 
 func spawn_entity(entity_scene: String, x: float, y: float, entity_faction: int = 0, entity_name: String = ""):
