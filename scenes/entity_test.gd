@@ -158,7 +158,7 @@ func _process(delta: float) -> void:
 	input_up = false
 	
 	# Update z-index based on position to avoid z-fighting
-	z_index = int(position.y) * 10
+	z_index = int(position.y) * 2
 
 # Sets the entity's skill scenes and cooldowns
 func refresh_skills():

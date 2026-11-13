@@ -106,22 +106,26 @@ func _input(event: InputEvent) -> void:
 					# Do stuff if we selected the upgrade
 					if upgrade_boxes[current_skill].pressed_down:
 						if upgrade_boxes[current_skill].unlocked:
-							# Get the name of the upgraded skill
-							var next_skill_name: String = skill_data[current_skill].upgrades[0].upgrade_name
-							
-							# Set the skill list
-							player.skill_list[current_skill] = next_skill_name
-							skill_indexes[current_skill] = next_skill_name
-							
-							# Sets the skill data
-							skill_data[current_skill] = GeneralFunctions.load_json_file(skill_data_path_template % next_skill_name)
-							
-							# Set the player's skill scenes and cooldowns
-							player.refresh_skills()
-							
-							# Highlight the new skill
-							upgrade_mode = false
-							focus_on_upgrade(current_skill)
+							if player.ai_controller.player_money >= skill_data[current_skill].upgrades[0].cost:
+								# Get the name of the upgraded skill
+								var next_skill_name: String = skill_data[current_skill].upgrades[0].upgrade_name
+								
+								# Set the skill list
+								player.skill_list[current_skill] = next_skill_name
+								skill_indexes[current_skill] = next_skill_name
+								
+								# Sets the skill data
+								skill_data[current_skill] = GeneralFunctions.load_json_file(skill_data_path_template % next_skill_name)
+								
+								# Set the player's skill scenes and cooldowns
+								player.refresh_skills()
+								
+								# Deduct money
+								player.ai_controller.add_money(skill_data[current_skill].upgrades[0].cost * -1)
+								
+								# Highlight the new skill
+								upgrade_mode = false
+								focus_on_upgrade(current_skill)
 						
 					upgrade_boxes[current_skill].press_up()
 

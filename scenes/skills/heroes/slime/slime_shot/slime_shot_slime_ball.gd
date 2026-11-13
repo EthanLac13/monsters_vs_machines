@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position += movement_vector * move_speed
 	# Update z-index based on position to avoid z-fighting
-	z_index = int(position.y) * 10
+	z_index = int(position.y) * 2
 	
 	lifetime -= 1
 	

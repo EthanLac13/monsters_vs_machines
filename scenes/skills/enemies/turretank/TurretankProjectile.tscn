@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bsf3xm8el8dge"]
+
+[ext_resource type="Texture2D" uid="uid://dht12rxgt7jpq" path="res://sprites/character_sprites/enemies/turretank/turretank_dart.png" id="1_2h8km"]
+[ext_resource type="Script" uid="uid://6x7np1y6w6xq" path="res://scenes/skills/enemies/turretank/turretank_projectile.gd" id="1_a3pau"]
+[ext_resource type="PackedScene" uid="uid://j27i3o81li2p" path="res://scenes/skills/AttackHitbox.tscn" id="2_a3pau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocns7"]
+size = Vector2(13, 3)
+
+[node name="TurretankProjectile" type="Node2D" unique_id=213720678]
+script = ExtResource("1_a3pau")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=2122049086]
+texture = ExtResource("1_2h8km")
+
+[node name="Hitbox" parent="." unique_id=1658913960 instance=ExtResource("2_a3pau")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2099541622]
+position = Vector2(1.5, -0.5)
+shape = SubResource("RectangleShape2D_ocns7")

@@ -64,9 +64,11 @@ func _ready() -> void:
 	
 	# Shift control to the player input controller
 	player_controller.spawn_player(map_node.get_node("CharacterSpawnPoints/PlayerSpawnPoint").position)
+	player_controller.set_camera_bounds(map_node)
 	
 	# Make the character spawner create the crystal
-	character_spawner.spawn_entity.call_deferred("res://scenes/characters/misc/target_crystal/TargetCrystal.tscn", 240, 240, 0, "TargetCrystal")
+	var crystal_spawn_pos: Vector2 = map_node.get_node("CharacterSpawnPoints/CrystalSpawnPoint").position
+	character_spawner.spawn_entity.call_deferred("res://scenes/characters/misc/target_crystal/TargetCrystal.tscn", crystal_spawn_pos.x, crystal_spawn_pos.y, 0, "TargetCrystal")
 
 func _process(delta: float) -> void:
 	pass

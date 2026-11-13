@@ -1,18 +1,31 @@
 extends "res://scenes/characters/enemies/base_enemy_ai_controller.gd"
 
+var projectile_scene: PackedScene = load("res://scenes/skills/enemies/turretank/TurretankProjectile.tscn")
+
 var max_chase_dir: float = 16.0
+
+var is_shooting: bool = false
+var shoot_secs: int = 0
+var shoot_secs_max: int = 0
+var shoot_secs_variance: int = 0
+
+var shoot_angle_variance: float = 0.0
 
 var anim_nodes_initialized: bool = false
 
-var right_head: Node2D
-var down_head: Node2D
-var left_head: Node2D
-var up_head: Node2D
+var base_head: Node2D
+var direction_heads: Array[Node2D] = []
 
 var last_visible_head: Node2D
 
 func initialize():
 	super()
+	
+	shoot_secs = int(stats.shoot_time_secs * 60)
+	shoot_secs_max = shoot_secs
+	shoot_secs_variance = int(stats.shoot_variance * 60)
+	
+	shoot_angle_variance = stats.shoot_angle_variance
 
 func _process(delta: float) -> void:
 	super(delta)
@@ -20,12 +33,20 @@ func _process(delta: float) -> void:
 	if anim_nodes_initialized == false:
 		anim_nodes_initialized = true
 		
-		right_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/RightHeadParent")
-		down_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/DownHeadParent")
-		left_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/LeftHeadParent")
-		up_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head/UpHeadParent")
+		base_head = controlled_entity.animation_object.anim_object.get_node("Body/Pivot/Head")
+		direction_heads = [
+			base_head.get_node("RightHeadParent"),
+			base_head.get_node("DownRightHeadParent"),
+			base_head.get_node("DownHeadParent"),
+			base_head.get_node("DownLeftHeadParent"),
+			base_head.get_node("LeftHeadParent"),
+			base_head.get_node("UpLeftHeadParent"),
+			base_head.get_node("UpHeadParent"),
+			base_head.get_node("UpRightHeadParent"),
+			base_head.get_node("RightHeadParent")
+		]
 		
-		last_visible_head = right_head
+		last_visible_head = direction_heads[2]
 	
 	if controlled_entity != null:
 		if controlled_entity.can_move && !controlled_entity.using_skill && !controlled_entity.is_flinching:
@@ -45,7 +66,7 @@ func _process(delta: float) -> void:
 				controlled_entity.animation_object.change_direction(move_dir)
 				
 				crystal_chase_dir = 128.0
-				target_pos = get_target_pos()
+				target_pos = target_entity.position
 				crystal_chase_dir = 0.0
 				
 				movement_vector = controlled_entity.position.direction_to(target_pos).normalized()
@@ -53,21 +74,49 @@ func _process(delta: float) -> void:
 				
 				# Change cannon angle based on direction to target entity
 				set_head_dir(move_dir)
+				
+				# Shoot
+				if !is_shooting:
+					shoot_secs -= 1
+					if shoot_secs <= 0:
+						is_shooting = true
+						shoot_secs = 0
+				else:
+					shoot_secs += 1
+					
+					if shoot_secs <= 10:
+						base_head.scale.x = 1.0 + (shoot_secs * 0.025)
+					elif shoot_secs <= 20:
+						base_head.scale.x = 1.25 - ((shoot_secs - 10) * 0.05)
+					elif shoot_secs <= 30:
+						base_head.scale.x = 0.75 + ((shoot_secs - 20) * 0.025)
+					else:
+						is_shooting = false
+						shoot_secs = shoot_secs_max + randi_range(-shoot_secs_variance, shoot_secs_variance)
+					base_head.scale.y = base_head.scale.x
+					
+					if shoot_secs == 20:
+						var shot_variance = randf_range(-shoot_angle_variance, shoot_angle_variance)
+						print(shot_variance)
+						fire_projectile(move_dir + shot_variance)
+
+func fire_projectile(shot_dir: float):
+	var projectile_node = projectile_scene.instantiate()
+	controlled_entity.get_parent().add_child(projectile_node)
+	
+	projectile_node.get_node("Hitbox").faction = controlled_entity.faction
+	projectile_node.get_node("Hitbox").damage = controlled_entity.stats_data.base_stats.attack
+	projectile_node.global_position = controlled_entity.global_position
+	projectile_node.movement_vector = Vector2(cos(deg_to_rad(shot_dir)), sin(deg_to_rad(shot_dir)))
+	projectile_node.rotation_degrees = shot_dir
 
 func set_head_dir(direction: float):
 	# Set the old head to be invisible
 	last_visible_head.visible = false
 	
 	# Set the head sprite based on pointing dir
-	var angle_dir = int(direction + 360) % 360
-	if angle_dir >= 45 && angle_dir < 135:
-		last_visible_head = down_head
-	elif angle_dir >= 135 && angle_dir < 225:
-		last_visible_head = left_head
-	elif angle_dir >= 135 && angle_dir < 315:
-		last_visible_head = up_head
-	else:
-		last_visible_head = right_head
+	var angle_dir = int(((int(direction + 360) % 360) + 22.5) / 45.0)
+	last_visible_head = direction_heads[angle_dir]
 	
 	# Set the new head to be visible
 	last_visible_head.visible = true
