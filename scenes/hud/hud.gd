@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var player_node: Node2D
 var crystal_node: Node2D
+var camera_node: Camera2D
 
 var skill_buttons: Array[TextureRect]
 var wave_hud: Array[Control]
@@ -32,8 +33,18 @@ func _ready() -> void:
 	#get_main_objects.call_deferred()
 
 func update_enemy_arrow_pos(enemy_pos: Vector2):
-	$EnemyLocationCenter.rotation_degrees = rad_to_deg(player_node.position.angle_to(enemy_pos))
-	print($EnemyLocationCenter.rotation_degrees)
+	if camera_node == null:
+		camera_node = get_parent().get_node("Camera2D")
+	# Rotate arrow to face the enemy
+	var position_difference: Vector2 = camera_node.position - enemy_pos
+	print(position_difference)
+	$EnemyLocationCenter.rotation_degrees = rad_to_deg(position_difference.angle())
+	
+	# Set arrow position at edge of screen
+	#$EnemyLocationCenter/EnemyLocationArrow.position.x = (-16 - position_difference.x) * 100.0
+	#$EnemyLocationCenter/EnemyLocationArrow.position.x = clamp($EnemyLocationCenter/EnemyLocationArrow.position.x, -248, 216)
+	#$EnemyLocationCenter/EnemyLocationArrow.position.y = (16 - position_difference.y) * 100.0
+	#$EnemyLocationCenter/EnemyLocationArrow.position.y = clamp($EnemyLocationCenter/EnemyLocationArrow.position.y, -248, 216)
 
 func get_main_objects():
 	# Get player and crystal objects
